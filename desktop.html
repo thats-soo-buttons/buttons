@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>THAT'S SOO BUTTONS // WORKSTATION</title>
+    <style>
+        :root { --phosphor: #ff00ff; --dark: #1a001a; --bg: #0a0010; }
+        *, *:before, *:after { box-sizing: border-box; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: var(--bg); color: var(--phosphor); font-family: 'Courier New', monospace; overflow: hidden; text-shadow: 0 0 5px var(--phosphor); }
+
+        .scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%); background-size: 100% 4px; z-index: 500; pointer-events: none; animation: flicker 0.15s infinite; }
+        @keyframes flicker { 0% { opacity: 0.9; } 100% { opacity: 1; } }
+
+        #main-ui { display: grid; grid-template-columns: 260px 1fr 320px; grid-template-rows: auto 1fr auto; height: 100vh; width: 100vw; max-height:100vh; overflow:auto; gap:12px; }
+
+        /* HEADER SECTION */
+        #header { grid-column: 1 / span 3; text-align: center; border-bottom: 2px solid var(--phosphor); padding: 20px; }
+        .title { font-size: clamp(20px, 4.5vw, 48px); font-weight: bold; letter-spacing: 8px; margin: 0; text-transform: uppercase; border-bottom: 4px double var(--phosphor); display: inline-block; }
+        .links { margin-top: 15px; }
+        .links a { color: var(--phosphor); text-decoration: none; margin: 0 20px; font-size: 16px; border: 1px solid transparent; }
+        .links a:hover { border: 1px dashed var(--phosphor); background: var(--dark); }
+
+        /* MIDDLE WORKSPACE (SCROLLABLE) */
+        #workspace { grid-column: 2; overflow-y: auto; padding: 12px; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: minmax(120px, 1fr); gap: 12px; border-left: 1px solid var(--phosphor); border-right: 1px solid var(--phosphor); }
+        #workspace::-webkit-scrollbar { width: 8px; }
+        #workspace::-webkit-scrollbar-thumb { background: var(--phosphor); }
+
+        /* GLOWING APP TILES */
+        .app { border: 2px solid var(--phosphor); background: rgba(0, 30, 0, 0.55); height: auto; min-height: 120px; display: flex; flex-direction: column; box-shadow: 0 0 12px rgba(51, 255, 51, 0.22); }
+        .app:hover { box-shadow: 0 0 25px var(--phosphor); transform: scale(1.01); }
+        .app-head { background: var(--phosphor); color: #000; padding: 5px 10px; font-size: 12px; font-weight: bold; display: flex; justify-content: space-between; text-shadow: none; }
+        .app-body { padding: 12px; font-size: 13px; line-height: 1.45; text-shadow: 0 0 6px var(--phosphor); overflow:auto; }
+
+        /* SIDE PANELS */
+        .side-panel { padding: 12px; }
+        #ad-window { border: 2px solid var(--phosphor); max-height: 320px; padding: 8px; display: flex; flex-direction: column; justify-content: center; text-align: center; overflow:auto; }
+
+        /* TASKBAR */
+        #taskbar { grid-column: 1 / span 3; border-top: 2px solid var(--phosphor); display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; background: linear-gradient(180deg, rgba(0,10,0,0.9), var(--dark)); position: fixed; left: 0; right: 0; bottom: 0; z-index: 1200; }
+        /* ensure workspace doesn't hide behind fixed taskbar */
+        #main-ui { padding-bottom: 72px; }
+        .btn { background: none; border: 1px solid var(--phosphor); color: var(--phosphor); padding: 5px 10px; cursor: pointer; font-family: 'Courier New'; }
+        .btn:hover { background: var(--phosphor); color: #000; }
+        .mug { font-size: 35px; cursor: pointer; transition: 0.3s; filter: drop-shadow(0 0 5px var(--phosphor)); }
+        .mug:hover { filter: brightness(1.5) drop-shadow(0 0 15px #fff); }
+
+        /* Boot summary overlay */
+        #boot-summary { position: fixed; top: 8vh; right: 2vw; min-width: 200px; max-width: 30vw; background: rgba(0,10,0,0.6); border: 2px solid var(--phosphor); padding: 10px; display: none; z-index: 1000; }
+        #boot-summary h4 { margin: 0 0 8px 0; font-size: 12px; }
+        #boot-summary .entry { font-size: 12px; margin-bottom: 6px; }
+        /* Log & sticky adjustments */
+        #log-panel { max-height: 220px; overflow:auto; }
+        #sticky-note { max-height: 220px; overflow:auto; }
+    </style>
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div id="main-ui">
+        <div id="header">
+            <h1 class="title">THAT'S SOO BUTTONS</h1>
+            <div class="links">
+                <a href="https://thatssobuttons.com/" target="_blank" rel="noopener">>> TWITCH <<</a>
+                <a href="https://ko-fi.com/thatssoobuttons" target="_blank" rel="noopener">>> SUPPORT <<</a>
+                <a href="https://ontheflynetwork.com/" target="_blank" rel="noopener">>> OTF NETWORK <<</a>
+                <a href="https://devilliermedia.com/" target="_blank" rel="noopener">>> PROFESSIONAL <<</a>
+            </div>
+        </div>
+
+        <div class="side-panel">
+            <div id="log-panel" style="border:2px solid var(--phosphor); padding:10px; height:220px; box-sizing:border-box; overflow:hidden; background:linear-gradient(180deg, rgba(0,10,0,0.2), rgba(0,0,0,0.05));">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                    <strong style="font-size:14px;">[SYS_LOG]</strong>
+                </div>
+                <div id="log-viewport" style="height:160px; overflow:auto; background:rgba(0,0,0,0.45); padding:8px; border:1px solid rgba(51,255,51,0.06); font-size:13px; line-height:1.3; color:var(--phosphor);"></div>
+            </div>
+
+            <div id="sticky-note" style="border:2px solid var(--phosphor); padding:10px; margin-top:12px; box-sizing:border-box; background:linear-gradient(180deg, rgba(0,10,0,0.06), rgba(0,0,0,0.02));">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><strong style="font-size:14px;">STICKY NOTE</strong></div>
+                <textarea id="sticky-text" placeholder="Type a short note to send to Buttons" style="width:100%; height:80px; background:transparent; color:var(--phosphor); border:1px solid rgba(51,255,51,0.06); padding:6px; box-sizing:border-box;"></textarea>
+                <div style="display:flex; gap:8px; align-items:center; margin-top:8px;">
+                    <button class="btn" id="sticky-send">Send</button>
+                    <span id="sticky-status" style="font-size:12px; opacity:0.9; margin-left:6px;"></span>
+                </div>
+            </div>
+        </div>
+
+        <div id="workspace">
+            <div class="app" id="file-explorer">
+                <div class="app-head" style="display:flex;justify-content:space-between;align-items:center;">
+                    <span style="cursor:pointer;" onclick="toggleExplorer()">FILE_EXPLORER.EXE</span>
+                    <span style="font-size:12px;opacity:0.8">▶</span>
+                </div>
+                <div class="app-body">
+                    <div id="explorer-body">
+                        <div style="font-weight:bold;margin-bottom:8px;">Applications</div>
+                        <div class="menu-item" style="cursor:pointer;" onclick="toggleMenu('games')">&gt; Games</div>
+                        <div id="games-list" style="display:none;margin-left:12px;margin-top:8px;">
+                            <div class="menu-entry" style="cursor:pointer;padding:6px 0;" onclick="openApp('exploding_spaceships.html','Exploding Spaceships')">• Exploding Spaceships 🚀</div>
+                            <div class="menu-entry" style="cursor:pointer;padding:6px 0;" onclick="openApp('ghosthunt.html','Ghosthunt')">• Ghosthunt</div>
+                        </div>
+                        <div class="menu-item" style="cursor:pointer;" onclick="toggleMenu('video-archives')">&gt; Video Archives</div>
+                        <div id="video-archives-list" style="display:none;margin-left:12px;margin-top:8px;">
+                            <div class="menu-entry" style="cursor:pointer;padding:6px 0;">• Spooky Games<br><span style="margin-left:12px;font-size:11px;">Coming Soon.txt</span></div>
+                            <div class="menu-entry" style="cursor:pointer;padding:6px 0;">• Cozy Game<br><span style="margin-left:12px;font-size:11px;">Coming Soon.txt</span></div>
+                            <div class="menu-entry" style="cursor:pointer;padding:6px 0;">• Other<br><span style="margin-left:12px;font-size:11px;">Coming Soon.txt</span></div>
+                        </div>
+                        <div class="menu-item" style="cursor:pointer;" onclick="toggleMenu('redacted')">&gt; TrashCan</div>
+                        <div id="redacted-list" style="display:none;margin-left:12px;margin-top:8px;">
+                            <div class="menu-item" style="cursor:pointer; padding:4px 0;" onclick="toggleMenu('redacted-encrypted')">&gt; Encrypted</div>
+                            <div id="redacted-encrypted-list" style="display:none;margin-left:12px;margin-top:4px;">
+                                <div class="menu-entry" style="cursor:pointer;padding:4px 0;">• ProjectBlackmill</div>
+                                <div class="menu-entry" style="cursor:pointer;padding:4px 0;">• Xyzthians</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="app"><div class="app-head"><span>Video Archives</span><span>[X]</span></div><div class="app-body">> Archive active with 3 folders<br>> Awaiting content...</div></div>
+            <div class="app"><div class="app-head"><span>OTF_TV_GUIDE.txt</span><span>[X]</span></div><div class="app-body" style="padding:0; overflow:hidden;"><iframe id="tv-guide-frame" src="about:blank" style="width:100%; height:100%; border:none; background:linear-gradient(135deg, rgba(0,20,0,0.8), rgba(0,10,0,0.95));"></iframe></div></div>
+            <div class="app"><div class="app-head"><span>REDACTED.DAT</span><span>[X]</span></div><div class="app-body">> Sector locked.<br>> Access denied.</div></div>
+        </div>
+
+        <div class="side-panel">
+            <div id="ad-window" style="margin-bottom:12px;">
+                <div style="background:var(--phosphor); color:black; font-weight:bold; margin-bottom:10px;">PROMO_ROTATOR</div>
+                <div id="ad-text">LOADING_PROMO...</div>
+            </div>
+
+            <div id="twitch-box" style="margin-top:0px; border-top:1px dashed rgba(51,255,51,0.08); padding-top:12px;">
+                <div style="font-weight:bold; margin-bottom:8px;">LIVE STREAM</div>
+                <div style="position:relative; width:100%; height:180px; background:#000; border:1px solid rgba(51,255,51,0.06);">
+                    <iframe id="twitch-iframe" src="about:blank" style="width:100%; height:100%; border:0; background:#000"></iframe>
+                    <div id="twitch-overlay" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--phosphor); background:linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.7));">
+                        <div id="twitch-status" style="font-weight:bold; font-size:16px;">Stream Offline</div>
+                    </div>
+                </div>
+                <div id="twitch-follow-area" style="margin-top:8px; text-align:center; color:var(--phosphor); font-size:13px;">
+                    <div style="font-weight:bold;">Stream Offline</div>
+                    <div style="margin-top:6px;">Show your support — follow to get live notifications:</div>
+                    <div style="margin-top:6px;"><a id="twitch-follow" href="https://twitch.tv/thats_soo_buttons" target="_blank" style="color:var(--phosphor); text-decoration:underline;">twitch.tv/thats_soo_buttons</a></div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div id="taskbar">
+            <div style="display:flex; align-items:center; gap:10px">
+                <div class="mug" id="coffee-mug" onclick="window.open('https://ko-fi.com/thatssoobuttons')" title="Refill Caffeine">☕</div>
+                <a href="https://ko-fi.com/thatssoobuttons" id="support-link" style="color:var(--phosphor); text-decoration:none; font-size:14px;">Show your support — Buy me a coffee</a>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div id="audio-player" style="display:flex;align-items:center;gap:8px">
+                    <select id="audio-list" style="background:transparent; color:var(--phosphor); border:1px solid rgba(51,255,51,0.12); padding:4px;">
+                        <option value="">Loading tracks...</option>
+                    </select>
+                    <button class="btn" id="play-btn" onclick="togglePlay()">[PLAY]</button>
+                    <button class="btn" id="pause-btn" onclick="pauseAudio()">[PAUSE]</button>
+                    <button class="btn" id="next-btn" onclick="nextTrack()">[NEXT]</button>
+                    <label style="color:var(--phosphor); font-size:12px; margin-left:6px;">Vol</label>
+                    <input id="audio-volume" type="range" min="0" max="1" step="0.01" value="0.7" style="width:110px;">
+                    <label style="color:var(--phosphor); font-size:12px; margin-left:8px;">Joke</label>
+                    <input id="joke-volume" type="range" min="0" max="1" step="0.01" value="1.0" style="width:90px;">
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span id="joke-box" style="font-size: 9px; width: 160px; text-align: right;">...</span>
+                <button class="btn" onclick="getJoke()">[JOKE]</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="boot-summary" role="status" aria-live="polite">
+        <h4>Boot Summary</h4>
+        <div id="boot-summary-body"></div>
+    </div>
+
+    <script>
+    (function(){
+        const logViewport = document.getElementById('log-viewport');
+        const storageKey = 'otf_recent_logs';
+        let logs = JSON.parse(localStorage.getItem(storageKey) || '[]');
+
+        function renderLogs(){
+            if(!logViewport) return;
+            logViewport.innerHTML = '';
+            logs.forEach(entry => {
+                const el = document.createElement('div');
+                el.style.padding = '6px 4px';
+                el.style.borderBottom = '1px solid rgba(51,255,51,0.03)';
+                el.innerText = `[${new Date(entry.t).toLocaleTimeString()}] ${entry.msg}`;
+                logViewport.appendChild(el);
+            });
+            logViewport.scrollTop = logViewport.scrollHeight;
+        }
+
+        function addLog(msg){
+            const e = { msg, t: Date.now() };
+            logs.push(e);
+            if(logs.length > 400) logs.shift();
+            localStorage.setItem(storageKey, JSON.stringify(logs));
+            if(logViewport){
+                const el = document.createElement('div');
+                el.style.padding = '6px 4px';
+                el.style.borderBottom = '1px solid rgba(51,255,51,0.03)';
+                el.innerText = `[${new Date(e.t).toLocaleTimeString()}] ${e.msg}`;
+                logViewport.appendChild(el);
+                logViewport.scrollTop = logViewport.scrollHeight;
+            }
+            // celebratory message on signups/joins
+            if(/signed up|joined|join/i.test(msg)){
+                const note = { msg: 'WOO HOO — THANKS FOR JOINING 🎉', t: Date.now()+1 };
+                logs.push(note);
+                if(logs.length > 400) logs.shift();
+                localStorage.setItem(storageKey, JSON.stringify(logs));
+                if(logViewport){
+                    const el2 = document.createElement('div');
+                    el2.style.padding = '6px 4px';
+                    el2.style.borderBottom = '1px solid rgba(51,255,51,0.03)';
+                    el2.style.color = '#bfffc6';
+                    el2.innerText = `[${new Date(note.t).toLocaleTimeString()}] ${note.msg}`;
+                    logViewport.appendChild(el2);
+                    logViewport.scrollTop = logViewport.scrollHeight;
+                }
+            }
+        }
+
+        // initial seed if empty
+        if(logs.length === 0){ addLog('GHOST: ONLINE'); addLog('SECTOR: 09'); }
+        renderLogs();
+
+        // Sticky note sender (simple dedicated box)
+        const WEBHOOKS = {
+            sticky: 'https://discord.com/api/webhooks/1461075713498288303/MOtSXqvwEqjBe4lP24BE8E3uLIFNc_13hbn8qCbWqHCHpQDwgyYnjWuceIxnswGBRp39'
+        };
+
+        const stickyBtn = document.getElementById('sticky-send');
+        stickyBtn && stickyBtn.addEventListener('click', async ()=>{
+            const textEl = document.getElementById('sticky-text');
+            const status = document.getElementById('sticky-status');
+            const txt = (textEl && textEl.value || '').trim();
+            if(!txt){ if(status) status.innerText = 'Empty'; return; }
+            if(status) status.innerText = 'Sending...';
+            try{
+                const res = await fetch(WEBHOOKS.sticky, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ content: ' BUTTONS: ' + txt }) });
+                if(res && res.ok){ if(status) status.innerText = 'Sent'; addLog('Sticky note sent'); if(textEl) textEl.value = ''; }
+                else { if(status) status.innerText = 'Failed'; addLog('Sticky note failed to send'); }
+            }catch(e){ if(status) status.innerText = 'Error'; addLog('Sticky note send error'); }
+        });
+    })();
+    </script>
+
+    <!-- Iframe modal for embedded apps (Minesweeper, Ghosthunt) -->
+    <div id="iframe-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:2000; align-items:center; justify-content:center;">
+        <div style="width:880px; max-width:95%; height:640px; max-height:92%; background: #071210; border: 3px solid var(--phosphor); box-shadow: 0 0 30px rgba(51,255,51,0.12); position:relative; display:flex; flex-direction:column;">
+            <div style="padding:8px 12px; background:rgba(0,0,0,0.2); color:var(--phosphor); display:flex; justify-content:space-between; align-items:center;">
+                <div id="iframe-title">App</div>
+                <div>
+                    <button class="btn" onclick="closeIframe()">[CLOSE]</button>
+                </div>
+            </div>
+            <iframe id="app-iframe" src="about:blank" style="flex:1; border:none; background:#000;" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // AD LOGIC
+        const ads = ["SUPPORT BUTTONS<br><small>This is her full-time job!</small>", "TWITCH.TV/THATS_SOO_BUTTONS", "MODE: COZY GAMING", "MODE: SCARY GAMING"];
+        let i = 0;
+        setInterval(() => { document.getElementById('ad-text').innerHTML = ads[i]; i = (i + 1) % ads.length; }, 5000);
+
+        // JOKE LOGIC
+        const jokes = ["Why do ghosts love OTF? High-speed BOO-dband.", "My computer has a ghost. It keeps opening Windows.", "Programmer ghost's favorite food? Byte-sized snacks."];
+        function speakText(text){
+            if(window.speechSynthesis){
+                try{ window.speechSynthesis.cancel(); }catch(e){}
+                const u = new SpeechSynthesisUtterance(text);
+                u.rate = 0.95; u.pitch = 1.0;
+                try{
+                    const vEl = document.getElementById('joke-volume');
+                    u.volume = vEl ? parseFloat(vEl.value) : 1.0;
+                }catch(e){ u.volume = 1.0; }
+                window.speechSynthesis.speak(u);
+            }
+        }
+        function getJoke(){
+            const j = jokes[Math.floor(Math.random()*jokes.length)];
+            document.getElementById('joke-box').innerText = j;
+            // speak it out loud
+            speakText(j);
+        }
+
+        // AUDIO PLAYER
+        let currentAudio = null;
+        const audioListEl = document.getElementById('audio-list');
+
+        // Candidate filenames to probe (will attempt to load from /dm_audio/ and /audio%20library/)
+        const candidates = [
+            'track1.mp3','track2.mp3','boot.mp3','theme-clean.mp3','theme-8bit.mp3','lofi-buttons.mp3',
+            'synth-wave-otf.mp3','brokenmusicbox.mp3','dreams-in-slow-motion-chill-lofi.mp3',
+            'Scary Ambient Wind.mp3','Amos Ever Hadani - Infinito Tren.mp3','T Bless - Korobeiniki - 8-Bit Version.mp3',
+            'Kashido - Minuet in G Major.mp3','Ian Post - 8 Bit Samba.mp3','Yarin Primak - DREEEAAAMS.mp3',
+            'Peter Spacey - Kawaii Kitty Dance.mp3','Soniq Branding - Body Freak - Instrumental version.mp3',
+            'Jakub Pietras - Mist over Lapland.mp3','Young Rich Pixies - Monster from the Deep.mp3',
+            'Ian Post - I Must Be Dreaming.mp3','MooveKa - Happy Toes.mp3','Evgeny Bardyuzha - Taste Like Poison.mp3',
+            'Roie Shpigler - Clarity.mp3','Just for Kicks - Something Smells Funny.mp3'
+        ];
+
+        function addAudioToList(src){
+            // Prevent duplicates
+            const exists = Array.from(audioListEl.options).some(opt => opt.value === src);
+            if(exists) return;
+            const opt = document.createElement('option'); opt.value = src; opt.innerText = src.split('/').pop(); audioListEl.appendChild(opt);
+        }
+
+        function probeAndAdd(path){
+            return new Promise(res=>{
+                const a = new Audio(); a.preload = 'metadata';
+                let done = false;
+                function success(){ if(done) return; done=true; a.pause(); addAudioToList(path); res(true); }
+                function fail(){ if(done) return; done=true; res(false); }
+                a.addEventListener('canplaythrough', success, {once:true});
+                a.addEventListener('error', fail, {once:true});
+                a.src = path;
+                // timeout fallback
+                setTimeout(()=>{ if(!done) fail(); }, 3000);
+            });
+        }
+
+        async function scanAudio(){
+            audioListEl.innerHTML = '<option value="">Scanning...</option>';
+            // try dm_audio first
+            for(const f of candidates){
+                const p = '/dm_audio/' + f;
+                try{ const ok = await probeAndAdd(p); if(ok) continue; }catch(e){}
+            }
+            // try audio library fallback (space encoded)
+            for(const f of candidates){
+                const p = '/audio%20library/' + f;
+                try{ const ok = await probeAndAdd(p); if(ok) continue; }catch(e){}
+            }
+            if(audioListEl.options.length <= 1){ 
+                audioListEl.innerHTML = '<option value="">No tracks found</option>';
+                addManualHint(); 
+            } else {
+                audioListEl.options[0].text = 'Select a track...';
+            }
+        }
+
+        // Auto-scan on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            scanAudio();
+        });
+
+        function addManualHint(){
+            if(!document.getElementById('audio-manual-add')){
+                const btn = document.createElement('button'); btn.className='btn'; btn.id='audio-manual-add'; btn.innerText='[ADD URL]'; btn.onclick = ()=>{
+                    const url = prompt('Enter path to mp3/wav (relative to site root or full URL):'); if(url) addAudioToList(url);
+                };
+                document.getElementById('audio-player').appendChild(btn);
+            }
+        }
+
+        function playSelected(){
+            const val = audioListEl.value; if(!val) return alert('Select a track first');
+            if(currentAudio && currentAudio.src === val){
+                // already loaded same src -> just play
+                currentAudio.play().catch(()=>{});
+                updatePlayLabel(true);
+                return;
+            }
+            if(currentAudio){ try{ currentAudio.pause(); currentAudio.src=''; }catch(e){} }
+            currentAudio = new Audio(val); currentAudio.crossOrigin = 'anonymous'; currentAudio.loop = true;
+            try{
+                const vol = parseFloat((document.getElementById('audio-volume')||{value:0.7}).value);
+                currentAudio.volume = isNaN(vol) ? 0.7 : vol;
+            }catch(e){ currentAudio.volume = 0.7; }
+            currentAudio.play().then(()=>{ updatePlayLabel(true); }).catch(()=>{ /* require user gesture */ updatePlayLabel(currentAudio && !currentAudio.paused); });
+        }
+        function pauseAudio(){ if(currentAudio) { currentAudio.pause(); updatePlayLabel(false); } }
+        function stopAudio(){ if(currentAudio){ currentAudio.pause(); currentAudio.currentTime = 0; updatePlayLabel(false); } }
+
+        // Toggle Play button behavior: clicking Play while playing will Stop (pause+reset)
+        function togglePlay(){
+            const playBtn = document.getElementById('play-btn');
+            if(currentAudio && !currentAudio.paused){
+                // currently playing -> stop
+                stopAudio();
+                if(playBtn) playBtn.innerText = '[PLAY]';
+                return;
+            }
+            // otherwise try to play selected track
+            playSelected();
+        }
+
+        function updatePlayLabel(isPlaying){ const b = document.getElementById('play-btn'); if(!b) return; b.innerText = isPlaying ? '[STOP]' : '[PLAY]'; }
+
+        // Next track: advance selection and play
+        function nextTrack(){
+            const sel = audioListEl;
+            if(!sel) return;
+            const len = sel.options.length;
+            if(len <= 1) return; // no tracks
+            let idx = sel.selectedIndex;
+            idx = (idx + 1) % len;
+            sel.selectedIndex = idx;
+            playSelected();
+        }
+
+        // wire volume slider to current audio as it changes
+        (function(){
+            const aVol = document.getElementById('audio-volume');
+            if(aVol){ aVol.addEventListener('input', (e)=>{ try{ if(currentAudio) currentAudio.volume = parseFloat(e.target.value); }catch(_){} }); }
+        })();
+
+        function togglePlay(){ if(currentAudio && !currentAudio.paused) { pauseAudio(); } else { playSelected(); } }
+
+        // expose scan on load quietly (do not auto-play)
+        setTimeout(()=>{ if(document.visibilityState === 'visible') scanAudio().catch(()=>{}); }, 800);
+
+        // Show boot summary when arriving from boot
+        (function(){
+            try{
+                const params = new URLSearchParams(location.search);
+                if(params.get('from') === 'boot'){
+                    const raw = sessionStorage.getItem('otf_boot_answers');
+                    if(raw){
+                        const answers = JSON.parse(raw);
+                        const body = document.getElementById('boot-summary-body');
+                        const container = document.getElementById('boot-summary');
+                        if(body && container){
+                            body.innerHTML = Object.entries(answers).map(([q,a])=>`<div class="entry"><strong>${q}</strong>: ${a}</div>`).join('');
+                            container.style.display='block';
+                        }
+                    }
+                }
+            } catch(e){ console.warn('boot summary error', e); }
+        })();
+
+        // Explorer & iframe modal logic
+        function toggleExplorer(){ const gb = document.getElementById('games-list'); if(!gb) return; gb.style.display = gb.style.display === 'none' ? 'block' : 'none'; }
+        function toggleMenu(id){ const el = document.getElementById(id+'-list') || document.getElementById(id); if(!el) return; el.style.display = el.style.display === 'none' ? 'block' : 'none'; }
+
+        function openApp(path, title){
+            const modal = document.getElementById('iframe-modal'); const frame = document.getElementById('app-iframe'); const t = document.getElementById('iframe-title');
+            if(!modal || !frame) return; t.innerText = title || path; frame.src = path; modal.style.display = 'flex';
+        }
+        function closeIframe(){ const modal = document.getElementById('iframe-modal'); const frame = document.getElementById('app-iframe'); if(frame) frame.src='about:blank'; if(modal) modal.style.display='none'; }
+
+        // --- Twitch embed + status ---
+        // Configure your channel and optional Helix credentials here
+        const TWITCH_CHANNEL = 'your_channel_here';
+        const TWITCH_CLIENT_ID = '';
+        const TWITCH_AUTH_TOKEN = ''; // Bearer token if available (format: "xxxx")
+
+        function setTwitchIframe(){
+            const iframe = document.getElementById('twitch-iframe');
+            const parent = encodeURIComponent(location.hostname || 'localhost');
+            const ch = (TWITCH_CHANNEL || 'twitch').trim();
+            iframe.src = `https://player.twitch.tv/?channel=${ch}&parent=${parent}&muted=true`;
+            const fol = document.getElementById('twitch-follow'); if(fol) fol.href = `https://www.twitch.tv/${ch}`;
+        }
+
+        async function checkTwitchLive(){
+            const statusEl = document.getElementById('twitch-status');
+            const overlay = document.getElementById('twitch-overlay');
+            const ch = (TWITCH_CHANNEL || '').trim();
+            if(!ch){ if(statusEl) statusEl.innerText = 'No channel configured'; overlay.style.display='flex'; return; }
+
+            // If client credentials are supplied, use Helix API to check status
+            if(TWITCH_CLIENT_ID && TWITCH_AUTH_TOKEN){
+                try{
+                    const res = await fetch(`https://api.twitch.tv/helix/streams?user_login=${encodeURIComponent(ch)}`, {
+                        headers: { 'Client-ID': TWITCH_CLIENT_ID, 'Authorization': `Bearer ${TWITCH_AUTH_TOKEN}` }
+                    });
+                    if(res.ok){ const data = await res.json(); const live = Array.isArray(data.data) && data.data.length>0;
+                        if(live){ overlay.style.display='none'; } else { statusEl.innerText='Stream Offline'; overlay.style.display='flex'; }
+                        return;
+                    }
+                }catch(e){ console.warn('Helix check failed', e); }
+            }
+
+            // Fallback: no credentials — show overlay (player will display offline) but allow user to open channel
+            if(statusEl) statusEl.innerText = 'Stream Offline';
+            if(overlay) overlay.style.display = 'flex';
+        }
+
+        // initialize twitch box on load and poll every 30s
+        setTwitchIframe();
+        checkTwitchLive();
+        setInterval(checkTwitchLive, 30000);
+
+        // Listen for messages from iframe apps (ghosthunt etc.)
+        window.addEventListener('message', (ev)=>{
+            try{
+                const d = ev.data || {};
+                if(d.type === 'close_iframe'){ closeIframe(); }
+                if(d.type === 'open_highlights'){ closeIframe(); openApp('phasmohighlights.html','Community Highlights'); }
+            }catch(e){ console.warn('iframe message', e); }
+        });
+    </script>
+ 
+            try{
+                const params = new URLSearchParams(location.search);
+                if(params.get('from') === 'boot'){
+                    const raw = sessionStorage.getItem('otf_boot_answers');
+                    if(raw){
+                        const answers = JSON.parse(raw);
+                        const body = document.getElementById('boot-summary-body');
+                        const container = document.getElementById('boot-summary');
+                        if(body && container){
+                            body.innerHTML = Object.entries(answers).map(([q,a])=>`<div><strong>${q}</strong>: ${a}</div>`).join('');
+                            container.style.display='block';
+                            // optional: clear so it doesn't persist across navigations
+                            // sessionStorage.removeItem('otf_boot_answers');
+                            try{ // apply a simple theme based on answers
+                                if(answers['COZY OR HORROR?'] && answers['COZY OR HORROR?'].toUpperCase().includes('HORROR')){
+                                    document.body.classList.add('horror-mode');
+                                } else if(answers['COZY OR HORROR?'] && answers['COZY OR HORROR?'].toUpperCase().includes('COZY')){
+                                    document.body.classList.add('cozy-mode');
+                                }
+                                // telemetry: arrival at desktop
+                                try{ fetch('/api/telemetry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({event:'arrive_desktop',answers})}).catch(()=>{}); }catch(e){}
+                            }catch(e){/* ignore */}
+                        }
+                    }
+                }
+            } catch(e){ console.warn('boot summary error', e); }
+        })();
+        // Coffee joke overlay
+        let _jcount = 0;
+        const _jokes = ['Devillier_Media/coffee/joke1.jpg','Devillier_Media/coffee/joke2.jpg','Coffee.png','gltf_embedded_8.jpeg'];
+        let _jIdx = 0;
+        function showJoke(idx) {
+            const img = document.getElementById('joke-img');
+            img.src = _jokes[idx % _jokes.length];
+            img.onerror = () => { img.onerror = null; img.src = 'Coffee.png'; };
+        }
+        function countFunny() {
+            _jcount++;
+            document.getElementById('count').innerText = `ACKNOWLEDGED: ${_jcount}/3`;
+            // play ack sound or speak
+            try {
+                const a = new Audio('Devillier_Media/../dm_audio/joke_ack.mp3');
+                a.play().catch(() => { if (window.speechSynthesis) { const u=new SpeechSynthesisUtterance('that was funny'); u.rate = 0.9; window.speechSynthesis.speak(u); } });
+            } catch (e) {
+                if (window.speechSynthesis) { const u=new SpeechSynthesisUtterance('that was funny'); u.rate = 0.9; window.speechSynthesis.speak(u); }
+            }
+            _jIdx++; showJoke(_jIdx);
+            if (_jcount >= 3) document.getElementById('joke-overlay').style.display = 'none';
+        }
+        // init
+        document.addEventListener('DOMContentLoaded', ()=> showJoke(0));
+
+        // If opened from `desk.html`, import the desk monitor's desktop HTML from sessionStorage
+        (function(){
+            const p = new URLSearchParams(window.location.search);
+            if (p.get('from') === 'desk'){
+                try{
+                    const html = sessionStorage.getItem('otf_desktop_env');
+                    if(html){
+                        // hide security entry and canvas and show the desktop in full screen
+                        const sec = document.getElementById('security-screen'); if(sec) sec.style.display='none';
+                        const canvas = document.getElementById('canvas-container'); if(canvas) canvas.style.display='none';
+                        const fs = document.createElement('div');
+                        fs.id = 'full-desk-shell';
+                        fs.style.position = 'fixed'; fs.style.inset = '0'; fs.style.zIndex = 10000; fs.style.background = '#08323a'; fs.style.overflow = 'auto';
+                        fs.innerHTML = `<div style="padding:28px; box-sizing:border-box;">${html}</div>`;
+                        document.body.appendChild(fs);
+                    }
+                }catch(e){ console.warn('failed to import desk desktop', e); }
+            }
+        })();
+
+        // Notepad functions
+        function sendNote() {
+            const text = document.getElementById('note-text').value;
+            fetch('/api/webhook', {
+                method: 'POST', headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ type: 'note', payload: { text } })
+            }).then(() => {
+                document.getElementById('note-status').innerText = 'SENT TO FLY MESSENGER';
+                // playful audio response
+                if (window.speechSynthesis) {
+                    const u = new SpeechSynthesisUtterance('Fly Messenger says: message received. Pun loading.');
+                    u.rate = 0.9; window.speechSynthesis.speak(u);
+                }
+            }).catch(() => document.getElementById('note-status').innerText = 'FAILED');
+        }
+        function saveNote() {
+            localStorage.setItem('fly-note', document.getElementById('note-text').value);
+            document.getElementById('note-status').innerText = 'SAVED LOCALLY';
+        }
+
+        // restore note
+        document.addEventListener('DOMContentLoaded', ()=>{
+            const s = localStorage.getItem('fly-note'); if (s) document.getElementById('note-text').value = s;
+        });
+        // Fly Messenger & OTF TV behavior
+        (function(){
+            function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+            function appendFlyMessage(text, from='You'){
+                const container = document.getElementById('fly-messages');
+                if (!container) return;
+                const el = document.createElement('div');
+                const t = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                el.innerHTML = `<strong>${escapeHtml(from)}</strong> <span style="color:#888;font-size:11px">[${t}]</span><div>${escapeHtml(text)}</div>`;
+                container.appendChild(el);
+                container.scrollTop = container.scrollHeight;
+                const arr = JSON.parse(localStorage.getItem('fly-msgs') || '[]'); arr.push({text, from, t}); if(arr.length>200) arr.shift(); localStorage.setItem('fly-msgs', JSON.stringify(arr));
+            }
+            window.sendFlyMsg = async function(){
+                const input = document.getElementById('fly-input'); if(!input) return;
+                const text = input.value.trim(); if(!text) return; input.value = '';
+                appendFlyMessage(text, 'You');
+                try{
+                    await fetch('/api/webhook', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ type:'note', payload:{ text, origin:'fly_messenger' } }) });
+                } catch(e) { appendFlyMessage('(failed to send)', 'System'); }
+            };
+            // load saved messages
+            (function(){ try{ const arr = JSON.parse(localStorage.getItem('fly-msgs') || '[]'); arr.forEach(m=> appendFlyMessage(m.text,m.from)); }catch(e){} })();
+
+            // OTF TV loader
+            window.loadOTFVideo = function(){
+                const url = (document.getElementById('otf-video-url').value || '').trim();
+                const area = document.getElementById('otf-video-area');
+                if(!area) return;
+                if(!url || !url.startsWith('https://')) { area.innerHTML = 'Invalid or missing URL (must start with https://)'; return; }
+                // YouTube
+                let yt = url.match(/(?:v=|youtu\.be\/|youtube\.com\/watch\?v=)([a-zA-Z0-9_-]{6,})/);
+                if(yt && yt[1]) {
+                    const embed = `https://www.youtube.com/embed/${yt[1]}?rel=0&modestbranding=1`;
+                    area.innerHTML = `<iframe src="${embed}" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>`;
+                    return;
+                }
+                // Vimeo
+                let vm = url.match(/vimeo\.com\/(\d+)/);
+                if(vm && vm[1]) {
+                    area.innerHTML = `<iframe src="https://player.vimeo.com/video/${vm[1]}" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>`;
+                    return;
+                }
+                // direct mp4
+                if(url.match(/\.mp4(\?|$)/)) {
+                    area.innerHTML = `<video controls src="${url}" style="width:100%;height:100%;background:#000"></video>`;
+                    return;
+                }
+                area.innerHTML = 'Unsupported video URL format.';
+            };
+
+            // Make windows draggable by title bar
+            function makeDraggable(win) {
+                if(!win) return;
+                const title = win.querySelector('.win98-titlebar');
+                let dx=0,dy=0,drag=false;
+                title.addEventListener('mousedown', (e)=>{ drag=true; const r=win.getBoundingClientRect(); dx = e.clientX - r.left; dy = e.clientY - r.top; title.style.cursor='grabbing'; });
+                document.addEventListener('mousemove', (e)=>{ if(!drag) return; win.style.left = (e.clientX - dx) + 'px'; win.style.top = (e.clientY - dy) + 'px'; win.style.right='auto'; win.style.bottom='auto'; });
+                document.addEventListener('mouseup', ()=>{ if(drag) { drag=false; title.style.cursor='move'; } });
+            }
+            makeDraggable(document.getElementById('fly-messenger'));
+            makeDraggable(document.getElementById('otf-tv'));
+        })();
+
+        // Dial-up connect UI: play modemdialing when ?dial=1 is present
+        (function(){
+            function qs(name){ const p = new URLSearchParams(window.location.search); return p.get(name); }
+            const shouldDial = qs('dial') === '1';
+            if(!shouldDial) return;
+            // create UI
+            const win = document.createElement('div');
+            win.className = 'win98-window';
+            win.style.left = '50%'; win.style.top = '20%'; win.style.transform = 'translate(-50%,0)'; win.style.width='360px'; win.style.padding='0';
+            win.innerHTML = `
+                <div class="win98-titlebar">Connecting to On The Fly Network<div style="display:flex;gap:6px"><button onclick="this.parentElement.parentElement.style.display='none'">_</button><button onclick="this.parentElement.parentElement.remove()">×</button></div></div>
+                <div class="win98-content" style="height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px">
+                    <div id="connect-text">Dialing: <em>On The Fly Network</em></div>
+                    <div style="width:80%;height:10px;background:#eee;border:1px solid #000"><div id="connect-bar" style="width:0%;height:100%;background:#4caf50"></div></div>
+                </div>`;
+            document.body.appendChild(win);
+
+            const a = document.createElement('audio'); a.id='dial-audio'; a.preload='auto'; a.src='dm_audio/modemdialing.mp3'; document.body.appendChild(a);
+            const bar = win.querySelector('#connect-bar');
+
+            // Try to play; update bar over time
+            function startPlayback(){
+                a.currentTime = 0; a.volume = 0.9;
+                a.play().catch(()=>{
+                    // if playback blocked, show manual play button
+                    const btn = document.createElement('button'); btn.innerText='Play connect sound'; btn.onclick = ()=>{ a.play(); btn.remove(); }; win.querySelector('.win98-content').appendChild(btn);
+                });
+                const duration = 4500; // visual duration (ms)
+                const start = Date.now();
+                const t = setInterval(()=>{ const p = Math.min(1, (Date.now()-start)/duration); bar.style.width = (p*100)+'%'; if(p>=1){ clearInterval(t); win.querySelector('#connect-text').innerText='Connected to On The Fly Network'; setTimeout(()=>{ win.remove(); }, 900); } }, 80);
+            }
+
+            // if user gesture exists via referrer or navigation, try immediately
+            startPlayback();
+        })();
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="asset-fallbacks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
+
+    <script>
+        const badge = document.getElementById('id-badge');
+        const scanner = document.getElementById('scanner-zone');
+        const stream = (id) => `https://docs.google.com/uc?export=download&id=${id}`;
+
+        // 1. AUDIO ENGINE
+        function playSnd(f, type = 'sine', duration = 0.1) {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type; osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.frequency.setValueAtTime(f, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            osc.start(); osc.stop(audioCtx.currentTime + duration);
+        }
+
+        // 2. DRAG ENGINE
+        let isDragging = false, offset = [0, 0];
+        badge.onmousedown = (e) => { 
+            isDragging = true; 
+            offset = [badge.offsetLeft - e.clientX, badge.offsetTop - e.clientY]; 
+        };
+
+        document.onmousemove = (e) => {
+            if (isDragging) {
+                badge.style.left = (e.clientX + offset[0]) + 'px';
+                badge.style.top = (e.clientY + offset[1]) + 'px';
+                checkScan();
+            }
+            // Move flashlight even if not dragging
+            document.documentElement.style.setProperty('--x', e.clientX + 'px');
+            document.documentElement.style.setProperty('--y', e.clientY + 'px');
+        };
+
+        document.onmouseup = () => isDragging = false;
+
+        // 3. SCAN LOGIC
+        function checkScan() {
+            const b = badge.getBoundingClientRect(), s = scanner.getBoundingClientRect();
+            if (!(b.right < s.left || b.left > s.right || b.bottom < s.top || b.top > s.bottom)) {
+                unlockHQ();
+            }
+        }
+
+        function unlockHQ() {
+            if (badge.style.pointerEvents === 'none') return;
+            document.getElementById('status-light').style.backgroundColor = '#00ff00';
+            badge.style.pointerEvents = 'none';
+            playSnd(880, 'square', 0.1);
+
+            setTimeout(() => {
+                document.getElementById('security-screen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('security-screen').style.display = 'none';
+                    document.getElementById('canvas-container').style.display = 'block';
+                    document.getElementById('flashlight').style.display = 'block';
+                    init3DOffice();
+                }, 800);
+            }, 500);
+        }
+
+        // 4. 3D ENGINE (OFFICE STUDIO)
+        function init3DOffice() {
+            const canvas = document.getElementById('three-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 1.6, 3);
+
+            const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio || 1);
+
+            // Lights
+            const ambient = new THREE.AmbientLight(0x404040, 0.6);
+            scene.add(ambient);
+            const point = new THREE.PointLight(0xffeecc, 1.2, 100);
+            point.position.set(0, 2, 5);
+            scene.add(point);
+
+            // Simple scene: a desk box + retro plane behind
+            const deskGeo = new THREE.BoxGeometry(6, 0.6, 3);
+            const deskMat = new THREE.MeshStandardMaterial({ color: 0x3b2f2f, metalness: 0.1, roughness: 0.9 });
+            const desk = new THREE.Mesh(deskGeo, deskMat);
+            desk.position.set(0, -0.3, 0);
+            scene.add(desk);
+
+            const boxGeo = new THREE.BoxGeometry(0.6, 0.6, 0.6);
+            const boxMat = new THREE.MeshStandardMaterial({ color: 0x86a0ff, metalness: 0.2, roughness: 0.6 });
+            const box = new THREE.Mesh(boxGeo, boxMat);
+            box.position.set(0, 0.3, 0);
+            scene.add(box);
+
+            // Background plane with subtle retro gradient
+            const bgGeo = new THREE.PlaneGeometry(50, 30);
+            const bgMat = new THREE.MeshBasicMaterial({ color: 0x0a0a12 });
+            const bg = new THREE.Mesh(bgGeo, bgMat);
+            bg.position.set(0, 5, -15);
+            scene.add(bg);
+
+            // Flashlight-like point light that tracks mouse
+            document.addEventListener('mousemove', (e) => {
+                const x = (e.clientX - window.innerWidth / 2) / 50;
+                const y = (window.innerHeight / 2 - e.clientY) / 50;
+                point.position.x += (x - point.position.x) * 0.08;
+                point.position.y += (y - point.position.y) * 0.08;
+            });
+
+            // Resize
+            function onResize() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+            window.addEventListener('resize', onResize);
+
+            // Render loop
+            function animate() {
+                requestAnimationFrame(animate);
+                box.rotation.y += 0.006;
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Expose small helpers for debug/testing
+            window.__otf_three = { scene, camera, renderer };
+        }
