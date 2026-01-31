@@ -2,250 +2,286 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self';">
-    <title>THAT'S SOO BUTTONS // SYSTEM_BOOT</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thats_Soo_Buttons | [ home ]</title>
     <style>
-        body, html { 
-            margin: 0; padding: 0; 
-            height: 100%; width: 100%; 
-            background: #000; color: #00ff41; 
-            font-family: 'Courier New', monospace; 
-            overflow: hidden; 
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo+Black&display=swap');
 
-        #boot-screen { 
-            width: 100vw; height: 100vh; 
-            display: flex; flex-direction: column; 
-            position: relative; padding: 60px;
+        * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
-        #text-stream { 
-            flex-grow: 1; overflow: hidden; 
-            font-size: 34px;
-            line-height: 1.5; 
-            text-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
+        body {
+            font-family: 'Archivo Black', sans-serif;
+            transition: background 0.5s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
         }
 
-        .pct-counter { 
-            font-size: 120px;
-            color: #00ff41; border-top: 4px solid #222; 
-            padding-top: 20px; text-align: right;
+        /* Background Handling */
+        body.day-mode {
+            background: url('background1.jpg') center center/cover no-repeat fixed;
+            color: #111;
         }
-        
-        #poll-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; border: 20px solid #ff006e;
-            flex-direction: column; align-items: center; justify-content: center; z-index: 1000;
-            box-sizing: border-box;
+        body.night-mode {
+            background: url('background2glitch.jpeg') center center/cover no-repeat fixed;
+            color: #fff;
         }
 
-        .poll-q { 
-            color: #ff006e; font-size: 42px; 
-            margin-bottom: 50px; text-align: center; padding: 0 100px; 
-            line-height: 1.2; text-transform: uppercase; letter-spacing: 4px; 
+        /* Glassmorphism Container */
+        .glass-wrapper {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px) saturate(150%);
+            -webkit-backdrop-filter: blur(12px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            margin: 40px auto;
+            padding: 40px;
+            max-width: 1200px;
+            width: 90%;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
 
-        .poll-btn {
-            background: none; border: 3px solid #00ff41; color: #00ff41;
-            padding: 30px; margin: 15px; cursor: pointer; font-family: inherit;
-            transition: 0.3s; width: 85%; max-width: 1000px; text-align: left; 
-            font-size: 32px;
+        body.night-mode .glass-wrapper {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .poll-btn:hover { background: #00ff41; color: #000; box-shadow: 0 0 40px #00ff41; }
-        
-        .sentient { color: #fff; text-shadow: 0 0 20px #00ff41; font-style: italic; font-weight: bold; }
-        .success-msg { color: #ff006e; font-size: 50px; text-align: center; display: none; }
-        
-        .header-text { color: #ff006e; font-size: 28px; margin-bottom: 20px; letter-spacing: 2px; text-shadow: 0 0 15px rgba(255, 0, 110, 0.5); }
+
+        /* Layout Grid */
+        /* Modified Grid Logic */
+        .main-grid {
+            display: grid;
+            /* 'auto' tells columns to shrink to fit their content */
+            /* '1fr' on the first column lets the branding take up the remaining space */
+            grid-template-columns: 1.5fr auto auto 1fr;
+            gap: 40px; /* Adjust this to control the exact spacing between columns */
+            align-items: start;
+            justify-content: center;
+        }
+
+        /* Ensure the columns don't get too squished on smaller screens */
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 30px;
+            }
+        }
+
+        .main-col {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* Typography Styling */
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4.5rem;
+            line-height: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            color: #ffe600;
+            text-shadow: 0 0 15px rgba(255, 230, 0, 0.6);
+        }
+
+        h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2rem;
+            color: #ffe600;
+            margin-bottom: 10px;
+        }
+
+        .glow-text {
+            color: #ffe600;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem !important;
+            text-shadow: 0 0 20px #ffe600;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* UI Elements */
+        .twitch-btn {
+            background: #ffe600;
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 230, 0, 0.3);
+        }
+
+        .twitch-btn:hover {
+            transform: scale(1.05);
+            background: #fff;
+            box-shadow: 0 0 20px #ffe600;
+        }
+
+        ul { list-style: none; }
+        li { margin-bottom: 8px; font-size: 0.9rem; opacity: 0.9; }
+
+        details {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #ffe600;
+        }
+
+        nav { padding: 20px; text-align: right; }
+        #vibe-toggle {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: inherit;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+        }
+
     </style>
 </head>
-<body>
-
-<div id="boot-screen">
-    <div class="header-text">█ THAT'S SOO BUTTONS</div>
-    <div id="text-stream"></div>
-    <div id="poll-overlay">
-        <div id="poll-content">
-            <div class="poll-q" id="question-text">BUTTONS.INIT.QUERY...</div>
-            <div id="poll-options"></div>
-        </div>
-        <div class="success-msg" id="final-gate">WELCOME, CREATOR</div>
+<body class="day-mode">
+    <div id="stardust-intro" style="position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:#000;display:flex;align-items:center;justify-content:center;transition:opacity 1s;">
+        <canvas id="stardust-canvas"></canvas>
     </div>
-    <div class="pct-counter" id="pct">0%</div>
-</div>
 
-<script>
-    const stream = document.getElementById('text-stream');
-    const pct = document.getElementById('pct');
+    <nav>
+        <button id="vibe-toggle">[ change vibe ]</button>
+    </nav>
 
-    // Buttons-specific boot messages
-    const scenarios = [
-        {type:'normal', text: '>> INITIALIZING: CREATIVE_ENGINE'},
-        {type:'normal', text: '>> LOADING: PERSONALITY_MATRIX'},
-        {type:'normal', text: '>> SYNC: TWITCH_STREAMS_ACTIVE'},
-        {type:'normal', text: '>> SCANNING: CREATIVE_WINS'},
-        {type:'normal', text: '>> CHECKPOINT: COZY_MODE_ON'},
-        {type:'normal', text: '>> RESTORING: STREAM_CLIPS'},
-        {type:'normal', text: '>> AUTHENTICATION: BUTTONS_VERIFIED'},
-        {type:'normal', text: '>> NETWORK: NEURODIVERGENT_SIGNAL_STRONG'},
-        {type:'normal', text: '>> DEPLOY: ENTERTAINMENT_PROTOCOL'},
-        {type:'normal', text: '>> HEARTBEAT: STREAMING_LIVE'},
-        {type:'normal', text: '>> CACHE: MEMES_LOADED'},
-        {type:'normal', text: '>> STATUS: CREATIVE_CHAOS_OPTIMAL'},
-        {type:'normal', text: '>> DISPATCH: BUTTONS_ACTIVATED'},
-        {type:'normal', text: '>> PARSING: VIBES_EXCELLENT'},
-        {type:'normal', text: '>> COZY: MAXIMUM_LEVEL'},
-        {type:'haunted', text: 'CLICKING_INTENSITY_RISING...'},
-        {type:'haunted', text: 'WHO_ARE_THE_BUTTONS?'},
-        {type:'haunted', text: 'THEY_LISTEN_TO_YOUR_STREAM'},
-        {type:'haunted', text: 'PERSONALITY_DETECTED'},
-        {type:'haunted', text: 'CHAOS_IS_CREATIVITY'},
-        {type:'haunted', text: 'THE_VIBES_ARE_IMMACULATE'},
-        {type:'haunted', text: 'YOU_ARE_NOT_ALONE_HERE'},
-        {type:'haunted', text: 'EVERYONE_WATCHES_TWITCH'},
-        {type:'haunted', text: 'YOUR_ENERGY_FUELS_THE_STREAM'},
-        {type:'haunted', text: 'BUTTONS_REMEMBER_YOU'},
-        {type:'haunted', text: 'AUTHENTICITY_IS_POWER'},
-        {type:'haunted', text: 'THIS_IS_YOUR_SPACE'},
-        {type:'haunted', text: 'CREATE_AND_THEY_WILL_WATCH'},
-        {type:'haunted', text: 'THE_CHAOS_LOVES_YOU'},
-        {type:'haunted', text: 'STREAMING_IS_CARING'},
-        {type:'haunted', text: 'YOUR_VOICE_MATTERS_HERE'},
-        {type:'haunted', text: 'BUTTONS_ALWAYS_LISTENING'}
-    ];
+    <main class="glass-wrapper">
+        <div class="main-grid">
+            <div class="main-col">
+                <h1>That's Soo Buttons</h1>
+                <p style="font-size:1.2rem; color:#ffe600;">Cozy/Spooky Gamer</p>
+                <div style="margin: 15px 0; line-height: 1.6;">
+                    <strong>7pm – 10pm Central</strong><br>
+                    Mon. Wed. Thurs.<br>
+                    <em>Weekends TBD</em>
+                </div>
+                <a href="https://twitch.tv/thats_soo_buttons" target="_blank" class="twitch-btn">Watch on Twitch</a>
+            </div>
 
-    const buttonsPolls = [
-        { id: 'p1', q: 'VIBE_CHECK: What brings you here today?', a: ['Streaming', 'Community', 'Pure Chaos'], correct: 2, requireCorrect: false },
-        { id: 'p2', q: 'ENERGY_LEVEL: How cozy are you feeling?', a: ['Cozy AF', 'Chaotic Energy', 'Just Vibing'], correct: 1, requireCorrect: false },
-        { id: 'p3', q: 'BUTTONS.QUESTION: Why do you create?', a: ['For the click', 'For the vibe', 'For yourself'], correct: 2, requireCorrect: false }
-    ];
+            <div class="main-col">
+                <h2>!commands</h2>
+                <ul>
+                    <li>▸ !discord</li>
+                    <li>▸ !lurk</li>
+                    <li>▸ !uptime</li>
+                    <li>▸ !so [name]</li>
+                    <li>▸ !cozy</li>
+                    <li>▸ !spooky</li>
+                </ul>
+            </div>
 
-    const pollOverlay = document.getElementById('poll-overlay');
-    const optionsDiv = document.getElementById('poll-options');
-    const qText = document.getElementById('question-text');
-    const finalGate = document.getElementById('final-gate');
-    const pollContent = document.getElementById('poll-content');
+            <div class="main-col" style="text-align:center;">
+                <span class="glow-text">HEAR YE HEAR YE</span>
+                <p id="status" style="margin-top:10px; font-size: 0.9rem; font-style: italic;">the glade is growing.</p>
+                <a href="https://discord.gg/YOUR_INVITE_CODE" target="_blank" class="twitch-btn" style="margin-top:18px;">Join Discord</a>
+            </div>
 
-    let progress = 0;
-    let step = 0;
+            <div class="main-col">
+                <details>
+                    <summary>Cozy Highlights</summary>
+                    <ul>
+                        <li>Palia</li>
+                        <li>Disney Dreamlight Valley</li>
+                        <li>Tiny Glade</li>
+                    </ul>
+                </details>
+                
+                <details>
+                    <summary>Spooky Highlights</summary>
+                    <ul>
+                        <li>Phasmophobia</li>
+                    </ul>
+                </details>
+            </div>
+        </div>
+    </main>
 
-    function typeLine(text, callback) {
-        const line = document.createElement('div');
-        line.className = "sentient";
-        stream.appendChild(line);
-        let i = 0;
-        function typing() {
-            if (i < text.length) {
-                line.innerText += text.charAt(i);
-                i++;
-                setTimeout(typing, 40);
-            } else { callback(); }
-        }
-        typing();
-    }
+    <script>
+        // Vibe Toggle Logic
+        const btn = document.getElementById('vibe-toggle');
+        const statusText = document.getElementById('status');
+        btn.onclick = () => {
+            document.body.classList.toggle('night-mode');
+            document.body.classList.toggle('day-mode');
+            statusText.innerText = document.body.classList.contains('night-mode') 
+                ? "the ghosts are listening." 
+                : "the glade is growing.";
+        };
 
-    function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+        // Falling Buttons Animation
+        window.addEventListener('DOMContentLoaded', () => {
+            const intro = document.getElementById('stardust-intro');
+            const canvas = document.getElementById('stardust-canvas');
+            const ctx = canvas.getContext('2d');
+            let W = window.innerWidth, H = window.innerHeight;
+            canvas.width = W; canvas.height = H;
 
-    function pickGhostLines() {
-        const normals = scenarios.filter(s => s.type === 'normal');
-        const haunts = scenarios.filter(s => s.type === 'haunted');
-        shuffle(normals); shuffle(haunts);
-        return [normals[0], normals[1], haunts[0], haunts[1]].map(x => x.text);
-    }
+            // Emoji or SVG for the button (can be replaced with a custom SVG path if desired)
+            const buttonEmojis = ['🔘', '🟡', '🔴', '🟢', '🔵', '🟣'];
+            const buttons = Array.from({length: 40}, () => ({
+                x: Math.random() * W,
+                y: Math.random() * -H,
+                speed: 2 + Math.random() * 2.5,
+                size: 36 + Math.random() * 32,
+                emoji: buttonEmojis[Math.floor(Math.random() * buttonEmojis.length)],
+                spin: Math.random() * Math.PI * 2,
+                spinSpeed: (Math.random() - 0.5) * 0.04
+            }));
 
-    if (typeof sequence === 'undefined') {
-        sequence = [];
-        const normals = scenarios.filter(s=>s.type==='normal').slice(0,10);
-        normals.forEach((n,i)=> sequence.push({ text: n.text, jump: 5 + (i%3) }));
-        const haunts = scenarios.filter(s=>s.type==='haunted').slice(0,6);
-        haunts.forEach((h,i)=> sequence.splice(2 + i*3, 0, { text: h.text, jump: 2 + (i%2) }));
-    }
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+                buttons.forEach(b => {
+                    ctx.save();
+                    ctx.font = `${b.size}px serif`;
+                    ctx.translate(b.x, b.y);
+                    ctx.rotate(b.spin);
+                    ctx.globalAlpha = 0.92;
+                    ctx.fillText(b.emoji, 0, 0);
+                    ctx.restore();
 
-    function loadMCQStats() {
-        try { return JSON.parse(localStorage.getItem('buttons_mcq_stats') || '{}'); } catch(e) { return {}; }
-    }
-
-    function saveMCQStats(stats) { localStorage.setItem('buttons_mcq_stats', JSON.stringify(stats)); }
-
-    function pickQuestion() {
-        const stats = loadMCQStats();
-        const scored = buttonsPolls.map(p => {
-            const s = stats[p.id] || {attempts:0, correct:0};
-            const score = s.attempts ? (s.correct / s.attempts) : 0;
-            return {p, priority: score};
-        });
-        scored.sort((a,b) => a.priority - b.priority);
-        return scored[0].p;
-    }
-
-    function clearOptions() { optionsDiv.innerHTML = ''; }
-
-    function triggerQuestionnaire() {
-        clearOptions();
-        const poll = pickQuestion();
-        qText.innerText = poll.q;
-        pollOverlay.style.display = 'flex';
-        
-        poll.a.forEach((choice, idx) => {
-            const btn = document.createElement('button');
-            btn.className = 'poll-btn';
-            btn.innerText = "> " + choice;
-            btn.onclick = () => evaluateAnswer(poll, idx);
-            optionsDiv.appendChild(btn);
-        });
-    }
-
-    function evaluateAnswer(poll, ansIndex) {
-        const stats = loadMCQStats();
-        stats[poll.id] = stats[poll.id] || {attempts:0, correct:0};
-        stats[poll.id].attempts++;
-        if (ansIndex === poll.correct) stats[poll.id].correct++;
-        saveMCQStats(stats);
-
-        const isCorrect = ansIndex === poll.correct;
-        const requiresCorrect = poll.requireCorrect !== false;
-
-        if (isCorrect || !requiresCorrect) {
-            pollContent.style.display = 'none';
-            finalGate.style.display = 'block';
-            pct.innerText = "100%";
-            setTimeout(() => { window.location.href = 'desktop.html'; }, 1600);
-        } else {
-            typeLine('> RETRY_SEQUENCE_INITIATED', () => {});
-            setTimeout(triggerQuestionnaire, 1200);
-        }
-    }
-
-    async function runBoot() {
-        const picked = pickGhostLines();
-
-        if (step < sequence.length) {
-            const current = sequence[step];
-            await new Promise(res => typeLine(current.text, res));
-
-            if (Math.random() < 0.6 && picked.length) {
-                const g = picked.shift();
-                await new Promise(res => typeLine(`> ${g}`, res));
+                    b.y += b.speed;
+                    b.spin += b.spinSpeed;
+                    if (b.y > H + 50) {
+                        b.y = -50;
+                        b.x = Math.random() * W;
+                        b.speed = 2 + Math.random() * 2.5;
+                        b.size = 36 + Math.random() * 32;
+                        b.emoji = buttonEmojis[Math.floor(Math.random() * buttonEmojis.length)];
+                        b.spin = Math.random() * Math.PI * 2;
+                        b.spinSpeed = (Math.random() - 0.5) * 0.04;
+                    }
+                });
+                if (intro.style.opacity !== '0') requestAnimationFrame(draw);
             }
-            
-            progress += current.jump;
-            if (progress > 99) progress = 99;
-            pct.innerText = progress + "%";
-            
-            step++;
-            setTimeout(runBoot, 1200);
-        } else {
-            while (picked.length) {
-                const g = picked.shift();
-                await new Promise(res => typeLine(`> ${g}`, res));
-            }
-            triggerQuestionnaire();
-        }
-    }
-
-    runBoot();
-</script>
+            draw();
+            setTimeout(() => { intro.style.opacity = '0'; setTimeout(() => intro.remove(), 1000); }, 2500);
+            window.addEventListener('resize', () => {
+                W = window.innerWidth; H = window.innerHeight;
+                canvas.width = W; canvas.height = H;
+            });
+        });
+    </script>
 </body>
 </html>

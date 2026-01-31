@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thats_Soo_Buttons | [ test desktop ]</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Helvetica:wght@700&display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica', Arial, sans-serif;
+            transition: background 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+            /* Improve readability of main content */
+            .bump-container {
+                background: rgba(255,255,255,0.22);
+                border-radius: 16px;
+                box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+                margin: 32px auto;
+                max-width: 600px;
+                padding: 20px 12px 16px 12px;
+                z-index: 2;
+            }
+            body.night-mode .bump-container {
+                background: rgba(0,0,0,0.32);
+            }
+            .bump-text, .bump-text * {
+                text-shadow: 0 4px 24px rgba(0,0,0,0.45), 0 1px 0 #fff;
+            }
+        body.day-mode {
+            background: url('background1.jpg') center center/cover no-repeat fixed;
+            color: #000;
+        }
+        body.night-mode {
+            background: url('background2glitch.jpeg') center center/cover no-repeat fixed;
+            color: #fff;
+        }
+        nav {
+            padding: 20px;
+            text-align: right;
+        }
+        #vibe-toggle {
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            color: inherit;
+            text-decoration: underline;
+        }
+        .bump-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .bump-text {
+            text-align: center;
+            text-transform: lowercase;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        .links {
+            list-style: none;
+            padding: 0;
+        }
+        .links li {
+            display: inline;
+            margin: 0 15px;
+        }
+        .links a {
+            color: inherit;
+            text-decoration: none;
+            border: 1px solid transparent;
+            padding: 5px 10px;
+        }
+        .links a:hover {
+            border: 1px solid inherit;
+            background-color: rgba(128, 128, 128, 0.2);
+        }
+        /* Wallpaper grid background */
+        .wallpaper-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            z-index: 0;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        .panel {
+            border-right: 1px solid rgba(255,255,255,0.1);
+            transition: flex 0.5s ease, filter 0.5s ease;
+            filter: grayscale(80%) brightness(50%);
+        }
+        .panel:hover {
+            filter: grayscale(0%) brightness(100%);
+            cursor: pointer;
+        }
+        /* Default colors (night mode) */
+        .palia { background: #5d4485 !important; }
+        .phasmo { background: #1a1a1a !important; }
+        .ddlv { background: #2c5d88 !important; }
+        .glade { background: #6b8e23 !important; }
+        .seasonal { background: #333 !important; }
+        /* TV test bar colors for day mode */
+        body.day-mode .palia { background: #ff003c !important; }
+        body.day-mode .phasmo { background: #ffd800 !important; }
+        body.day-mode .ddlv { background: #00ff90 !important; }
+        body.day-mode .glade { background: #00b6ff !important; }
+        body.day-mode .seasonal { background: #ff00ea !important; }
+        /* Darker colors for night mode */
+        body.night-mode .palia { background: #5d4485 !important; }
+        body.night-mode .phasmo { background: #1a1a1a !important; }
+        body.night-mode .ddlv { background: #2c5d88 !important; }
+        body.night-mode .glade { background: #6b8e23 !important; }
+        body.night-mode .seasonal { background: #333 !important; }
+    </style>
+</head>
+<body class="day-mode">
+    <div class="wallpaper-grid">
+        <div class="panel palia"></div>
+        <div class="panel phasmo"></div>
+        <div class="panel ddlv"></div>
+        <div class="panel glade"></div>
+        <div class="panel seasonal"></div>
+    </div>
+    <nav>
+        <button id="vibe-toggle">[ change vibe ]</button>
+    </nav>
+    <main class="bump-container">
+        <div class="bump-text">
+            <h1>[ thats_soo_buttons ]</h1>
+            <p id="status">the glade is growing.</p>
+            <ul class="links">
+                <li><a href="https://twitch.tv/thats_soo_buttons" target="_blank">twitch</a></li>
+                <li><a href="#">discord</a></li>
+                <li><a href="#">the portfolio</a></li>
+            </ul>
+            <div class="support">
+                <a href="https://www.buymeacoffee.com/thatssoobuttons" target="_blank" class="coffee-link">☕ Buy me a coffee</a>
+            </div>
+        </div>
+            .support {
+                margin-top: 2.5rem;
+                text-align: center;
+            }
+            .coffee-link {
+                display: inline-block;
+                background: #ffdd00;
+                color: #222;
+                font-weight: bold;
+                text-decoration: none;
+                border-radius: 20px;
+                padding: 8px 22px;
+                font-size: 1.1rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                transition: background 0.2s, color 0.2s;
+            }
+            .coffee-link:hover {
+                background: #ffe877;
+                color: #000;
+            }
+    </main>
+    <script>
+        const btn = document.getElementById('vibe-toggle');
+        const statusText = document.getElementById('status');
+        btn.onclick = () => {
+            document.body.classList.toggle('night-mode');
+            document.body.classList.toggle('day-mode');
+            if(document.body.classList.contains('night-mode')) {
+                statusText.innerText = "the ghosts are listening.";
+            } else {
+                statusText.innerText = "the glade is growing.";
+            }
+        };
+    </script>
+</body>
+</html>
