@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thats_Soo_Buttons</title>
     <style>
+                /* Mobile-friendly layout: stack columns as rows on small screens */
+                @media (max-width: 700px) {
+                    .glass-wrapper {
+                        padding: 10px;
+                        margin: 0;
+                        max-width: 100vw;
+                        border-radius: 0;
+                        box-shadow: none;
+                    }
+                    .main-grid {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 18px;
+                    }
+                    .main-col {
+                        min-width: 0;
+                        width: 100%;
+                        align-items: stretch;
+                        padding: 0 2vw;
+                    }
+                }
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo+Black&display=swap');
 
         * {
