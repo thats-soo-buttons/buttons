@@ -26,6 +26,16 @@
                         padding: 0 2vw;
                     }
                 }
+                    .twitch-btn.mobile {
+                        font-size: 1.1rem;
+                        padding: 13px 22px;
+                    }
+                    .twitch-btn .full-text { display: none; }
+                    .twitch-btn .short-text { display: inline; }
+                    @media (max-width: 700px) {
+                        .twitch-btn .full-text { display: none; }
+                        .twitch-btn .short-text { display: inline; }
+                    }
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo+Black&display=swap');
 
         * {
@@ -198,7 +208,14 @@
                     Mon. Wed. Thurs.<br>
                     <em>Weekends TBD</em>
                 </div>
-                <a href="https://twitch.tv/thats_soo_buttons" target="_blank" class="twitch-btn">Watch on Twitch</a>
+                                <a href="https://twitch.tv/thats_soo_buttons" target="_blank" class="twitch-btn">
+                                    <span class="full-text">Watch on Twitch</span>
+                      <span class="short-text-mobile">
+                        <span>That's</span>
+                        <span>Soo...</span>
+                        <span>Buttons</span>
+                      </span>
+                                </a>
             </div>
 
             <div class="main-col">
