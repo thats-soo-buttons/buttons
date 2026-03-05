@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thats_Soo_Buttons</title>
     <style>
+                            body.intro-active > :not(#intro-video-container) {
+                                display: none !important;
+                            }
+                            body.intro-active #intro-video-container {
+                                display: flex !important;
+                            }
                         /* Improve readability for regular text */
                         .main-col p,
                         .main-col div,
@@ -315,7 +321,7 @@
     <script>
         const video = document.getElementById('intro-video');
         const overlay = document.getElementById('video-overlay');
-        const skipBtn = document.getElementById('skip-btn');
+        // Removed duplicate skipBtn declaration
         function goHome() { window.location.href = '/home/'; }
         video.addEventListener('ended', goHome);
         skipBtn.addEventListener('click', goHome);
