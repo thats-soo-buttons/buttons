@@ -302,66 +302,6 @@
                 </div>
             </div>
         </main>
-
->>>>>>> 3adb725 (Intro video only on first visit per session, main content after skip or video end)
-    <script>
-        const video = document.getElementById('intro-video');
-        const overlay = document.getElementById('video-overlay');
-        // Removed duplicate skipBtn declaration
-        function goHome() { window.location.href = '/home/'; }
-        video.addEventListener('ended', goHome);
-        skipBtn.addEventListener('click', goHome);
-    </script>
-<footer style="width:100%;background:#222;color:#ffe600;padding:32px 0 24px 0;margin-top:48px;text-align:center;font-family:'Archivo Black',sans-serif;">
-    <div style="max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:32px;align-items:center;">
-        <a href="https://www.instagram.com/thatssoobuttons" target="_blank" style="color:#ffe600;font-weight:bold;font-size:1.1em;text-decoration:none;">Instagram</a>
-        <a href="https://www.tiktok.com/@thatssoobuttons" target="_blank" style="color:#ffe600;font-weight:bold;font-size:1.1em;text-decoration:none;">TikTok</a>
-        <a href="https://www.twitch.tv/thats_soo_buttons" target="_blank" style="color:#ffe600;font-weight:bold;font-size:1.1em;text-decoration:none;">Twitch</a>
-        <a href="https://ko-fi.com/thatssoobuttons" target="_blank" style="color:#ffe600;font-weight:bold;font-size:1.1em;text-decoration:none;">Ko-fi</a>
-        <a href="https://discord.gg/sMHkNZ7EVY" target="_blank" style="color:#ffe600;font-weight:bold;font-size:1.1em;text-decoration:none;">Discord (On The Fly Network)</a>
-    </div>
-    <div style="margin-top:18px;font-size:0.95em;color:#ffe600a0;">&copy; 2026 That's Soo Buttons. All rights reserved.</div>
-    <div style="margin-top:24px;">
-        <span style="color:#ffe600;font-weight:bold;font-size:1.08em;">Other Projects:</span>
-        <a href="https://devilliermedia.com" target="_blank" style="color:#ffe600;font-weight:bold;margin:0 10px;text-decoration:underline;">Devillier Media</a>
-        <a href="https://tessdevillier.com" target="_blank" style="color:#ffe600;font-weight:bold;margin:0 10px;text-decoration:underline;">Tess Devillier</a>
-        <a href="https://ontheflynetwork.com" target="_blank" style="color:#ffe600;font-weight:bold;margin:0 10px;text-decoration:underline;">OnTheFlyNetwork</a>
-    </div>
-<!-- Contact Modal Trigger -->
-<button id="contactBtn" style="position:fixed;bottom:32px;right:32px;z-index:10010;background:#ffe600;color:#222;font-family:'Archivo Black',sans-serif;font-size:1.1em;padding:12px 28px;border:none;border-radius:8px;box-shadow:0 2px 12px #0003;cursor:pointer;">Contact</button>
-
-<!-- Contact Modal -->
-<div id="contactModal" style="display:none;position:fixed;z-index:10020;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;">
-    <div style="background:#fffbe6;padding:32px 24px 24px 24px;border-radius:16px;max-width:360px;width:90vw;box-shadow:0 4px 32px #0006;position:relative;">
-        <button onclick="closeContactModal()" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.6em;color:#222;cursor:pointer;">&times;</button>
-        <h2 style="color:#222;font-family:'Archivo Black',sans-serif;margin-bottom:10px;">Contact / Inquiries</h2>
-        <div style="font-size:1.05em;color:#444;margin-bottom:12px;line-height:1.5;">
-            Want to collab, invite me to an event, game together, or just say hi? Use this form for any questions, ideas, or opportunities—no services required!
-        </div>
-        <form action="https://formsubmit.co/contact@thatssoobuttons.com" method="POST" style="display:flex;flex-direction:column;gap:12px;" aria-label="Contact Form">
-            <input type="hidden" name="_subject" value="New Contact/Inquiry - Buttons Site">
-            <input type="hidden" name="_captcha" value="false">
-            <label for="contact-name" style="font-weight:bold;color:#222;">Name <span aria-hidden="true">*</span></label>
-            <input id="contact-name" name="name" type="text" required aria-required="true" autocomplete="name" style="padding:10px;border-radius:4px;border:1px solid #ccc;font-size:1em;">
-            <label for="contact-email" style="font-weight:bold;color:#222;">Email <span aria-hidden="true">*</span></label>
-            <input id="contact-email" name="email" type="email" required aria-required="true" autocomplete="email" style="padding:10px;border-radius:4px;border:1px solid #ccc;font-size:1em;">
-            <label for="contact-message" style="font-weight:bold;color:#222;">Message <span aria-hidden="true">*</span></label>
-            <textarea id="contact-message" name="message" required aria-required="true" rows="4" style="padding:10px;border-radius:4px;border:1px solid #ccc;min-height:80px;font-size:1em;"></textarea>
-            <button type="submit" style="background:#ffe600;color:#222;padding:12px 0;border:none;border-radius:6px;font-weight:bold;font-size:1.1em;cursor:pointer;margin-top:8px;">Send</button>
-        </form>
-    </div>
-</div>
-<script>
-    // Modal logic
-    const contactBtn = document.getElementById('contactBtn');
-    const contactModal = document.getElementById('contactModal');
-    function openContactModal() { contactModal.style.display = 'flex'; }
-    function closeContactModal() { contactModal.style.display = 'none'; }
-    contactBtn.addEventListener('click', openContactModal);
-    contactModal.addEventListener('click', function(e) { if (e.target === contactModal) closeContactModal(); });
-</script>
-    </footer>
-    </div>
     <script>
     // Always show intro video, hide on skip
     const introContainer = document.getElementById('intro-video-container');
