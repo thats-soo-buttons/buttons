@@ -222,12 +222,34 @@
             <button id="vibe-toggle">[ change vibe ]</button>
         </nav>
         <main class="glass-wrapper">
-            <!-- CTA Row -->
-            <section id="cta-row" aria-label="Quick Actions" style="max-width:900px;margin:0 auto 32px auto;display:flex;flex-wrap:wrap;gap:18px;justify-content:center;align-items:center;">
-                <a href="https://twitch.tv/thats_soo_buttons" target="_blank" style="background:#ffe600;color:#000;padding:14px 28px;border-radius:8px;font-weight:bold;font-size:1.15em;text-decoration:none;box-shadow:0 2px 12px #0002;display:flex;align-items:center;gap:8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#000" stroke-width="2" fill="none"/><path d="M8 8h2v5H8zm6 0h-2v5h2z" fill="#000"/></svg> Subscribe on Twitch</a>
-                <a href="https://www.instagram.com/thatssoobuttons" target="_blank" style="background:#e1306c;color:#fff;padding:14px 28px;border-radius:8px;font-weight:bold;font-size:1.15em;text-decoration:none;box-shadow:0 2px 12px #0002;display:flex;align-items:center;gap:8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#fff" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="5" stroke="#fff" stroke-width="2" fill="none"/><circle cx="17" cy="7" r="1.5" fill="#fff"/></svg> Instagram</a>
-                <a href="https://www.tiktok.com/@thatssoobuttons" target="_blank" style="background:#000;color:#fff;padding:14px 28px;border-radius:8px;font-weight:bold;font-size:1.15em;text-decoration:none;box-shadow:0 2px 12px #0002;display:flex;align-items:center;gap:8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 3v10a4 4 0 1 1-4-4" stroke="#fff" stroke-width="2" fill="none"/><circle cx="13" cy="17" r="4" stroke="#fff" stroke-width="2" fill="none"/></svg> TikTok</a>
-                <a href="https://ko-fi.com/thatssoobuttons" target="_blank" style="background:#29abe0;color:#fff;padding:14px 28px;border-radius:8px;font-weight:bold;font-size:1.15em;text-decoration:none;box-shadow:0 2px 12px #0002;display:flex;align-items:center;gap:8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="6" stroke="#fff" stroke-width="2" fill="none"/><circle cx="8" cy="12" r="3" fill="#fff"/></svg> Support on Ko-fi</a>
+            <!-- Explore the Lore Section -->
+            <section id="explore-lore" style="max-width:1100px;margin:0 auto 48px auto;">
+                <h2 style="text-align:center;font-family:'Archivo Black',sans-serif;font-size:2.2em;letter-spacing:0.04em;margin-bottom:32px;">Explore the Lore</h2>
+                <div class="lore-panels" style="display:flex;gap:32px;justify-content:center;align-items:stretch;flex-wrap:wrap;">
+                    <!-- Panel 1: Music & Lyrics -->
+                    <div class="lore-panel" id="music-panel" style="flex:1 1 240px;min-width:220px;background:linear-gradient(135deg,#ffe600 60%,#fffbe6 100%);border-radius:18px;box-shadow:0 4px 24px #0002;padding:32px 18px 24px 18px;display:flex;flex-direction:column;align-items:center;transition:transform 0.2s;cursor:pointer;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Lyrics & Notes" style="height:80px;margin-bottom:18px;filter:drop-shadow(0 2px 8px #ffe60088);">
+                        <div style="font-family:'Archivo Black',sans-serif;font-size:1.25em;margin-bottom:8px;">Music and Lyrics</div>
+                        <audio id="music-audio" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b6b9b6b7.mp3" preload="auto"></audio>
+                    </div>
+                    <!-- Panel 2: Gaming -->
+                    <div class="lore-panel" id="gaming-panel" style="flex:1 1 240px;min-width:220px;background:linear-gradient(135deg,#e1306c 60%,#fff0f6 100%);border-radius:18px;box-shadow:0 4px 24px #0002;padding:32px 18px 24px 18px;display:flex;flex-direction:column;align-items:center;transition:transform 0.2s;cursor:pointer;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3523/3523887.png" alt="WASD & Mouse" style="height:80px;margin-bottom:18px;filter:drop-shadow(0 2px 8px #e1306c88);">
+                        <div style="font-family:'Archivo Black',sans-serif;font-size:1.25em;margin-bottom:8px;">Gaming</div>
+                        <audio id="gaming-audio" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b7b7b.mp3" preload="auto"></audio>
+                    </div>
+                    <!-- Panel 3: Fiction/Narrative Design -->
+                    <div class="lore-panel" id="fiction-panel" style="flex:1 1 240px;min-width:220px;background:linear-gradient(135deg,#222 60%,#bdbdbd 100%);border-radius:18px;box-shadow:0 4px 24px #0002;padding:32px 18px 24px 18px;display:flex;flex-direction:column;align-items:center;transition:transform 0.2s;cursor:pointer;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Noir Office" style="height:80px;margin-bottom:18px;filter:drop-shadow(0 2px 8px #2228);">
+                        <div style="font-family:'Archivo Black',sans-serif;font-size:1.25em;margin-bottom:8px;color:#fff;">Fiction / Narrative Design</div>
+                        <audio id="fiction-audio" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b7b7c.mp3" preload="auto"></audio>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-top:36px;">
+                    <a href="https://yeah.thatssoobuttons.com" style="display:inline-block;background:#ffe600;color:#222;font-family:'Archivo Black',sans-serif;font-size:1.15em;padding:16px 36px;border:none;border-radius:10px;box-shadow:0 2px 12px #0003;cursor:pointer;text-decoration:none;transition:background 0.2s;">Can't Decide? Explore it all</a>
+                </div>
+            </section>
+            <!-- End Explore the Lore Section -->
             </section>
             <div class="main-grid">
                 <div class="main-col">
@@ -322,6 +344,30 @@
     }
     skipBtn.onclick = showMain;
     introVideo.onended = showMain;
+    // Lore panel audio hover effects
+    function setupPanelAudio(panelId, audioId) {
+        const panel = document.getElementById(panelId);
+        const audio = document.getElementById(audioId);
+        let playing = false;
+        panel.addEventListener('mouseenter', () => {
+            if (!playing) {
+                audio.currentTime = 0;
+                audio.play();
+                playing = true;
+            }
+        });
+        panel.addEventListener('mouseleave', () => {
+            audio.pause();
+            audio.currentTime = 0;
+            playing = false;
+        });
+        audio.addEventListener('ended', () => {
+            playing = false;
+        });
+    }
+    setupPanelAudio('music-panel', 'music-audio');
+    setupPanelAudio('gaming-panel', 'gaming-audio');
+    setupPanelAudio('fiction-panel', 'fiction-audio');
     </script>
 </body>
 </html>
