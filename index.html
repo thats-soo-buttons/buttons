@@ -6,78 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thats_Soo_Buttons</title>
     <style>
-                            body.intro-active > :not(#intro-video-container) {
-                                display: none !important;
-                            }
-                            body.intro-active #intro-video-container {
-                                display: flex !important;
-                            }
-                        /* Improve readability for regular text */
-                        .main-col p,
-                        .main-col div,
-                        .main-col ul,
-                        .main-col li,
-                        .main-col em,
-                        .main-col strong,
-                        .main-col details,
-                        .main-col summary,
-                        #status {
-                            color: #fff;
-                            text-shadow: 0 0 6px #222, 0 0 12px #fff2;
-                            font-size: 1.25rem;
-                        }
-                /* Mobile-friendly layout: stack columns as rows on small screens */
-                @media (max-width: 700px) {
-                    .glass-wrapper {
-                        padding: 10px;
-                        margin: 0;
-                        max-width: 100vw;
-                        border-radius: 0;
-                        box-shadow: none;
-                    }
-                    .main-grid {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 18px;
-                    }
-                    .main-col {
-                        min-width: 0;
-                        width: 100%;
-                        align-items: stretch;
-                        padding: 0 2vw;
-                    }
-                }
-                    .twitch-btn.mobile {
-                        font-size: 1.1rem;
-                        padding: 13px 22px;
-                    }
-                    <!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>That's Soo Buttons</title>
-                        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=VT323&display=swap" rel="stylesheet">
-                        <style>
-                            html, body {
-                                margin: 0; padding: 0; width: 100vw; height: 100vh;
-                                background: #000; color: #fff;
-                                font-family: 'Montserrat', sans-serif;
-                                overflow-x: hidden;
-                            }
-                            .intro-active > :not(#intro-video-container) { display: none !important; }
-                            .intro-active #intro-video-container { display: flex !important; }
-                            #intro-video-container {
-                                position: fixed; z-index: 9999; top: 0; left: 0; width: 100vw; height: 100vh;
-                                background: #000; display: flex; align-items: center; justify-content: center;
-                            }
-                            #intro-video { width: 100vw; height: 100vh; object-fit: cover; display: block; }
-                            #skip-intro {
-                                position: absolute; top: 32px; right: 32px;
-                                background: #ffe600; color: #222; font-family: 'Montserrat', sans-serif;
-                                font-size: 1.2em; padding: 16px 36px; border: none; border-radius: 10px;
-                                box-shadow: 0 2px 12px #0003; cursor: pointer; z-index: 10001;
-                            }
+
                             .main-content {
                                 display: flex; flex-direction: column; align-items: center; justify-content: center;
                                 min-height: 100vh; width: 100vw; background: #000;
@@ -120,116 +49,91 @@
                                 .lore-panels { flex-direction: column; gap: 24px; }
                             }
                         </style>
-                    <p style="font-size:1.2rem; color:#ffe600;">Cozy/Spooky Gamer</p>
-                    <div style="margin: 15px 0; line-height: 1.6;">
-                        <strong>7pm – 10pm Central</strong><br>
-                        Mon. Wed. Thurs.<br>
-                        <em>Weekends TBD</em>
+                    <!-- Only panels and video background remain -->
+                    <body style="background:#000;">
+                    <div id="background-video-container" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;overflow:hidden;">
+                        <video id="background-video" autoplay muted playsinline loop style="width:100vw;height:100vh;object-fit:cover;">
+                            <source src="buttons.mp4" type="video/mp4">
+                            <source src="buttons.mov" type="video/quicktime">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
-                    <!-- Music player placeholder -->
-                    <div id="music-player-placeholder" style="margin:18px 0;"></div>
-                </div>
-                <div class="main-col">
-                    <h2>!commands</h2>
-                    <ul>
-                        <li>▸ !discord</li>
-                        <li>▸ !lurk</li>
-                        <li>▸ !uptime</li>
-                        <li>▸ !so [name]</li>
-                        <li>▸ !cozy</li>
-                        <li>▸ !spooky</li>
-                    </ul>
-                </div>
-                <div class="main-col" style="text-align:center;">
-                    <span class="glow-text">HEAR YE HEAR YE</span>
-                    <p id="status" style="margin-top:10px; font-size: 0.9rem; font-style: italic;">the glade is growing.</p>
-                    <div id="hear-ye-embed" style="margin:18px 0;max-width:100%;">
-                        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTAeT5aoDY83kyWJidL3Rf_Igk1WWLGXgYJK58wFvgFS3QYbObFrcD649Se3LjPYeg5X6ezpkmIB0HO/pubhtml?widget=true&amp;headers=false" width="100%" height="400" style="border:none; border-radius:16px; box-shadow:0 4px 24px rgba(0,0,0,0.18);"></iframe>
-                    </div>
-                    <a href="https://discord.gg/sMHkNZ7EVY" target="_blank" class="twitch-btn" style="margin-top:18px;">Join Discord (On The Fly Network)</a>
-                </div>
-                <div class="main-col">
-                    <details>
-                        <summary>Cozy Highlights</summary>
-                        <ul>
-                            <li>Palia</li>
-                            <li>Disney Dreamlight Valley</li>
-                            <li>Tiny Glade</li>
-                        </ul>
-                    </details>
-                    <details>
-                        <summary>Spooky Highlights</summary>
-                        <ul>
-                            <li>Phasmophobia</li>
-                        </ul>
-                        <div id="witch-stream-container" style="margin-top:18px; text-align:center;">
-                            <div id="twitch-embed" style="display:none;">
-                                <iframe
-                                    src="https://player.twitch.tv/?channel=thats_soo_buttons&parent=localhost"
-                                    height="300"
-                                    width="100%"
-                                    allowfullscreen
-                                    frameborder="0">
-                                </iframe>
-                            </div>
-                            <div id="ko-fi-support" style="display:none;">
-                                <a href="https://ko-fi.com/thatssoobuttons" target="_blank">
-                                    <img src="https://cdn.ko-fi.com/cdn/kofi3.png?v=3" alt="Support on Ko-fi" style="height:80px;" />
+                    <div id="main-content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;width:100vw;">
+                        <!-- No header or description, just panels -->
+                        <section id="explore-lore">
+                            <div class="lore-panels" style="display:flex;gap:32px;justify-content:center;align-items:stretch;flex-wrap:wrap;opacity:0;animation:fadeInPanels 1.2s 0.5s forwards;">
+                                <a href="https://yeah.thatssoobuttons.com/lyrics" class="lore-panel" id="music-panel" style="backdrop-filter:blur(12px) saturate(160%);background:rgba(255,230,0,0.18);border:1.5px solid #ffe60055;box-shadow:0 4px 32px #ffe60022;">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Lyrics & Notes">
+                                    <div class="label">Music and Lyrics</div>
+                                    <audio id="music-audio" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b6b9b6b7.mp3" preload="auto"></audio>
+                                </a>
+                                <a href="https://yeah.thatssoobuttons.com/gaming" class="lore-panel" id="gaming-panel" style="backdrop-filter:blur(12px) saturate(160%);background:rgba(225,48,108,0.18);border:1.5px solid #e1306c55;box-shadow:0 4px 32px #e1306c22;">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/3523/3523887.png" alt="WASD & Mouse">
+                                    <div class="label">Gaming</div>
+                                    <audio id="gaming-audio" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b7b7b.mp3" preload="auto"></audio>
+                                </a>
+                                <a href="https://yeah.thatssoobuttons.com/fiction" class="lore-panel" id="fiction-panel" style="backdrop-filter:blur(12px) saturate(160%);background:rgba(34,34,34,0.38);border:1.5px solid #fff2;box-shadow:0 4px 32px #fff2;">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Noir Office">
+                                    <div class="label">Fiction / Narrative Design</div>
+                                    <audio id="fiction-audio" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b7b7c.mp3" preload="auto"></audio>
                                 </a>
                             </div>
-                        </div>
-                    </details>
-                </div>
-            </div>
-        </main>
-    <script>
-    // Vibe toggle logic
-    const vibeBtn = document.getElementById('vibe-toggle');
-    vibeBtn.onclick = function() {
-        document.body.classList.toggle('night-mode');
-        document.body.classList.toggle('day-mode');
-    };
-    // Always show intro video, hide on skip
-    const introContainer = document.getElementById('intro-video-container');
-    const introVideo = document.getElementById('intro-video');
-    const skipBtn = document.getElementById('skip-intro');
-    const mainContent = document.getElementById('main-content');
-    // Ensure video is visible and set playback speed
-    introVideo.playbackRate = 1.5;
-    introVideo.style.display = 'block';
-    introVideo.oncanplay = function() {
-        introVideo.play();
-    };
-    function showMain() {
-        introContainer.style.display = 'none';
-        mainContent.style.display = '';
-    }
-    skipBtn.onclick = showMain;
-    introVideo.onended = showMain;
-    // Lore panel audio hover effects
-    function setupPanelAudio(panelId, audioId) {
-        const panel = document.getElementById(panelId);
-        const audio = document.getElementById(audioId);
-        let playing = false;
-        panel.addEventListener('mouseenter', () => {
-            if (!playing) {
-                audio.currentTime = 0;
-                audio.play();
-                playing = true;
-            }
-        });
-        panel.addEventListener('mouseleave', () => {
-            audio.pause();
-            audio.currentTime = 0;
-            playing = false;
-        });
-        audio.addEventListener('ended', () => {
-            playing = false;
-        });
-    }
-    setupPanelAudio('music-panel', 'music-audio');
-    setupPanelAudio('gaming-panel', 'gaming-audio');
-    setupPanelAudio('fiction-panel', 'fiction-audio');
-    </script>
-</body>
-</html>
+                            <!-- No extra links or buttons below panels -->
+                        </section>
+                    </div>
+                    <style>
+                    @keyframes fadeInPanels { to { opacity: 1; } }
+                    .lore-panel {
+                        flex: 1 1 240px; min-width: 220px; border-radius: 18px;
+                        box-shadow: 0 4px 24px #0002; padding: 48px 18px 32px 18px;
+                        display: flex; flex-direction: column; align-items: center;
+                        transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.3s;
+                        cursor: pointer; text-decoration: none;
+                    }
+                    .lore-panel:hover {
+                        transform: scale(1.08);
+                        box-shadow: 0 8px 32px #ffe60055;
+                        background: #222;
+                    }
+                    .lore-panel img {
+                        height: 90px; margin-bottom: 24px; filter: drop-shadow(0 2px 8px #ffe60088);
+                    }
+                    .lore-panel .label {
+                        font-family: 'VT323', monospace; font-size: 2rem; color: #ffe600; margin-bottom: 8px; text-transform: uppercase; text-shadow: 0 0 4px #000;
+                    }
+                    .cta-link {
+                        display: inline-block; background: #ffe600; color: #222; font-family: 'Montserrat', sans-serif;
+                        font-size: 1.15em; padding: 16px 36px; border: none; border-radius: 10px;
+                        box-shadow: 0 2px 12px #0003; cursor: pointer; text-decoration: none; transition: background 0.2s;
+                        margin-top: 48px;
+                    }
+                    @media (max-width: 900px) {
+                        .lore-panels { flex-direction: column; gap: 24px; }
+                    }
+                    </style>
+                    <script>
+                    // Lore panel audio hover effects
+                    function setupPanelAudio(panelId, audioId) {
+                        const panel = document.getElementById(panelId);
+                        const audio = document.getElementById(audioId);
+                        let playing = false;
+                        panel.addEventListener('mouseenter', () => {
+                            if (!playing) {
+                                audio.currentTime = 0;
+                                audio.play();
+                                playing = true;
+                            }
+                        });
+                        panel.addEventListener('mouseleave', () => {
+                            audio.pause();
+                            audio.currentTime = 0;
+                            playing = false;
+                        });
+                        audio.addEventListener('ended', () => {
+                            playing = false;
+                        });
+                    }
+                    setupPanelAudio('music-panel', 'music-audio');
+                    setupPanelAudio('gaming-panel', 'gaming-audio');
+                    setupPanelAudio('fiction-panel', 'fiction-audio');
+                    </script>
