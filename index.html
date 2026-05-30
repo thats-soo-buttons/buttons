@@ -51,213 +51,75 @@
                         font-size: 1.1rem;
                         padding: 13px 22px;
                     }
-                    .twitch-btn .full-text { display: none; }
-                    .twitch-btn .short-text { display: inline; }
-                    @media (max-width: 700px) {
-                        .twitch-btn .full-text { display: none; }
-                        .twitch-btn .short-text { display: inline; }
-                    }
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo+Black&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Archivo Black', sans-serif;
-            transition: background 0.5s ease;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
-
-        /* Background Handling */
-        body.day-mode {
-            background: url('background1.jpg') center center/cover no-repeat fixed;
-            color: #111;
-        }
-        body.night-mode {
-            background: url('background2glitch.jpeg') center center/cover no-repeat fixed;
-            color: #fff;
-        }
-
-        /* Glassmorphism Container */
-        .glass-wrapper {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px) saturate(150%);
-            -webkit-backdrop-filter: blur(12px) saturate(150%);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 24px;
-            margin: 40px auto;
-            padding: 40px;
-            max-width: 1200px;
-            width: 90%;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-        }
-
-        body.night-mode .glass-wrapper {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Layout Grid */
-        /* Modified Grid Logic */
-        .main-grid {
-            display: grid;
-            /* 'auto' tells columns to shrink to fit their content */
-            /* '1fr' on the first column lets the branding take up the remaining space */
-            grid-template-columns: 1.5fr auto auto 1fr;
-            gap: 40px; /* Adjust this to control the exact spacing between columns */
-            align-items: start;
-            justify-content: center;
-        }
-
-        /* Ensure the columns don't get too squished on smaller screens */
-        @media (max-width: 1024px) {
-            .main-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 30px;
-            }
-        }
-
-        .main-col {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        /* Typography Styling */
-        h1 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 4.5rem;
-            line-height: 0.9;
-            text-transform: none;
-            letter-spacing: 0;
-            margin-bottom: 10px;
-            color: #ffe600;
-            text-shadow: 0 0 15px rgba(255, 230, 0, 0.6), 0 0 8px #fff;
-        }
-
-        h2 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 2rem;
-            color: #ffe600;
-            margin-bottom: 10px;
-        }
-
-        .glow-text {
-            color: #ffe600;
-            font-family: 'Bebas Neue', cursive;
-            font-size: 2.5rem !important;
-            text-shadow: 0 0 20px #ffe600;
-            animation: pulse 2s infinite ease-in-out;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        /* UI Elements */
-        .twitch-btn {
-            background: #ffe600;
-            color: #000;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            text-align: center;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 230, 0, 0.3);
-        }
-
-        .twitch-btn:hover {
-            transform: scale(1.05);
-            background: #fff;
-            box-shadow: 0 0 20px #ffe600;
-        }
-
-        ul { list-style: none; }
-        li { margin-bottom: 8px; font-size: 0.9rem; opacity: 0.9; }
-
-        details {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 10px;
-        }
-
-        summary {
-            cursor: pointer;
-            font-weight: bold;
-            color: #ffe600;
-        }
-
-        nav { padding: 20px; text-align: right; }
-        #vibe-toggle {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 8px 16px;
-            border-radius: 20px;
-            color: inherit;
-            cursor: pointer;
-            backdrop-filter: blur(5px);
-        }
-
-    </style>
-</head>
-<body class="day-mode">
-    <div id="intro-video-container" style="position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:#000;display:flex;align-items:center;justify-content:center;">
-        <video id="intro-video" src="buttons.mp4" autoplay muted playsinline style="width:100vw;height:100vh;object-fit:cover;display:block;"></video>
-        <button id="skip-intro" style="position:absolute;top:32px;right:32px;background:#ffe600;color:#222;font-family:'Archivo Black',sans-serif;font-size:1.2em;padding:16px 36px;border:none;border-radius:10px;box-shadow:0 2px 12px #0003;cursor:pointer;z-index:10001;">Skip Intro</button>
-    </div>
-    <div id="main-content" style="display:none;">
-        <!-- Stardust intro overlay removed to prevent black screen after intro -->
-
-        <nav>
-            <button id="vibe-toggle">[ change vibe ]</button>
-        </nav>
-        <main class="glass-wrapper">
-            <!-- Explore the Lore Section -->
-            <section id="explore-lore" style="max-width:1100px;margin:0 auto 48px auto;">
-                <h2 style="text-align:center;font-family:'Archivo Black',sans-serif;font-size:2.2em;letter-spacing:0.04em;margin-bottom:32px;">Explore the Lore</h2>
-                <div class="lore-panels" style="display:flex;gap:32px;justify-content:center;align-items:stretch;flex-wrap:wrap;">
-                    <!-- Panel 1: Music & Lyrics -->
-                    <a href="https://yeah.thatssoobuttons.com/lyrics" class="lore-panel" id="music-panel" style="flex:1 1 240px;min-width:220px;background:linear-gradient(135deg,#ffe600 60%,#fffbe6 100%);border-radius:18px;box-shadow:0 4px 24px #0002;padding:32px 18px 24px 18px;display:flex;flex-direction:column;align-items:center;transition:transform 0.2s;cursor:pointer;text-decoration:none;">
-                        <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Lyrics & Notes" style="height:80px;margin-bottom:18px;filter:drop-shadow(0 2px 8px #ffe60088);">
-                        <div style="font-family:'Archivo Black',sans-serif;font-size:1.25em;margin-bottom:8px;">Music and Lyrics</div>
-                        <audio id="music-audio" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b6b9b6b7.mp3" preload="auto"></audio>
-                    </a>
-                    <!-- Panel 2: Gaming -->
-                    <a href="https://yeah.thatssoobuttons.com/gaming" class="lore-panel" id="gaming-panel" style="flex:1 1 240px;min-width:220px;background:linear-gradient(135deg,#e1306c 60%,#fff0f6 100%);border-radius:18px;box-shadow:0 4px 24px #0002;padding:32px 18px 24px 18px;display:flex;flex-direction:column;align-items:center;transition:transform 0.2s;cursor:pointer;text-decoration:none;">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3523/3523887.png" alt="WASD & Mouse" style="height:80px;margin-bottom:18px;filter:drop-shadow(0 2px 8px #e1306c88);">
-                        <div style="font-family:'Archivo Black',sans-serif;font-size:1.25em;margin-bottom:8px;">Gaming</div>
-                        <audio id="gaming-audio" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b7b7b.mp3" preload="auto"></audio>
-                    </a>
-                    <!-- Panel 3: Fiction/Narrative Design -->
-                    <a href="https://yeah.thatssoobuttons.com/fiction" class="lore-panel" id="fiction-panel" style="flex:1 1 240px;min-width:220px;background:linear-gradient(135deg,#222 60%,#bdbdbd 100%);border-radius:18px;box-shadow:0 4px 24px #0002;padding:32px 18px 24px 18px;display:flex;flex-direction:column;align-items:center;transition:transform 0.2s;cursor:pointer;text-decoration:none;">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Noir Office" style="height:80px;margin-bottom:18px;filter:drop-shadow(0 2px 8px #2228);">
-                        <div style="font-family:'Archivo Black',sans-serif;font-size:1.25em;margin-bottom:8px;color:#fff;">Fiction / Narrative Design</div>
-                        <audio id="fiction-audio" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b7b7c.mp3" preload="auto"></audio>
-                    </a>
-                </div>
-                <div style="text-align:center;margin-top:36px;">
-                    <a href="https://yeah.thatssoobuttons.com" style="display:inline-block;background:#ffe600;color:#222;font-family:'Archivo Black',sans-serif;font-size:1.15em;padding:16px 36px;border:none;border-radius:10px;box-shadow:0 2px 12px #0003;cursor:pointer;text-decoration:none;transition:background 0.2s;">FIND IT ALL HERE</a>
-                </div>
-            </section>
-            <!-- End Explore the Lore Section -->
-            </section>
-            <div class="main-grid">
-                <div class="main-col">
-                    <h1 style="text-transform:none; letter-spacing:0; font-size:3.2rem;">
-                        <span style="display:block;">That's</span>
-                        <span style="display:block;">Soo ...</span>
-                        <span style="display:block;">Buttons</span>
-                    </h1>
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>That's Soo Buttons</title>
+                        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=VT323&display=swap" rel="stylesheet">
+                        <style>
+                            html, body {
+                                margin: 0; padding: 0; width: 100vw; height: 100vh;
+                                background: #000; color: #fff;
+                                font-family: 'Montserrat', sans-serif;
+                                overflow-x: hidden;
+                            }
+                            .intro-active > :not(#intro-video-container) { display: none !important; }
+                            .intro-active #intro-video-container { display: flex !important; }
+                            #intro-video-container {
+                                position: fixed; z-index: 9999; top: 0; left: 0; width: 100vw; height: 100vh;
+                                background: #000; display: flex; align-items: center; justify-content: center;
+                            }
+                            #intro-video { width: 100vw; height: 100vh; object-fit: cover; display: block; }
+                            #skip-intro {
+                                position: absolute; top: 32px; right: 32px;
+                                background: #ffe600; color: #222; font-family: 'Montserrat', sans-serif;
+                                font-size: 1.2em; padding: 16px 36px; border: none; border-radius: 10px;
+                                box-shadow: 0 2px 12px #0003; cursor: pointer; z-index: 10001;
+                            }
+                            .main-content {
+                                display: flex; flex-direction: column; align-items: center; justify-content: center;
+                                min-height: 100vh; width: 100vw; background: #000;
+                            }
+                            .header-container {
+                                text-align: center; margin-top: 60px; margin-bottom: 40px;
+                            }
+                            .header-container h1 {
+                                font-size: 2.5rem; letter-spacing: 6px; margin-bottom: 5px; font-weight: 700; color: #fff;
+                                font-family: 'Montserrat', sans-serif;
+                            }
+                            .lore-panels {
+                                display: flex; gap: 32px; justify-content: center; align-items: stretch; flex-wrap: wrap;
+                                width: 100%; max-width: 1100px; margin: 0 auto;
+                            }
+                            .lore-panel {
+                                flex: 1 1 240px; min-width: 220px; background: #181818; border-radius: 18px;
+                                box-shadow: 0 4px 24px #0002; padding: 48px 18px 32px 18px;
+                                display: flex; flex-direction: column; align-items: center;
+                                transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.3s;
+                                cursor: pointer; text-decoration: none;
+                            }
+                            .lore-panel:hover {
+                                transform: scale(1.08);
+                                box-shadow: 0 8px 32px #ffe60055;
+                            }
+                            .lore-panel img {
+                                height: 90px; margin-bottom: 24px; filter: drop-shadow(0 2px 8px #ffe60088);
+                            }
+                            .lore-panel .label {
+                                font-family: 'VT323', monospace; font-size: 2rem; color: #ffe600; margin-bottom: 8px; text-transform: uppercase;
+                            }
+                            .cta-link {
+                                display: inline-block; background: #ffe600; color: #222; font-family: 'Montserrat', sans-serif;
+                                font-size: 1.15em; padding: 16px 36px; border: none; border-radius: 10px;
+                                box-shadow: 0 2px 12px #0003; cursor: pointer; text-decoration: none; transition: background 0.2s;
+                                margin-top: 48px;
+                            }
+                            @media (max-width: 900px) {
+                                .lore-panels { flex-direction: column; gap: 24px; }
+                            }
+                        </style>
                     <p style="font-size:1.2rem; color:#ffe600;">Cozy/Spooky Gamer</p>
                     <div style="margin: 15px 0; line-height: 1.6;">
                         <strong>7pm – 10pm Central</strong><br>
