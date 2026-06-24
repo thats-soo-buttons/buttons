@@ -2,158 +2,623 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://t.contentsquare.net/uxa/653cce40b94be.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thats_Soo_Buttons</title>
+    <title>ThatsSooButtons | Enter the House</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Montserrat:wght@300;400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+        --gold: #ffd700; --purple: #9146ff; --green: #00ff41;
+        --dark: #0a0a12; --panel: rgba(255,255,255,0.05);
+    }
 
-                            .main-content {
-                                display: flex; flex-direction: column; align-items: center; justify-content: center;
-                                min-height: 100vh; width: 100vw; background: #000;
-                            }
-                            .header-container {
-                                text-align: center; margin-top: 60px; margin-bottom: 40px;
-                            }
-                            .header-container h1 {
-                                font-size: 2.5rem; letter-spacing: 6px; margin-bottom: 5px; font-weight: 700; color: #fff;
-                                font-family: 'Montserrat', sans-serif;
-                            }
-                            .lore-panels {
-                                display: flex; gap: 32px; justify-content: center; align-items: stretch; flex-wrap: wrap;
-                                width: 100%; max-width: 1100px; margin: 0 auto;
-                            }
-                            .lore-panel {
-                                flex: 1 1 240px; min-width: 220px; background: #181818; border-radius: 18px;
-                                box-shadow: 0 4px 24px #0002; padding: 48px 18px 32px 18px;
-                                display: flex; flex-direction: column; align-items: center;
-                                transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.3s;
-                                cursor: pointer; text-decoration: none;
-                            }
-                            .lore-panel:hover {
-                                transform: scale(1.08);
-                                box-shadow: 0 8px 32px #ffe60055;
-                            }
-                            .lore-panel img {
-                                height: 90px; margin-bottom: 24px; filter: drop-shadow(0 2px 8px #ffe60088);
-                            }
-                            .lore-panel .label {
-                                font-family: 'VT323', monospace; font-size: 2rem; color: #ffe600; margin-bottom: 8px; text-transform: uppercase;
-                            }
-                            .cta-link {
-                                display: inline-block; background: #ffe600; color: #222; font-family: 'Montserrat', sans-serif;
-                                font-size: 1.15em; padding: 16px 36px; border: none; border-radius: 10px;
-                                box-shadow: 0 2px 12px #0003; cursor: pointer; text-decoration: none; transition: background 0.2s;
-                                margin-top: 48px;
-                            }
-                            @media (max-width: 900px) {
-                                .lore-panels { flex-direction: column; gap: 24px; }
-                            }
-                        </style>
-                    <!-- Only panels and video background remain -->
-                    <body style="background:#000;">
-<a href="https://tessdevillier.com" title="Back to Professional Site" style="
-    position: fixed;
-    top: 18px;
-    left: 18px;
-    z-index: 9999;
-    background: rgba(0,0,0,0.72);
-    color: #ffd700;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.85em;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    border: 1px solid #ffd700;
-    box-shadow: 0 2px 12px #0006;
-    backdrop-filter: blur(8px);
-    transition: background 0.2s, color 0.2s;
-" onmouseover="this.style.background='#ffd700';this.style.color='#222';" onmouseout="this.style.background='rgba(0,0,0,0.72)';this.style.color='#ffd700';">
-← Professional
-</a>
-                    <div id="background-video-container" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;overflow:hidden;">
-                        <video id="background-video" autoplay muted playsinline loop style="width:100vw;height:100vh;object-fit:cover;">
-                            <source src="buttons.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div id="main-content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;width:100vw;">
-                        <!-- No header or description, just panels -->
-                        <section id="explore-lore">
-                            <div class="lore-panels" style="display:flex;gap:32px;justify-content:center;align-items:stretch;flex-wrap:wrap;opacity:0;animation:fadeInPanels 1.2s 0.5s forwards;">
-                                <a href="https://yeah.thatssoobuttons.com/lyrics" class="lore-panel" id="music-panel" style="backdrop-filter:blur(12px) saturate(160%);background:rgba(255,230,0,0.18);border:1.5px solid #ffe60055;box-shadow:0 4px 32px #ffe60022;">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Lyrics & Notes">
-                                    <div class="label">Music and Lyrics</div>
-                                    <audio id="music-audio" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b6b9b6b7.mp3" preload="auto"></audio>
-                                </a>
-                                <a href="https://yeah.thatssoobuttons.com/gaming" class="lore-panel" id="gaming-panel" style="backdrop-filter:blur(12px) saturate(160%);background:rgba(225,48,108,0.18);border:1.5px solid #e1306c55;box-shadow:0 4px 32px #e1306c22;">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Gaming Controller">
-                                    <div class="label">Gaming</div>
-                                    <audio id="gaming-audio" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b7b7b.mp3" preload="auto"></audio>
-                                </a>
-                                <a href="https://yeah.thatssoobuttons.com/fiction" class="lore-panel" id="fiction-panel" style="backdrop-filter:blur(12px) saturate(160%);background:rgba(34,34,34,0.38);border:1.5px solid #fff2;box-shadow:0 4px 32px #fff2;">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png" alt="Typewriter">
-                                    <div class="label">Fiction / Narrative Design</div>
-                                    <audio id="fiction-audio" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b7b7c.mp3" preload="auto"></audio>
-                                </a>
-                            </div>
-                            <!-- No extra links or buttons below panels -->
-                        </section>
-                    </div>
-                    <style>
-                    @keyframes fadeInPanels { to { opacity: 1; } }
-                    .lore-panel {
-                        flex: 1 1 240px; min-width: 220px; border-radius: 18px;
-                        box-shadow: 0 4px 24px #0002; padding: 48px 18px 32px 18px;
-                        display: flex; flex-direction: column; align-items: center;
-                        transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.3s;
-                        cursor: pointer; text-decoration: none;
-                    }
-                    .lore-panel:hover {
-                        transform: scale(1.08);
-                        box-shadow: 0 8px 32px #ffe60055;
-                        background: #222;
-                    }
-                    .lore-panel img {
-                        height: 90px; margin-bottom: 24px; filter: drop-shadow(0 2px 8px #ffe60088);
-                    }
-                    .lore-panel .label {
-                        font-family: 'VT323', monospace; font-size: 2rem; color: #ffe600; margin-bottom: 8px; text-transform: uppercase; text-shadow: 0 0 4px #000;
-                    }
-                    .cta-link {
-                        display: inline-block; background: #ffe600; color: #222; font-family: 'Montserrat', sans-serif;
-                        font-size: 1.15em; padding: 16px 36px; border: none; border-radius: 10px;
-                        box-shadow: 0 2px 12px #0003; cursor: pointer; text-decoration: none; transition: background 0.2s;
-                        margin-top: 48px;
-                    }
-                    @media (max-width: 900px) {
-                        .lore-panels { flex-direction: column; gap: 24px; }
-                    }
-                    </style>
-                    <script>
-                    // Lore panel audio hover effects
-                    function setupPanelAudio(panelId, audioId) {
-                        const panel = document.getElementById(panelId);
-                        const audio = document.getElementById(audioId);
-                        let playing = false;
-                        panel.addEventListener('mouseenter', () => {
-                            if (!playing) {
-                                audio.currentTime = 0;
-                                audio.play();
-                                playing = true;
-                            }
-                        });
-                        panel.addEventListener('mouseleave', () => {
-                            audio.pause();
-                            audio.currentTime = 0;
-                            playing = false;
-                        });
-                        audio.addEventListener('ended', () => {
-                            playing = false;
-                        });
-                    }
-                    setupPanelAudio('music-panel', 'music-audio');
-                    setupPanelAudio('gaming-panel', 'gaming-audio');
-                    setupPanelAudio('fiction-panel', 'fiction-audio');
-                    </script>
+    /* ======= BODY ======= */
+    body { background: var(--dark); color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; min-height: 100vh; }
+
+    /* ======= PRO BACK LINK ======= */
+    #pro-back {
+        position: fixed; top: 16px; left: 16px; z-index: 9999;
+        background: rgba(0,0,0,0.75); color: var(--gold);
+        font-size: .8em; font-weight: 700; letter-spacing: 1px;
+        text-decoration: none; padding: 7px 15px; border-radius: 20px;
+        border: 1px solid var(--gold); backdrop-filter: blur(8px);
+        transition: background .2s, color .2s;
+    }
+    #pro-back:hover { background: var(--gold); color: #111; }
+
+    /* ======= NAV ======= */
+    #room-nav {
+        position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+        z-index: 9998; display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
+        background: rgba(0,0,0,0.65); padding: 7px 12px; border-radius: 30px;
+        backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1);
+    }
+    .room-tab {
+        background: none; border: 1px solid rgba(255,255,255,0.18); color: #aaa;
+        font-family: 'VT323', monospace; font-size: 1.05em; padding: 3px 13px;
+        border-radius: 20px; cursor: pointer; transition: all .2s; white-space: nowrap;
+    }
+    .room-tab:hover, .room-tab.active { background: var(--gold); color: #111; border-color: var(--gold); font-weight: 700; }
+
+    /* ======= ROOMS ======= */
+    .room { display: none; min-height: 100vh; padding: 80px 20px 60px; animation: fadeRoom .4s ease; }
+    .room.active { display: block; }
+    @keyframes fadeRoom { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    .room-title {
+        font-family: 'VT323', monospace; font-size: 2.6rem; color: var(--gold);
+        letter-spacing: 4px; text-align: center; margin-bottom: 32px;
+        text-shadow: 0 0 14px rgba(255,215,0,.35);
+    }
+
+    /* ======= HOME / LIVING ROOM ======= */
+    #room-home {
+        background: radial-gradient(ellipse at 55% 45%, #1a1030 0%, var(--dark) 70%);
+        display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+    }
+    #room-home h1 {
+        font-family: 'VT323', monospace; font-size: 4.5rem; color: var(--gold);
+        letter-spacing: 8px; text-shadow: 0 0 30px rgba(255,215,0,.4);
+        margin-bottom: 6px;
+    }
+    #room-home .sub { color: #888; font-size: .9em; margin-bottom: 48px; letter-spacing: 1px; }
+    .desktop-icons { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; max-width: 640px; }
+    .desk-icon { display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; width: 80px; transition: transform .2s; text-decoration: none; color: inherit; border: none; background: none; }
+    .desk-icon:hover { transform: scale(1.14); }
+    .desk-icon .di-box {
+        width: 62px; height: 62px; background: rgba(255,255,255,0.07);
+        border-radius: 14px; display: flex; align-items: center; justify-content: center;
+        font-size: 1.9rem; border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 4px 18px rgba(0,0,0,.4); transition: box-shadow .2s, border-color .2s;
+    }
+    .desk-icon:hover .di-box { box-shadow: 0 0 20px rgba(255,215,0,.3); border-color: rgba(255,215,0,.5); }
+    .desk-icon .di-lbl { font-size: .68em; text-align: center; color: #aaa; }
+
+    /* ======= DESK ROOM: LYRICS + WRITING ======= */
+    #room-desk { background: radial-gradient(ellipse at 35% 65%, #0a1825 0%, var(--dark) 70%); }
+    .desk-surface {
+        background: #2a1f0e; border-radius: 16px; padding: 36px 28px 28px;
+        max-width: 980px; margin: 0 auto; position: relative;
+        box-shadow: 0 8px 40px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .desk-surface::before { content: '🖊 THE DESK'; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-family: 'VT323', monospace; color: var(--gold); font-size: 1.3rem; letter-spacing: 3px; }
+
+    /* Notepads scattered */
+    .notepads-wrap { position: relative; min-height: 480px; margin-bottom: 32px; }
+    @media (max-width: 700px) { .notepads-wrap { min-height: unset; } }
+    .notepad {
+        background: #fffcf0; color: #222; border-radius: 3px 3px 3px 14px;
+        padding: 14px 14px 18px; width: 200px;
+        box-shadow: 3px 5px 18px rgba(0,0,0,.55);
+        cursor: pointer; transition: transform .25s, box-shadow .25s, z-index 0s;
+        position: absolute; font-family: 'Montserrat', sans-serif;
+    }
+    .notepad::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 26px; background: var(--gold); border-radius: 3px 3px 0 0; }
+    .notepad:hover { transform: scale(1.08) rotate(0deg) !important; box-shadow: 6px 10px 30px rgba(0,0,0,.7), 0 0 18px rgba(255,215,0,.25); z-index: 20; }
+    .notepad h3 { font-size: .8em; font-weight: 700; color: #111; margin: 20px 0 5px; position: relative; }
+    .notepad .np-preview { font-size: .7em; color: #666; line-height: 1.5; font-style: italic; position: relative; }
+    .notepad .np-tag { position: absolute; bottom: 8px; right: 10px; font-size: .6em; color: #999; }
+    .notepad.empty { background: #f0f0f0; }
+    .notepad.empty h3 { color: #bbb; }
+
+    /* Writing - torn paper */
+    .section-label { font-family: 'VT323', monospace; color: #aaa; font-size: 1.3rem; letter-spacing: 2px; margin-bottom: 14px; }
+    .torn-papers { display: flex; flex-wrap: wrap; gap: 14px; }
+    .torn-paper {
+        background: #f5f0e6; color: #333; padding: 16px 14px 28px; flex: 1 1 200px; min-width: 180px; max-width: 260px;
+        clip-path: polygon(0 0,100% 0,100% 88%,96% 92%,91% 88%,85% 94%,79% 88%,73% 93%,67% 88%,61% 94%,55% 88%,49% 93%,43% 88%,37% 94%,31% 88%,25% 93%,19% 88%,13% 93%,7% 88%,2% 93%,0 88%);
+        cursor: pointer; transition: transform .2s; font-family: 'Montserrat', sans-serif;
+    }
+    .torn-paper:hover { transform: translateY(-5px) rotate(1deg); }
+    .torn-paper .tp-type { font-size: .62em; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 5px; }
+    .torn-paper h3 { font-size: .78em; font-weight: 700; color: #333; margin-bottom: 5px; }
+    .torn-paper p { font-size: .7em; color: #666; line-height: 1.5; font-style: italic; }
+
+    /* ======= BOARD ROOM: GAMING + MUSIC ======= */
+    #room-board { background: radial-gradient(ellipse at 70% 30%, #1a0a00 0%, var(--dark) 70%); }
+    .corkboard {
+        background: #8b6914; border-radius: 16px; padding: 36px 28px;
+        max-width: 980px; margin: 0 auto; position: relative;
+        box-shadow: 0 8px 40px rgba(0,0,0,.6), inset 0 2px 0 rgba(255,255,255,.1);
+    }
+    .corkboard::before { content: '📌 BULLETIN BOARD'; position: absolute; top: -22px; left: 50%; transform: translateX(-50%); font-family: 'VT323', monospace; color: var(--gold); font-size: 1.4rem; letter-spacing: 3px; white-space: nowrap; }
+    .flyers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 16px; }
+    .flyer {
+        background: #fff; border-radius: 3px; padding: 14px 12px 18px; cursor: pointer;
+        transition: transform .2s; position: relative;
+        box-shadow: 2px 4px 14px rgba(0,0,0,.4); font-family: 'Montserrat', sans-serif;
+    }
+    .flyer::after { content: '📌'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); font-size: 1.1rem; }
+    .flyer:hover { transform: scale(1.05) rotate(-1.5deg); z-index: 5; }
+    .flyer.dark { background: #1a1a1a; color: #ddd; }
+    .flyer.green { background: #e8f5e9; }
+    .flyer.purple { background: #f3e5f5; }
+    .flyer .fl-tag { font-size: .62em; text-transform: uppercase; letter-spacing: 1px; opacity: .6; margin-bottom: 5px; }
+    .flyer h3 { font-size: .78em; font-weight: 700; margin-bottom: 5px; }
+    .flyer p { font-size: .7em; line-height: 1.5; opacity: .8; }
+
+    /* Cassettes */
+    .cassette-shelf { background: #1a1008; border-radius: 10px; padding: 20px; margin-top: 28px; max-width: 980px; margin-left: auto; margin-right: auto; }
+    .cassettes { display: flex; flex-wrap: wrap; gap: 18px; }
+    .cassette {
+        background: linear-gradient(135deg, #2a2a2a, #181818);
+        border-radius: 10px; width: 178px; height: 108px;
+        display: flex; align-items: center; justify-content: center;
+        border: 2px solid #444; cursor: pointer; transition: transform .2s, box-shadow .2s;
+        position: relative; overflow: hidden;
+    }
+    .cassette::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 136px; height: 56px; background: #111; border-radius: 6px; border: 1px solid #2a2a2a; }
+    .cassette:hover { transform: scale(1.07); box-shadow: 0 0 22px rgba(255,215,0,.3); }
+    .cass-label { position: relative; z-index: 1; background: var(--gold); border-radius: 3px; padding: 4px 10px; text-align: center; width: 118px; }
+    .cass-title { font-size: .63em; font-weight: 700; color: #111; display: block; }
+    .cass-sub { font-size: .52em; color: #555; display: block; }
+    .cass-spools { position: absolute; bottom: 8px; display: flex; gap: 60px; }
+    .spool { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #444; background: #222; }
+
+    /* ======= GALLERY ROOM ======= */
+    #room-gallery { background: radial-gradient(ellipse at 30% 70%, #0a1a10 0%, var(--dark) 70%); }
+    .gallery-inner { max-width: 980px; margin: 0 auto; }
+    .gallery-section-title { font-family: 'VT323', monospace; color: #aaa; font-size: 1.5rem; letter-spacing: 2px; margin: 28px 0 14px; }
+    .polaroids { display: flex; flex-wrap: wrap; gap: 20px; }
+    .polaroid {
+        background: #fff; padding: 10px 10px 34px; cursor: pointer;
+        box-shadow: 3px 5px 20px rgba(0,0,0,.5); transition: transform .2s;
+        transform: rotate(var(--rot, -2deg));
+    }
+    .polaroid:hover { transform: scale(1.09) rotate(0deg) !important; z-index: 5; }
+    .pol-img { width: 140px; height: 120px; background: #ddd; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; overflow: hidden; }
+    .pol-img img { width: 100%; height: 100%; object-fit: cover; }
+    .pol-cap { font-size: .62em; color: #555; text-align: center; margin-top: 6px; font-family: 'Montserrat', sans-serif; }
+    .wp-row { display: flex; flex-wrap: wrap; gap: 14px; }
+    .wp-card {
+        background: #111; border: 1px solid #222; border-radius: 12px; overflow: hidden;
+        width: 150px; cursor: pointer; transition: transform .2s, border-color .2s;
+    }
+    .wp-card:hover { transform: scale(1.06); border-color: rgba(255,215,0,.5); }
+    .wp-thumb { width: 100%; height: 90px; object-fit: cover; display: block; background: #1a1a1a; }
+    .wp-thumb-ph { width: 100%; height: 90px; background: linear-gradient(135deg,#1a1a1a,#222); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
+    .wp-name { font-size: .68em; padding: 6px 8px; color: #ccc; text-align: center; }
+
+    /* ======= GHOST SCREAMER ROOM ======= */
+    #room-ghost {
+        background: radial-gradient(ellipse at 50% 40%, #0f0520 0%, #05050a 80%);
+        display: flex; flex-direction: column; align-items: center;
+    }
+    .game-wrap { max-width: 620px; width: 100%; }
+    .game-hud { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,.05); border-radius: 12px; padding: 10px 18px; margin-bottom: 14px; gap: 10px; }
+    .hud-stat .val { font-family: 'VT323', monospace; font-size: 2rem; color: var(--gold); display: block; }
+    .hud-stat .lbl { font-size: .65em; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+    #ghost-grid { display: grid; gap: 3px; margin: 0 auto; width: fit-content; }
+    .gc {
+        width: 34px; height: 34px; background: rgba(255,255,255,.08);
+        border: 1px solid rgba(255,255,255,.12); border-radius: 6px;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer; font-family: 'VT323', monospace; font-size: 1.15em;
+        transition: background .12s; user-select: none;
+    }
+    .gc:hover:not(.rev):not(.fl) { background: rgba(255,215,0,.14); }
+    .gc.rev { background: rgba(0,0,0,.4); cursor: default; border-color: rgba(255,255,255,.06); }
+    .gc.fl { background: rgba(255,60,60,.15); }
+    .gc.boom { background: rgba(145,70,255,.3); animation: pop .35s ease; }
+    @keyframes pop { 0%{transform:scale(1)} 50%{transform:scale(1.5)} 100%{transform:scale(1)} }
+    .n1{color:#4fc3f7}.n2{color:#81c784}.n3{color:#e57373}.n4{color:#9c27b0}.n5{color:#ff5722}.n6{color:#00bcd4}.n7{color:#ff9800}.n8{color:#9e9e9e}
+    .game-controls { display: flex; gap: 10px; margin-top: 14px; justify-content: center; flex-wrap: wrap; }
+    .gc-btn {
+        background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.2);
+        color: #fff; padding: 7px 18px; border-radius: 10px; cursor: pointer;
+        font-family: 'VT323', monospace; font-size: 1.15em; transition: all .2s;
+    }
+    .gc-btn:hover { background: var(--gold); color: #111; border-color: var(--gold); }
+    .gc-btn.sel { background: var(--purple); border-color: var(--purple); }
+    #game-msg { text-align: center; font-family: 'VT323', monospace; font-size: 1.8rem; min-height: 2.4rem; color: var(--gold); margin-top: 12px; text-shadow: 0 0 10px rgba(255,215,0,.5); }
+    .lore-box { margin-top: 20px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); border-radius: 10px; padding: 14px 18px; }
+    #ghost-lore { font-size: .8em; color: #bb86fc; line-height: 1.7; font-style: italic; }
+
+    /* ======= MODAL ======= */
+    #modal {
+        display: none; position: fixed; inset: 0; background: rgba(0,0,0,.88);
+        z-index: 10000; align-items: center; justify-content: center; padding: 20px;
+    }
+    #modal.open { display: flex; }
+    .modal-box {
+        background: #111; border: 1.5px solid rgba(255,215,0,.3); border-radius: 20px;
+        max-width: 580px; width: 100%; max-height: 82vh; overflow-y: auto; padding: 30px;
+        position: relative;
+    }
+    .modal-x { position: absolute; top: 12px; right: 14px; background: none; border: none; color: #666; font-size: 1.4em; cursor: pointer; line-height: 1; }
+    .modal-x:hover { color: var(--gold); }
+    #modal-title { font-family: 'VT323', monospace; font-size: 2rem; color: var(--gold); margin-bottom: 10px; }
+    .modal-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .m-tag { background: #1a1a1a; border: 1px solid #333; color: #ccc; font-size: .72em; padding: 2px 10px; border-radius: 20px; }
+    #modal-body { color: #cfcfcf; line-height: 1.9; font-size: .93em; white-space: pre-wrap; }
+    #modal-extra { margin-top: 18px; background: #0d0d0d; border: 1px solid rgba(255,215,0,.15); border-radius: 10px; padding: 14px 16px; }
+    #modal-extra p { color: #ccc; font-size: .86em; margin-bottom: 6px; }
+    #modal-extra a { color: var(--gold); }
+
+    /* ======= RESPONSIVE ======= */
+    @media (max-width: 720px) {
+        .notepad { position: static !important; transform: none !important; width: 100% !important; margin-bottom: 12px; }
+        .notepads-wrap { min-height: unset; }
+        #room-home h1 { font-size: 3rem; }
+        .gc { width: 26px; height: 26px; font-size: .9em; }
+        #room-nav { top: auto; bottom: 10px; transform: translateX(-50%); }
+        .room { padding: 16px 12px 100px; }
+        .corkboard, .desk-surface { padding: 28px 16px; }
+    }
+    </style>
+</head>
+<body>
+
+<a href="https://tessdevillier.com" id="pro-back" title="Back to Professional Site">← Professional</a>
+
+<nav id="room-nav">
+    <button class="room-tab active" onclick="go('home')">🏠 Home</button>
+    <button class="room-tab" onclick="go('desk')">✏️ Desk</button>
+    <button class="room-tab" onclick="go('board')">📌 Board</button>
+    <button class="room-tab" onclick="go('gallery')">📸 Gallery</button>
+    <button class="room-tab" onclick="go('ghost')">👻 Ghost Screamer</button>
+</nav>
+
+<!-- ============ HOME ============ -->
+<section class="room active" id="room-home">
+    <h1>THATS_SOO_BUTTONS</h1>
+    <p class="sub">lyrics · fiction · gaming · photography · world-building · chaos</p>
+    <div class="desktop-icons">
+        <button class="desk-icon" onclick="go('desk')"><div class="di-box">📝</div><span class="di-lbl">Lyrics & Writing</span></button>
+        <button class="desk-icon" onclick="go('board')"><div class="di-box">📌</div><span class="di-lbl">Bulletin Board</span></button>
+        <button class="desk-icon" onclick="go('gallery')"><div class="di-box">📸</div><span class="di-lbl">Gallery</span></button>
+        <button class="desk-icon" onclick="go('ghost')"><div class="di-box">👻</div><span class="di-lbl">Ghost Screamer</span></button>
+        <a class="desk-icon" href="https://twitch.tv/thats_soo_buttons" target="_blank" rel="noopener"><div class="di-box">🟣</div><span class="di-lbl">Twitch</span></a>
+        <a class="desk-icon" href="https://discord.gg/dC34nguEEC" target="_blank" rel="noopener"><div class="di-box">💬</div><span class="di-lbl">Discord</span></a>
+        <a class="desk-icon" href="https://ko-fi.com/thatssoobuttons" target="_blank" rel="noopener"><div class="di-box">☕</div><span class="di-lbl">Ko-fi</span></a>
+        <a class="desk-icon" href="https://tessdevillier.com/pets.html" target="_blank" rel="noopener"><div class="di-box">🐾</div><span class="di-lbl">Hire for Pet Sitting</span></a>
+    </div>
+</section>
+
+<!-- ============ DESK ============ -->
+<section class="room" id="room-desk">
+    <div class="room-title">✏️ THE DESK</div>
+    <div class="desk-surface">
+        <div class="notepads-wrap" id="notepads-wrap">
+            <p style="color:#666;padding:60px 0;text-align:center;font-size:.85em;">Loading lyrics...</p>
+        </div>
+        <div class="section-label">📄 WRITING SCRAPS</div>
+        <div class="torn-papers" id="torn-papers">
+            <p style="color:#666;font-size:.85em;">Loading writing...</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============ BOARD ============ -->
+<section class="room" id="room-board">
+    <div class="room-title">📌 BULLETIN BOARD</div>
+    <div class="corkboard">
+        <div class="flyers-grid" id="flyers-grid">
+            <p style="color:#666;font-size:.85em;">Loading posts...</p>
+        </div>
+    </div>
+    <div class="cassette-shelf" style="margin-top:28px;">
+        <div class="section-label" style="margin-bottom:14px;">📼 MUSIC DEMOS — SEEKING COLLABORATORS</div>
+        <div class="cassettes" id="cassettes">
+            <p style="color:#666;font-size:.85em;">Loading demos...</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="room" id="room-gallery">
+    <div class="room-title">📸 GALLERY</div>
+    <div class="gallery-inner">
+        <div class="gallery-section-title">🐾 FRIENDS I'VE WATCHED</div>
+        <div class="polaroids" id="polaroids">
+            <p style="color:#666;font-size:.85em;">Loading photos...</p>
+        </div>
+        <div class="gallery-section-title" style="margin-top:36px;">🖥️ FREE WALLPAPERS</div>
+        <div class="wp-row" id="wp-row">
+            <p style="color:#666;font-size:.85em;">Loading wallpapers...</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============ GHOST SCREAMER ============ -->
+<section class="room" id="room-ghost">
+    <div class="room-title">👻 GHOST SCREAMER</div>
+    <div class="game-wrap">
+        <div class="game-hud">
+            <div class="hud-stat"><span class="val" id="hs-ghosts">10</span><span class="lbl">Ghosts</span></div>
+            <div class="hud-stat"><span class="val" id="hs-flags">0</span><span class="lbl">Sealed</span></div>
+            <div class="hud-stat"><span class="val" id="hs-time">0</span><span class="lbl">Seconds</span></div>
+        </div>
+        <div id="ghost-grid"></div>
+        <div id="game-msg"></div>
+        <div class="game-controls">
+            <button class="gc-btn sel" id="btn-rookie" onclick="setDiff('easy',this)">Rookie</button>
+            <button class="gc-btn" id="btn-hunter" onclick="setDiff('normal',this)">Hunter</button>
+            <button class="gc-btn" id="btn-nightmare" onclick="setDiff('hard',this)">Nightmare</button>
+            <button class="gc-btn" onclick="initGame()">↺ New Hunt</button>
+        </div>
+        <div class="lore-box">
+            <p id="ghost-lore">The air is still. Something is watching.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============ MODAL ============ -->
+<div id="modal" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box">
+        <button class="modal-x" onclick="closeModal()">✕</button>
+        <div id="modal-title"></div>
+        <div class="modal-tags" id="modal-tags"></div>
+        <div id="modal-body"></div>
+        <div id="modal-extra" style="display:none;"></div>
+    </div>
+</div>
+
+<script>
+const DATA = 'https://raw.githubusercontent.com/thats-soo-buttons/tessdevillier/main/data/';
+const loaded = {};
+
+// ── NAVIGATION ──────────────────────────────────────────────
+function go(id) {
+    document.querySelectorAll('.room').forEach(r => r.classList.remove('active'));
+    document.querySelectorAll('.room-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('room-'+id).classList.add('active');
+    const tabs = document.querySelectorAll('.room-tab');
+    const idx = {home:0,desk:1,board:2,gallery:3,ghost:4};
+    if (idx[id] !== undefined) tabs[idx[id]].classList.add('active');
+    if (!loaded[id]) { loaded[id] = true; loaders[id] && loaders[id](); }
+}
+
+// ── MODAL ────────────────────────────────────────────────────
+function openModal(title, tags, body, extra) {
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-tags').innerHTML = (tags||[]).map(t=>`<span class="m-tag">${t}</span>`).join('');
+    document.getElementById('modal-body').innerHTML = (body||'').replace(/\n/g,'<br>');
+    const ex = document.getElementById('modal-extra');
+    if (extra) { ex.style.display=''; ex.innerHTML=extra; } else ex.style.display='none';
+    document.getElementById('modal').classList.add('open');
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+// ── DATA FETCH HELPER ────────────────────────────────────────
+async function getData(file) {
+    const r = await fetch(DATA + file);
+    return r.json();
+}
+
+// ── DESK: LYRICS + WRITING ───────────────────────────────────
+const NP_POS = [
+    {left:'2%',  top:'20px', transform:'rotate(-4deg)'},
+    {left:'28%', top:'5px',  transform:'rotate(2deg)'},
+    {left:'54%', top:'40px', transform:'rotate(-2deg)'},
+    {left:'76%', top:'15px', transform:'rotate(3deg)'},
+    {left:'14%', top:'210px',transform:'rotate(-3deg)'},
+    {left:'48%', top:'225px',transform:'rotate(1.5deg)'},
+    {left:'70%', top:'200px',transform:'rotate(-2deg)'},
+];
+const NP_COLORS = ['#fffcf0','#fff5f5','#f0fff4','#f0f8ff','#fff0fb','#fffff0','#f5f0ff'];
+
+async function loadDesk() {
+    // Lyrics
+    try {
+        const lyrics = await getData('lyrics.json');
+        const wrap = document.getElementById('notepads-wrap');
+        wrap.innerHTML = '';
+        if (!lyrics.length) { wrap.innerHTML = '<p style="color:#666;text-align:center;padding:60px 0;">Lyrics coming soon...</p>'; }
+        else {
+            lyrics.forEach((l, i) => {
+                const pos = NP_POS[i % NP_POS.length];
+                const el = document.createElement('div');
+                el.className = 'notepad';
+                el.style.cssText = `left:${pos.left};top:${pos.top};transform:${pos.transform};background:${NP_COLORS[i%NP_COLORS.length]};`;
+                el.innerHTML = `<h3>${l.title}</h3><div class="np-preview">${l.preview}</div><span class="np-tag">${l.mood||''}</span>`;
+                el.onclick = () => openModal(
+                    l.title, l.tags, l.full,
+                    l.collab_note ? `<p><strong style="color:var(--gold)">Seeking collaborator:</strong> ${l.collab_note}</p><p style="margin-top:8px">Contact: <a href="mailto:contact@tessdevillier.com">contact@tessdevillier.com</a></p>` : null
+                );
+                wrap.appendChild(el);
+            });
+            // set min-height based on last notepad
+            wrap.style.minHeight = (lyrics.length > 4 ? 440 : 300) + 'px';
+        }
+    } catch { document.getElementById('notepads-wrap').innerHTML = '<p style="color:#666;text-align:center;padding:60px 0;">Lyrics coming soon...</p>'; }
+
+    // Writing
+    try {
+        const writing = await getData('writing.json');
+        const tp = document.getElementById('torn-papers');
+        tp.innerHTML = writing.map(w => `
+            <div class="torn-paper" onclick="openModal(${JSON.stringify(w.title)},${JSON.stringify(w.tags)},${JSON.stringify(w.full)},null)">
+                <div class="tp-type">${w.type}${w.universe?' · '+w.universe:''}</div>
+                <h3>${w.title}</h3>
+                <p>${w.preview}</p>
+            </div>`).join('') || '<p style="color:#666;font-size:.85em;">Writing coming soon...</p>';
+    } catch { document.getElementById('torn-papers').innerHTML = '<p style="color:#666;font-size:.85em;">Writing coming soon...</p>'; }
+}
+
+// ── BOARD: GAMING + MUSIC ────────────────────────────────────
+const FLYER_CLASS = { 'Phasmophobia':'dark', 'Palia':'green', 'music':'purple' };
+
+async function loadBoard() {
+    // Gaming flyers
+    try {
+        const posts = await getData('gaming.json');
+        document.getElementById('flyers-grid').innerHTML = posts.map(p => {
+            const cls = FLYER_CLASS[p.tags[0]] || '';
+            return `<div class="flyer ${cls}" onclick="openModal(${JSON.stringify(p.title)},${JSON.stringify(p.tags)},${JSON.stringify(p.full)},null)">
+                <div class="fl-tag">${p.platform||'gaming'} · ${p.date||''}</div>
+                <h3>${p.title}</h3>
+                <p>${p.preview}</p>
+            </div>`;
+        }).join('') || '<p style="color:#666;font-size:.85em;">Gaming posts coming soon...</p>';
+    } catch { document.getElementById('flyers-grid').innerHTML = '<p style="color:#666;font-size:.85em;">Posts coming soon...</p>'; }
+
+    // Music cassettes
+    try {
+        const demos = await getData('music-demos.json');
+        document.getElementById('cassettes').innerHTML = demos.map(d => `
+            <div class="cassette" onclick="openModal(
+                ${JSON.stringify(d.title)},
+                ${JSON.stringify(d.tags)},
+                ${JSON.stringify('⚠️ DEMO ONLY — AI-assisted production\n\n' + d.disclaimer + '\n\nSeeking: ' + d.seeking.join(', '))},
+                ${JSON.stringify('<p><strong style=\'color:var(--gold)\'>Collaborate:</strong> <a href=\'mailto:' + d.collab_contact + '\'>' + d.collab_contact + '</a></p>')}
+            )">
+                <div class="cass-label">
+                    <span class="cass-title">${d.title.replace(' — Demo','')}</span>
+                    <span class="cass-sub">DEMO · COLLAB WANTED</span>
+                </div>
+                <div class="cass-spools"><div class="spool"></div><div class="spool"></div></div>
+            </div>`).join('') || '<p style="color:#666;font-size:.85em;">Demos coming soon...</p>';
+    } catch { document.getElementById('cassettes').innerHTML = '<p style="color:#666;font-size:.85em;">Demos coming soon...</p>'; }
+}
+
+// ── GALLERY: PETS + WALLPAPERS ───────────────────────────────
+const ROTS = ['-3deg','2deg','-1deg','4deg','-2.5deg','1.5deg'];
+
+async function loadGallery() {
+    // Pets
+    try {
+        const albums = await getData('pet-sits.json');
+        const real = albums.filter(a => a.id !== 'album-add-yours');
+        const pols = document.getElementById('polaroids');
+        const html = real.flatMap((a, ai) => {
+            const rot = ROTS[ai % ROTS.length];
+            if (a.photos && a.photos.length) {
+                return a.photos.slice(0,5).map(p =>
+                    `<div class="polaroid" style="--rot:${rot}"><div class="pol-img"><img src="${p}" loading="lazy" alt="pet photo"></div><div class="pol-cap">${a.title}</div></div>`);
+            }
+            return [`<div class="polaroid" style="--rot:${rot}"><div class="pol-img">🐾</div><div class="pol-cap">${a.title}</div></div>`];
+        }).join('');
+        pols.innerHTML = html || '<p style="color:#666;font-size:.85em;">Pet photos coming soon! 🐾</p>';
+    } catch { document.getElementById('polaroids').innerHTML = '<p style="color:#666;font-size:.85em;">Photos coming soon!</p>'; }
+
+    // Wallpapers
+    try {
+        const walls = await getData('wallpapers.json');
+        document.getElementById('wp-row').innerHTML = walls.map(w => `
+            <div class="wp-card" onclick="openModal(
+                ${JSON.stringify(w.title)},
+                ${JSON.stringify(w.tags)},
+                ${JSON.stringify(w.description + '\n\nResolutions: ' + w.resolutions.join(', ') + (w.note ? '\n\n' + w.note : ''))},
+                ${w.download_url ? JSON.stringify('<a href=\'' + w.download_url + '\' download style=\'color:var(--gold);font-weight:700;\'>⬇ Download</a>') : 'null'}
+            )">
+                ${w.preview_img
+                    ? `<img class="wp-thumb" src="https://raw.githubusercontent.com/thats-soo-buttons/tessdevillier/main/${w.preview_img}" loading="lazy" alt="${w.title}">`
+                    : `<div class="wp-thumb-ph">🖼️</div>`}
+                <div class="wp-name">${w.title}</div>
+            </div>`).join('') || '<p style="color:#666;font-size:.85em;">Wallpapers coming soon!</p>';
+    } catch { document.getElementById('wp-row').innerHTML = '<p style="color:#666;font-size:.85em;">Wallpapers coming soon!</p>'; }
+}
+
+// ── GHOST SCREAMER ───────────────────────────────────────────
+const LORE = [
+    'The air is still. Something is watching.',
+    'A cold breath on the back of your neck.',
+    'TIGIDB Entry 0x9F: "Haunting activity confirmed."',
+    'From the XYZTHIANS archives: "Do not disturb the grid."',
+    'They say the ghosts here never really left.',
+    'Click carefully. The spirits are restless tonight.',
+    'One wrong step and they scream — so do you.',
+    'The Tenebraeum breathes. Proceed with caution.'
+];
+const DIFFS = { easy:{r:9,c:9,g:10}, normal:{r:16,c:16,g:40}, hard:{r:16,c:30,g:99} };
+let gDiff='easy', gGrid=[], gRows=0, gCols=0, gGhosts=0;
+let gRevealed=0, gFlagged=new Set(), gOver=false, gFirst=true, gTimer=0, gTick=null;
+
+function setDiff(d, btn) {
+    gDiff = d;
+    document.querySelectorAll('.gc-btn').forEach(b => b.classList.remove('sel'));
+    btn.classList.add('sel');
+    initGame();
+}
+function initGame() {
+    clearInterval(gTick); gTimer=0; gOver=false; gFirst=true; gRevealed=0; gFlagged=new Set();
+    const cfg = DIFFS[gDiff];
+    gRows=cfg.r; gCols=cfg.c; gGhosts=cfg.g;
+    gGrid = Array.from({length:gRows}, ()=>Array(gCols).fill(0));
+    document.getElementById('hs-ghosts').textContent = gGhosts;
+    document.getElementById('hs-flags').textContent = '0';
+    document.getElementById('hs-time').textContent = '0';
+    document.getElementById('game-msg').textContent = '';
+    document.getElementById('ghost-lore').textContent = LORE[Math.floor(Math.random()*LORE.length)];
+    renderGhost();
+}
+function plantGhosts(sr, sc) {
+    let n = 0;
+    while (n < gGhosts) {
+        const r=Math.floor(Math.random()*gRows), c=Math.floor(Math.random()*gCols);
+        if (gGrid[r][c]!==-1 && !(Math.abs(r-sr)<=1&&Math.abs(c-sc)<=1)) { gGrid[r][c]=-1; n++; }
+    }
+    for(let r=0;r<gRows;r++) for(let c=0;c<gCols;c++) {
+        if(gGrid[r][c]!==-1){
+            let cnt=0;
+            for(let dr=-1;dr<=1;dr++) for(let dc=-1;dc<=1;dc++){
+                const nr=r+dr,nc=c+dc;
+                if(nr>=0&&nr<gRows&&nc>=0&&nc<gCols&&gGrid[nr][nc]===-1)cnt++;
+            }
+            gGrid[r][c]=cnt;
+        }
+    }
+}
+function renderGhost() {
+    const el = document.getElementById('ghost-grid');
+    el.style.gridTemplateColumns = `repeat(${gCols},34px)`;
+    el.innerHTML = '';
+    for(let r=0;r<gRows;r++) for(let c=0;c<gCols;c++){
+        const cell=document.createElement('div');
+        cell.className='gc'; cell.id=`g${r}_${c}`;
+        cell.addEventListener('click',()=>gClick(r,c));
+        cell.addEventListener('contextmenu',e=>{e.preventDefault();gFlag(r,c);});
+        el.appendChild(cell);
+    }
+}
+function gClick(r,c){
+    if(gOver||gFlagged.has(`${r},${c}`))return;
+    if(gFirst){gFirst=false;plantGhosts(r,c);gTick=setInterval(()=>{gTimer++;document.getElementById('hs-time').textContent=gTimer;},1000);}
+    const el=document.getElementById(`g${r}_${c}`);
+    if(el.classList.contains('rev'))return;
+    if(gGrid[r][c]===-1){revealAllGhosts();endGame(false);return;}
+    flood(r,c); checkWin();
+}
+function flood(r,c){
+    const stack=[[r,c]];
+    while(stack.length){
+        const[cr,cc]=stack.pop(),key=`${cr},${cc}`;
+        const el=document.getElementById(`g${cr}_${cc}`);
+        if(!el||el.classList.contains('rev')||gFlagged.has(key))continue;
+        el.classList.add('rev'); gRevealed++;
+        const v=gGrid[cr][cc];
+        if(v>0){el.textContent=v;el.classList.add('n'+v);}
+        else for(let dr=-1;dr<=1;dr++)for(let dc=-1;dc<=1;dc++){const nr=cr+dr,nc=cc+dc;if(nr>=0&&nr<gRows&&nc>=0&&nc<gCols)stack.push([nr,nc]);}
+    }
+}
+function gFlag(r,c){
+    if(gOver)return;
+    const el=document.getElementById(`g${r}_${c}`);
+    if(el.classList.contains('rev'))return;
+    const key=`${r},${c}`;
+    if(gFlagged.has(key)){gFlagged.delete(key);el.classList.remove('fl');el.textContent='';}
+    else{gFlagged.add(key);el.classList.add('fl');el.textContent='🔒';}
+    document.getElementById('hs-flags').textContent=gFlagged.size;
+}
+function revealAllGhosts(){
+    for(let r=0;r<gRows;r++)for(let c=0;c<gCols;c++){
+        if(gGrid[r][c]===-1){const el=document.getElementById(`g${r}_${c}`);el.classList.add('rev','boom');el.textContent='👻';}
+    }
+}
+function checkWin(){if(gRevealed===gRows*gCols-gGhosts)endGame(true);}
+function endGame(won){
+    gOver=true; clearInterval(gTick);
+    document.getElementById('game-msg').textContent = won
+        ? `👻 All ${gGhosts} ghosts sealed! ${gTimer}s — certified hunter!`
+        : `😱 A ghost got you! The grid remembers.`;
+    document.getElementById('ghost-lore').textContent = won
+        ? 'The glade is safe... for now. Well played, hunter.' 
+        : 'They screamed. You screamed. It happens to the best.';
+}
+
+// ── ROOM LOADERS ─────────────────────────────────────────────
+const loaders = { desk: loadDesk, board: loadBoard, gallery: loadGallery, ghost: initGame };
+</script>
+</body>
+</html>
