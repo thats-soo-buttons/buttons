@@ -25,10 +25,13 @@ Use these values:
 
 ## Environment variables / secrets
 
-In the Pages project, add these production secrets:
+In the Pages project, add this production secret:
+
+- `TWITCH_CLIENT_SECRET`
+
+These regular variables already belong in `wrangler.toml` under `[vars]`:
 
 - `TWITCH_CLIENT_ID`
-- `TWITCH_CLIENT_SECRET`
 - `TWITCH_CHANNEL`
 
 Suggested value for `TWITCH_CHANNEL`:

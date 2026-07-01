@@ -1,3 +1,7 @@
 name = "buttons-stream-hub"
 compatibility_date = "2026-07-01"
 pages_build_output_dir = "."
+
+[vars]
+TWITCH_CLIENT_ID = "kiidpev4xybx67nclmihdmxpopvzkq"
+TWITCH_CHANNEL = "thats_soo_buttons"
