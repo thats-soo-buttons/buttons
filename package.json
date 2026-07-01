@@ -1,0 +1,9 @@
+{
+  "name": "buttons-stream-hub",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static stream hub with a small Twitch status server",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "channel": "thats_soo_buttons",
+  "headline": "Live chaos, dispatches, support links, and channel intel in one place.",
+  "subheadline": "When Buttons is live, the stream takes over. When offline, the site flips into highlights, recap mode, and a Brigade briefing.",
+  "nextStream": "Next stream target: Thu 8:00 PM ET",
+  "dispatch": {
+    "kicker": "Latest Dispatch",
+    "title": "This site is now the stream hub.",
+    "body": "No fake desktop. No maze. Just the live show, the latest recap, the commands people actually use, and the support links viewers keep asking for.",
+    "notes": [
+      "Live state should be obvious instantly.",
+      "Offline state should still feel active, not abandoned.",
+      "Commands and support steps should be impossible to miss."
+    ]
+  },
+  "recaps": [
+    {
+      "eyebrow": "Latest Recap",
+      "title": "Buttons After Dark",
+      "body": "Recap the best bits from the latest stream here: what got played, what went off the rails, and what Brigade clipped.",
+      "ctaLabel": "Watch on Twitch",
+      "ctaUrl": "https://www.twitch.tv/thats_soo_buttons/videos"
+    },
+    {
+      "eyebrow": "Highlights",
+      "title": "Best Moments Reel",
+      "body": "Use this slot for the strongest clip batch, a VOD jump, or a short highlight upload when the channel is offline.",
+      "ctaLabel": "Open Clips",
+      "ctaUrl": "https://www.twitch.tv/thats_soo_buttons/clips"
+    },
+    {
+      "eyebrow": "Community",
+      "title": "What Brigade Is On",
+      "body": "Call out recurring bits, current games, inside jokes, and whatever command Brigade keeps hammering this week.",
+      "ctaLabel": "Join Brigade Discord",
+      "ctaUrl": "https://discord.gg/dC34nguEEC"
+    }
+  ],
+  "commands": [
+    {
+      "name": "!fish",
+      "description": "Fish bit / fish command callout. Explain the gag, mini-game, or tally here in plain language."
+    },
+    {
+      "name": "!discord",
+      "description": "Posts the Discord invite so people can join Brigade outside stream hours."
+    },
+    {
+      "name": "!kofi",
+      "description": "Drops the Ko-fi support link for direct tips and support."
+    },
+    {
+      "name": "!prime",
+      "description": "Explains how to use a free Prime sub if a viewer has Amazon Prime."
+    },
+    {
+      "name": "!sub",
+      "description": "Points viewers to the Twitch subscribe button and explains what subscribing supports."
+    },
+    {
+      "name": "!schedule",
+      "description": "Shows the stream schedule, next planned session, or where to check for updates."
+    },
+    {
+      "name": "!lurk",
+      "description": "Marks a viewer as lurking so they can support quietly while away."
+    },
+    {
+      "name": "!socials",
+      "description": "Links out to Twitch, the Brigade Discord, Ko-fi, and the rest of the main channel ecosystem."
+    }
+  ],
+  "support": [
+    {
+      "title": "Donate Through Ko-fi",
+      "summary": "Fastest direct support option for the stream and the weird work around it.",
+      "steps": [
+        "Open the Ko-fi page.",
+        "Choose a one-time amount or recurring support if you want ongoing backing.",
+        "Add a message if you want the support callout tied to a stream moment or bit."
+      ],
+      "label": "Open Ko-fi",
+      "url": "https://ko-fi.com/thatssoobuttons"
+    },
+    {
+      "title": "Subscribe On Twitch",
+      "summary": "Monthly support through Twitch, usually tied to emotes, perks, and direct channel support.",
+      "steps": [
+        "Open the Twitch channel while signed in.",
+        "Use the Subscribe button on the channel page or inside the stream.",
+        "Choose the tier you want and complete checkout through Twitch."
+      ],
+      "label": "Open Twitch Channel",
+      "url": "https://www.twitch.tv/thats_soo_buttons"
+    },
+    {
+      "title": "Use A Free Prime Sub",
+      "summary": "Best option for viewers who already have Amazon Prime and want to support without an extra monthly cost.",
+      "steps": [
+        "Link Amazon Prime and Twitch through Prime Gaming.",
+        "Visit the Twitch channel while logged in.",
+        "Open Subscribe and choose the Prime option if it is available for the month."
+      ],
+      "label": "Prime Gaming Setup",
+      "url": "https://gaming.amazon.com/"
+    }
+  ]
+}
