@@ -3,647 +3,569 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thats Soo Buttons</title>
+<meta name="description" content="Choose a path through the strange, cozy world of Thats Soo Buttons: streams, lyrics, photographs, stories, downloads, and unexpected signals.">
+<title>Thats Soo Buttons | Press Something</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Limelight&family=Special+Elite&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:'Space Grotesk',sans-serif;
-  color:#f6f1ff;
-  background:
-    linear-gradient(180deg,rgba(8,5,20,.92),rgba(5,4,16,.98)),
-    url('./background2glitch.jpeg') center top / cover fixed no-repeat;
-}
 :root{
-  --bg:#090511;
-  --panel:#120d1f;
-  --panel-2:#171127;
-  --line:rgba(255,255,255,.12);
-  --text:#f6f1ff;
-  --muted:#b8abc9;
-  --red:#ff6b78;
-  --cyan:#67e8f9;
-  --gold:#ffd86b;
-  --lime:#8aff7a;
-  --shadow:0 24px 80px rgba(0,0,0,.45);
-  --radius:24px;
+  --night:#12100f;
+  --ink:#201b17;
+  --paper:#e9dec5;
+  --paper-dark:#c7b58e;
+  --cream:#f5edda;
+  --red:#a9362b;
+  --gold:#d5a846;
+  --green:#526f5a;
+  --blue:#4c6578;
+  --line:rgba(237,222,190,.26);
+  --display:'Limelight',serif;
+  --type:'Special Elite',serif;
+  --mono:'DM Mono',monospace;
+  --cursor-retro:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M3 2v20l5-5 4 9 4-2-4-9h8z' fill='%23f5edda' stroke='%23201b17' stroke-width='2'/%3E%3C/svg%3E") 3 2,auto;
+  --cursor-search:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Ccircle cx='12' cy='12' r='8' fill='%23e9dec5' fill-opacity='.75' stroke='%23201b17' stroke-width='3'/%3E%3Cpath d='m18 18 9 9' stroke='%23d5a846' stroke-width='4'/%3E%3C/svg%3E") 12 12,auto;
+  --cursor-pen:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath d='m5 26 3-8L22 4l4 4-14 14z' fill='%23e9dec5' stroke='%23201b17' stroke-width='2'/%3E%3Cpath d='m8 18 4 4M20 6l4 4' stroke='%23a9362b' stroke-width='2'/%3E%3C/svg%3E") 5 26,auto;
+  --cursor-folder:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='28' viewBox='0 0 32 28'%3E%3Cpath d='M2 5h11l3 4h14v17H2z' fill='%23d5a846' stroke='%23201b17' stroke-width='2'/%3E%3Cpath d='M2 9h28' stroke='%23201b17' stroke-width='2'/%3E%3C/svg%3E") 4 5,auto;
 }
-body::before{
-  content:'';
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background:
-    radial-gradient(circle at 18% 18%, rgba(255,107,120,.18), transparent 24%),
-    radial-gradient(circle at 76% 12%, rgba(103,232,249,.18), transparent 26%),
-    linear-gradient(90deg, rgba(255,255,255,.04) 0, rgba(255,255,255,0) 12%, rgba(255,255,255,0) 88%, rgba(255,255,255,.04) 100%);
-  mix-blend-mode:screen;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--night);color:var(--cream);font-family:var(--type);line-height:1.55;overflow-x:hidden;cursor:var(--cursor-retro)}
+button,a,input{font:inherit}
+a{color:inherit}
+button,a{cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+.noise{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.16;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.38'/%3E%3C/svg%3E")}
+.intro{position:fixed;inset:0;z-index:60;display:grid;place-items:center;overflow:hidden;background:#080707 url('./background1.jpg') center/cover no-repeat;transition:opacity 1.35s ease,visibility 1.35s;cursor:var(--cursor-search)}
+.intro.is-gone{opacity:0;visibility:hidden;pointer-events:none}
+.intro::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,6,6,.08),rgba(7,6,6,.7))}
+.intro-copy{position:relative;z-index:2;text-align:center;padding:24px;text-shadow:0 4px 30px #000}
+.intro h1{margin:0;font-family:var(--display);font-size:clamp(3.4rem,10vw,9rem);line-height:.84;letter-spacing:0;font-weight:400}
+.intro-status{margin:0 0 18px;text-transform:uppercase;letter-spacing:.16em;font-family:var(--mono);font-size:.7rem}
+.intro button{margin-top:18px;padding:12px 18px;color:var(--cream);background:rgba(10,8,7,.7);border:1px solid var(--cream);cursor:pointer;text-transform:uppercase;font-family:var(--mono);font-size:.72rem}
+.site-header{position:absolute;z-index:10;top:0;left:0;width:100%;display:flex;align-items:center;justify-content:space-between;padding:22px 4vw;border-bottom:1px solid var(--line)}
+.wordmark{display:flex;align-items:center;gap:11px;font-family:var(--display);font-size:1.15rem;text-decoration:none}
+.brand-signal{width:42px;aspect-ratio:1;border:1px solid rgba(245,237,218,.48);border-radius:50%;object-fit:cover;filter:contrast(1.12) saturate(.8);box-shadow:0 0 0 4px rgba(10,8,7,.35)}
+.header-right{display:flex;align-items:center;gap:12px}
+.status{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.64rem;text-transform:uppercase}
+.status-dot{width:8px;height:8px;border-radius:50%;background:#999}
+.status-dot.live{background:#ef5b4e;box-shadow:0 0 14px #ef5b4e}
+.menu-link{padding:9px 12px;border:1px solid var(--line);font-family:var(--mono);font-size:.64rem;text-decoration:none;text-transform:uppercase}
+.launcher{position:relative;min-height:100svh;display:grid;grid-template-rows:1fr auto;overflow:hidden;background:#13100e;cursor:var(--cursor-search)}
+.launcher-bg{position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,12,10,.9),rgba(15,12,10,.42),rgba(15,12,10,.86)),url('./background2glitch.jpeg') center/cover;filter:sepia(.35) saturate(.65);opacity:1;transform:scale(1);transition:filter .6s,transform 1.35s ease,opacity 1.35s ease}
+body:not(.has-entered) .launcher-bg{opacity:.35;transform:scale(1.035)}
+.launcher[data-slide="2"] .launcher-bg{filter:sepia(.75) saturate(.5) brightness(.9);transform:scale(1.025)}
+.launcher[data-slide="3"] .launcher-bg{filter:grayscale(.3) sepia(.2) hue-rotate(165deg) brightness(.8)}
+.launcher[data-slide="4"] .launcher-bg{filter:sepia(.5) saturate(.75) brightness(1.08)}
+.launcher[data-slide="5"] .launcher-bg{filter:sepia(.7) hue-rotate(70deg) brightness(.8)}
+.carousel{position:relative;z-index:2;display:grid;grid-template-columns:clamp(44px,5vw,72px) minmax(0,1fr) clamp(44px,5vw,72px);align-items:center;min-height:calc(100svh - 102px);padding:100px 3vw 20px}
+.arrow{width:clamp(40px,3.75vw,54px);aspect-ratio:1;height:auto;justify-self:center;display:grid;place-items:center;padding:0;border:1px solid var(--line);border-radius:50%;background:rgba(15,12,10,.62);color:var(--cream);font-family:var(--mono);font-size:clamp(1rem,1.65vw,1.5rem);line-height:1;cursor:pointer;overflow:hidden;transition:background .2s,transform .2s}
+.arrow:hover{background:var(--red);transform:scale(1.06)}
+.slide-window{min-width:0;max-width:100%;overflow:hidden}
+.slide-track{display:flex;transition:transform .65s cubic-bezier(.22,.75,.2,1)}
+.slide{flex:0 0 100%;min-width:0;max-width:100%;display:grid;grid-template-columns:minmax(300px,.9fr) minmax(320px,1.1fr);align-items:center;gap:7vw;padding:20px 5vw;min-height:650px;overflow:hidden;container-type:inline-size}
+.object-stage{height:min(58vw,520px);min-height:380px;display:grid;place-items:center;perspective:900px;position:relative}
+.object-stage::before{content:'';position:absolute;width:70%;height:12%;bottom:8%;border-radius:50%;background:rgba(0,0,0,.55);filter:blur(18px)}
+.slide-copy{min-width:0;max-width:650px;padding:clamp(24px,3.5vw,50px);background:linear-gradient(90deg,rgba(13,11,9,.94),rgba(13,11,9,.8));border-left:3px solid var(--gold);box-shadow:18px 20px 55px rgba(0,0,0,.3);backdrop-filter:blur(7px)}
+.path-note{margin:0 0 13px;color:var(--gold);font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.14em}
+.slide h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,8cqi,7rem);line-height:.88;letter-spacing:0;overflow-wrap:anywhere}
+.slide-copy>p:not(.path-note){font-size:clamp(1rem,1.5vw,1.3rem);max-width:560px;color:#d4c6ab}
+.open-button{display:inline-flex;align-items:center;gap:12px;margin-top:16px;padding:13px 17px;border:1px solid var(--cream);background:transparent;color:var(--cream);text-decoration:none;text-transform:uppercase;font-family:var(--mono);font-size:.72rem;transition:background .2s,color .2s}
+.open-button:hover{background:var(--cream);color:var(--ink)}
+.carousel-footer{position:relative;z-index:3;display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px;padding:10px 4vw 14px;border-top:1px solid var(--line);background:rgba(12,10,8,.72)}
+.tabs{display:flex;align-items:flex-end;gap:7px;overflow-x:auto;padding:9px 4px 5px;scrollbar-width:thin}
+.tab{flex:none;width:92px;min-height:64px;display:grid;grid-template-rows:26px auto;place-items:center;gap:6px;padding:9px 7px 7px;border:1px solid rgba(233,222,197,.34);border-radius:0;background:rgba(19,16,14,.82);color:#cfc3ae;cursor:pointer;font-family:var(--mono);font-size:clamp(.52rem,.6vw,.64rem);font-weight:500;line-height:1.1;text-align:center;text-transform:uppercase;overflow-wrap:anywhere;transition:transform .2s,background .2s,color .2s,border-color .2s}
+.tab svg{width:24px;height:24px;stroke-width:1.7}
+.tab:hover{background:rgba(213,168,70,.16);border-color:var(--gold);color:var(--cream);transform:translateY(-2px)}
+.tab.active{background:var(--cream);border-color:var(--cream);color:var(--red);transform:translateY(-4px);box-shadow:0 5px 0 var(--red)}
+.counter{font-family:var(--mono);font-size:.7rem;color:var(--gold)}
+.path-tools{display:flex;align-items:center;gap:12px}.surprise-path{padding:8px 11px;border:1px solid var(--line);background:transparent;color:var(--cream);font-family:var(--mono);font-size:.62rem;text-transform:uppercase}.surprise-path:hover{border-color:var(--gold);color:var(--gold)}
+.daily-word{position:relative;z-index:4;display:grid;grid-template-columns:minmax(190px,.6fr) minmax(0,1.4fr) auto;align-items:center;gap:clamp(18px,4vw,60px);padding:clamp(24px,4vw,48px) 5vw;color:#30271f;background:#d7c69f;border-top:1px solid #6f5d40;border-bottom:1px solid #6f5d40;box-shadow:inset 0 8px 25px rgba(74,55,27,.1)}
+.daily-word::before{content:'';position:absolute;inset:8px;border:1px dashed rgba(76,59,36,.35);pointer-events:none}
+.daily-word-label{position:relative;margin:0;color:#6d3b2d;font-family:var(--mono);font-size:.66rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+.daily-word-copy{position:relative;min-width:0}.daily-word-copy h2{margin:0;font-family:var(--display);font-size:clamp(2.3rem,5vw,5rem);font-weight:400;line-height:.9;overflow-wrap:anywhere}.daily-word-meta{margin:10px 0 0;color:#6f5d40;font-family:var(--mono);font-size:.67rem;text-transform:uppercase}.daily-word-definition{max-width:760px;margin:12px 0 0;font-size:clamp(.95rem,1.4vw,1.18rem)}
+.daily-word button{position:relative;min-width:128px;padding:12px 15px;border:1px solid #382f25;background:transparent;color:#382f25;font-family:var(--mono);font-size:.65rem;text-transform:uppercase}.daily-word button:hover{color:var(--cream);background:#382f25}
+/* CSS objects */
+.cassette{position:relative;width:min(88%,430px);aspect-ratio:1.55;background:linear-gradient(145deg,#a53b33,#70241f);border:5px solid #171211;border-radius:14px;box-shadow:inset 0 0 0 5px #c95b4e,15px 22px 35px #000;transform:rotate(-5deg)}
+.cassette::before{content:'BUTTONS MIX · SIDE A';position:absolute;left:11%;top:10%;width:78%;height:39%;padding-top:12px;text-align:center;color:#27201b;background:#e3d9bb;border:3px solid #1d1715;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em}
+.cassette-window{position:absolute;left:23%;top:28%;width:54%;height:21%;display:flex;justify-content:space-between;align-items:center;padding:0 15px;background:#2a211d;border-radius:24px;border:3px solid #101010}
+.reel{width:44px;aspect-ratio:1;border-radius:50%;background:repeating-conic-gradient(#ddd 0 10deg,#333 10deg 20deg);border:8px solid #eee}
+.cassette-bottom{position:absolute;left:24%;bottom:7%;width:52%;height:22%;background:#d8cda8;clip-path:polygon(12% 0,88% 0,100% 100%,0 100%);border-top:3px solid #171211}
+.quill-set{position:relative;width:min(90%,430px);height:460px;transform:rotate(4deg)}
+.inkwell{position:absolute;bottom:30px;left:50%;translate:-50% 0;width:150px;height:135px;background:linear-gradient(135deg,#24333b,#080b0c 70%);border:5px solid #060606;clip-path:polygon(18% 0,82% 0,100% 25%,89% 100%,11% 100%,0 25%);box-shadow:18px 20px 30px #000}
+.inkwell::before{content:'';position:absolute;left:25%;top:12%;width:50%;height:35%;border-radius:50%;background:#050606;border:6px solid #4c5558}
+.feather{position:absolute;left:48%;bottom:115px;width:56px;height:340px;background:linear-gradient(90deg,#bba476 0 44%,#efe0bd 45% 55%,#9b835b 56%);border-radius:100% 0 100% 0;transform:rotate(21deg);clip-path:polygon(50% 0,92% 12%,68% 18%,100% 24%,70% 30%,94% 38%,64% 44%,87% 52%,60% 58%,78% 67%,55% 76%,50% 100%,45% 75%,17% 65%,40% 57%,8% 48%,38% 41%,4% 31%,39% 25%,10% 16%)}
+.keys{display:grid;grid-template-columns:repeat(3,104px);grid-template-rows:repeat(2,104px);gap:13px;transform:rotateX(13deg) rotateZ(-3deg)}
+.key{display:grid;place-items:center;background:linear-gradient(145deg,#c8b98d,#71664d);color:#1b1814;border:5px solid #2a251e;border-radius:9px;box-shadow:0 11px 0 #211d18,0 18px 22px #000;font-family:var(--mono);font-size:2.5rem;font-weight:500}
+.key-w{grid-column:2}.key-a{grid-column:1;grid-row:2}.key-s{grid-column:2;grid-row:2}.key-d{grid-column:3;grid-row:2}
+.haunted-house{position:relative;width:min(90%,430px);height:450px;background:linear-gradient(90deg,transparent 7%,#171716 7% 93%,transparent 93%);clip-path:polygon(50% 0,100% 25%,91% 25%,91% 100%,9% 100%,9% 25%,0 25%);filter:drop-shadow(18px 24px 18px #000)}
+.haunted-house::before{content:'';position:absolute;inset:25% 17% 9%;background:repeating-linear-gradient(90deg,#252521 0 13%,#111 13% 17%);border:4px solid #070707;box-shadow:inset 0 0 45px #000}
+.haunted-house::after{content:'?';position:absolute;left:50%;bottom:12%;translate:-50% 0;color:#b8d6c2;font-family:var(--display);font-size:6rem;text-shadow:0 0 24px #7fbea0}
+.village-door{position:relative;width:min(88%,390px);height:450px;border:8px solid #342617;border-radius:48% 48% 8px 8px;background:linear-gradient(145deg,#71a9a0,#d7b866 58%,#86613f);box-shadow:18px 24px 34px #000,inset 0 0 0 12px rgba(247,221,150,.28)}
+.village-door::before{content:'KILIMA';position:absolute;left:50%;top:12%;translate:-50% 0;padding:8px 18px;border:3px solid #3c2b18;background:#e0c477;color:#3c2b18;font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;transform:rotate(-2deg)}
+.village-door::after{content:'✦';position:absolute;right:12%;top:48%;display:grid;place-items:center;width:44px;aspect-ratio:1;border-radius:50%;background:#d7a640;color:#fff4c4;font-size:1.4rem;box-shadow:0 0 18px #fff0a1}
+.polaroids{position:relative;width:min(95%,450px);height:430px}
+.polaroid{position:absolute;width:245px;height:310px;padding:15px 15px 54px;background:#e9e1d2;box-shadow:12px 18px 28px #000}
+.polaroid:first-child{left:20px;top:15px;transform:rotate(-12deg)}
+.polaroid:last-child{right:12px;bottom:10px;transform:rotate(11deg)}
+.polaroid img{width:100%;height:100%;object-fit:cover;filter:sepia(.25) saturate(.8)}
+.polaroid span{position:absolute;left:0;bottom:15px;width:100%;text-align:center;color:#25201b;font-size:.83rem}
+.radio{position:relative;width:min(92%,430px);aspect-ratio:1.35;background:linear-gradient(145deg,#805735,#3b2518);border:7px solid #1e1711;border-radius:14px;box-shadow:15px 22px 32px #000}
+.radio::before{content:'';position:absolute;left:7%;top:13%;width:52%;height:60%;border:4px solid #251b14;border-radius:8px;background:repeating-radial-gradient(ellipse at center,#211b16 0 3px,#8b795d 4px 7px)}
+.radio::after{content:'ON THE FLY';position:absolute;right:7%;top:18%;width:27%;padding:9px 3px;text-align:center;background:#d1bc82;color:#2a2118;border:3px solid #251b14;font-family:var(--mono);font-size:.6rem}
+.dial{position:absolute;right:11%;bottom:17%;width:58px;aspect-ratio:1;border-radius:50%;background:repeating-conic-gradient(#b08b50 0 8deg,#49351f 8deg 16deg);border:5px solid #221811}
+.parcel{position:relative;width:min(88%,410px);aspect-ratio:1.25;background:#aa8150;border:4px solid #382818;box-shadow:16px 24px 35px #000;transform:rotate(3deg)}
+.parcel::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 42%,#d7bb86 42% 58%,transparent 58%)}
+.parcel::after{content:'BUTTONS\AODDITIES & DOWNLOADS';white-space:pre;position:absolute;left:14%;top:24%;width:72%;padding:18px 5px;text-align:center;color:#2b2118;background:#dfd1ad;border:2px solid #5a422b;font-family:var(--mono);font-size:.72rem;transform:rotate(-4deg)}
+.bell{position:relative;width:300px;height:360px}
+.bell-button{position:absolute;left:50%;top:18px;translate:-50% 0;width:150px;height:110px;border-radius:50% 50% 25% 25%;background:radial-gradient(circle at 38% 25%,#e9d18a,#9b6b2e 48%,#382310 78%);border:6px solid #21150c;box-shadow:0 16px 0 #382717,0 24px 28px #000}
+.bell-button::after{content:'PAW';position:absolute;inset:14%;display:grid;place-items:center;color:#35200f;font-family:var(--mono);font-size:clamp(.62rem,8cqi,1rem);font-weight:bold;line-height:1;text-align:center;overflow:hidden}
+.bell-base{position:absolute;left:15px;bottom:28px;width:270px;height:170px;background:linear-gradient(145deg,#715234,#2f2116);border:6px solid #21170f;transform:perspective(500px) rotateX(58deg);box-shadow:0 30px 30px #000}
+.field-journal{position:relative;width:min(88%,400px);height:470px;background:linear-gradient(135deg,#62785f,#33473b);border:8px solid #2b2118;border-radius:8px 18px 18px 8px;box-shadow:17px 24px 34px #000, inset 14px 0 0 rgba(16,12,9,.28);transform:rotate(-3deg)}
+.field-journal::before{content:'BUTTONS\A FIELD NOTES\A\A paths followed\A things gathered\A worlds imagined';white-space:pre;position:absolute;inset:48px 35px auto;padding:24px 20px;color:#352b20;background:#e5d7b5;border:2px solid #766246;font-family:var(--mono);font-size:.88rem;line-height:1.9;transform:rotate(1deg)}
+.field-journal::after{content:'✦';position:absolute;right:36px;bottom:35px;color:#d5a846;font-size:3rem;transform:rotate(12deg)}
+.postcards{position:relative;width:min(92%,430px);height:390px}
+.postcard{position:absolute;width:280px;height:190px;padding:22px;background:#d8c69f;color:#2b231b;border:3px solid #30261c;box-shadow:12px 18px 28px #000;font-family:var(--mono)}
+.postcard:first-child{left:10px;top:20px;transform:rotate(-8deg);background:#aeb9ad}.postcard:last-child{right:4px;bottom:25px;transform:rotate(9deg)}
+.postcard::before{content:'';position:absolute;right:18px;top:18px;width:48px;height:55px;border:2px dashed #6d5740}
+.postcard strong{display:block;margin-top:55px;font-size:1.1rem}.postcard span{font-size:.66rem;text-transform:uppercase}
+.content{background:var(--paper);color:var(--ink)}
+.content>.section[hidden]{display:none}
+.section{padding:100px 5vw;border-bottom:1px solid rgba(32,27,23,.25);scroll-margin-top:20px}
+.section-inner{max-width:1380px;margin:auto}
+.section-heading{display:grid;grid-template-columns:.65fr 1.35fr;gap:6vw;margin-bottom:46px}
+.eyebrow{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.12em}
+.section h2{margin:0;max-width:100%;font-family:var(--display);font-size:clamp(2.35rem,6vw,6rem);line-height:.93;font-weight:400;letter-spacing:0;overflow-wrap:anywhere}
+.lead{font-size:clamp(1.15rem,2vw,1.65rem);max-width:780px;margin:22px 0 0}
+.evidence-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);border-left:1px solid var(--ink)}
+.evidence{min-height:250px;padding:24px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.evidence h3{font-family:var(--display);font-size:1.65rem;font-weight:400;margin:0 0 12px}
+.evidence p{font-size:.9rem}
+.evidence a{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:.7rem;text-transform:uppercase}
+.gaming-console{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,.65fr);gap:18px;align-items:stretch}
+.stream-console,.command-console{border:1px solid rgba(233,222,197,.42);background:#0c0b0a}
+.console-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:46px;padding:10px 14px;border-bottom:1px solid rgba(233,222,197,.28);font-family:var(--mono);font-size:.65rem;text-transform:uppercase}
+.live-indicator{display:inline-flex;align-items:center;gap:8px;color:#c8bfae}
+.live-indicator::before{content:'';width:8px;height:8px;border-radius:50%;background:#777}
+.live-indicator.is-live{color:#ffb7af}.live-indicator.is-live::before{background:#f25f52;box-shadow:0 0 12px #f25f52}
+.stream-stage{position:relative;min-height:500px;background:#070707;overflow:hidden}
+.twitch-player{position:absolute;inset:0;display:none}.twitch-player.is-active{display:block}.twitch-player iframe{width:100%;height:100%;border:0}
+.offline-stream{position:absolute;inset:0;display:flex;align-items:flex-end;padding:34px;background:linear-gradient(180deg,rgba(8,7,7,.15),rgba(8,7,7,.94)),url('./background1.jpg') center/cover}
+.offline-stream[hidden]{display:none}.offline-stream h3{margin:0 0 10px;font-family:var(--display);font-size:clamp(2rem,4vw,3.5rem);font-weight:400;line-height:1}.offline-stream p{max-width:580px;margin:0;color:#d8cdb8}
+.stream-actions{display:flex;flex-wrap:wrap;gap:8px;padding:13px;border-top:1px solid rgba(233,222,197,.28)}
+.stream-actions a{padding:9px 11px;border:1px solid rgba(233,222,197,.38);text-decoration:none;font-family:var(--mono);font-size:.62rem;text-transform:uppercase}.stream-actions a:hover{background:var(--cream);color:var(--ink)}
+.command-console{display:grid;grid-template-rows:auto auto minmax(0,1fr);background:#d6c59f;color:var(--ink)}
+.command-console .console-bar{border-color:rgba(32,27,23,.3)}
+.command-search{padding:12px;border-bottom:1px solid rgba(32,27,23,.3)}
+.command-search label{display:block;margin-bottom:6px;font-family:var(--mono);font-size:.6rem;text-transform:uppercase}
+.command-search input{width:100%;padding:10px 11px;border:1px solid var(--ink);border-radius:0;background:#eee3c9;color:var(--ink);font-family:var(--mono);font-size:.72rem}
+.command-list{max-height:490px;overflow-y:auto}
+.command-item{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:14px 12px;border-bottom:1px solid rgba(32,27,23,.25)}
+.command-name{align-self:start;padding:7px 8px;border:1px solid var(--ink);background:#eee3c9;color:var(--red);font-family:var(--mono);font-size:.68rem;font-weight:500;cursor:pointer}.command-name:hover{background:var(--ink);color:var(--cream)}
+.command-item p{margin:0;font-size:.76rem;line-height:1.45}.command-empty{padding:22px;font-size:.8rem}
+.dark-section{background:#171411;color:var(--cream)}
+.content #lyrics,.content #writing{cursor:var(--cursor-pen)}
+.content #otf,.content #palia,.content #support{cursor:var(--cursor-folder)}
+.dark-section .section-heading{margin-bottom:60px}
+.lyric-sheets{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.lyric-sheet{position:relative;min-height:350px;padding:34px 30px;background:#e6dac0;color:#2e2720;box-shadow:7px 9px 0 #090807;transform:rotate(-1deg)}
+.lyric-sheet:nth-child(2){transform:rotate(1.2deg);background:#d4c5a3}.lyric-sheet:nth-child(3){transform:rotate(-.5deg)}
+.lyric-sheet h3{font-family:var(--display);font-weight:400;font-size:1.7rem;margin:0 0 24px}
+.lyric-sheet blockquote{font-size:1.05rem;margin:0;line-height:1.8}
+.lyric-sheet small{position:absolute;bottom:24px;left:30px;font-family:var(--mono);font-size:.62rem;text-transform:uppercase}
+.callout{margin-top:48px;padding:28px;border:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.callout a,.support-link{display:inline-block;padding:12px 16px;border:1px solid currentColor;text-decoration:none;font-family:var(--mono);font-size:.7rem;text-transform:uppercase}
+.photo-strip{display:grid;grid-template-columns:1.2fr .8fr 1fr;gap:12px}
+.photo-strip figure{margin:0;min-height:420px;position:relative;overflow:hidden;background:#322b24}
+.photo-strip img{width:100%;height:100%;object-fit:cover;filter:sepia(.28);transition:filter .3s,transform .5s}
+.photo-strip figure:hover img{filter:none;transform:scale(1.02)}
+.photo-strip figcaption{position:absolute;left:10px;bottom:10px;padding:7px 9px;background:var(--paper);font-family:var(--mono);font-size:.6rem;text-transform:uppercase}
+.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink);border:1px solid var(--ink)}
+.support-item{padding:32px;background:var(--paper)}
+.support-item h3{font-family:var(--display);font-size:2rem;font-weight:400;margin:0 0 10px}
+.support-item p{max-width:520px}
+.continue-journey{display:grid;grid-template-columns:minmax(210px,.6fr) minmax(0,1.4fr);align-items:center;gap:clamp(24px,6vw,90px);padding:clamp(34px,5vw,70px) 5vw;color:var(--cream);background:#11100e;border-top:1px solid var(--line)}.continue-kicker{margin:0 0 8px;color:var(--gold);font-family:var(--mono);font-size:.65rem;text-transform:uppercase;letter-spacing:.12em}.continue-title{margin:0;font-family:var(--display);font-size:clamp(1.8rem,3.5vw,3.6rem);line-height:1}.branch-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}.branch-choice{min-height:150px;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:24px;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:transparent;color:var(--cream);text-align:left}.branch-choice:hover{color:var(--ink);background:var(--cream)}.branch-choice span{font-family:var(--mono);font-size:.62rem;text-transform:uppercase}.branch-choice strong{max-width:260px;font-family:var(--display);font-size:clamp(1.25rem,2vw,2rem);font-weight:400;line-height:1.05;text-align:right}
+.footer{padding:46px 5vw;background:var(--red);display:flex;justify-content:space-between;gap:30px;font-family:var(--mono);font-size:.68rem;text-transform:uppercase}
+.footer a{font-weight:500}
+@media(max-width:900px){
+  .slide{grid-template-columns:1fr;text-align:center;gap:0;padding-top:90px}.object-stage{height:360px;min-height:330px}.slide-copy{margin:auto}.slide-copy>p:not(.path-note){margin-left:auto;margin-right:auto}
+  .section-heading{grid-template-columns:1fr}.evidence-grid,.lyric-sheets,.gaming-console{grid-template-columns:1fr}.photo-strip{grid-template-columns:1fr 1fr}.photo-strip figure:last-child{grid-column:1/-1}.support-grid{grid-template-columns:1fr}.stream-stage{min-height:430px}.daily-word{grid-template-columns:1fr auto}.daily-word-label{grid-column:1/-1}.continue-journey{grid-template-columns:1fr}
 }
-body::after{
-  content:'';
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background:repeating-linear-gradient(0deg,rgba(255,255,255,.02) 0,rgba(255,255,255,.02) 1px,transparent 1px,transparent 4px);
-  opacity:.5;
+@media(max-width:620px){
+  .site-header{padding:13px 16px}.wordmark{font-size:.9rem;gap:8px}.brand-signal{width:34px}.status{display:none}.carousel{grid-template-columns:44px minmax(0,1fr) 44px;padding:80px 4px 10px}.arrow{width:40px;height:40px}
+  .slide{min-height:700px;padding:60px 4px 20px}.object-stage{height:300px;min-height:270px}.slide-copy{width:100%;padding:24px 14px;border-left:0;border-top:2px solid var(--gold)}.slide h2{font-size:clamp(2.5rem,14vw,4rem)}.slide-copy>p:not(.path-note){font-size:.92rem;padding:0 10px}
+  .cassette{width:94%}.quill-set{height:310px}.feather{height:245px;bottom:75px}.inkwell{width:110px;height:100px;bottom:15px}.keys{grid-template-columns:repeat(3,68px);grid-template-rows:repeat(2,68px)}.key{font-size:1.8rem}.polaroids{width:290px;height:290px}.polaroid{width:160px;height:215px;padding:10px 10px 40px}.radio{width:94%}.bell{transform:scale(.76)}.field-journal{height:340px;width:270px}.field-journal::before{inset:25px 20px auto;padding:18px 12px;font-size:.68rem}
+  .carousel-footer{grid-template-columns:1fr auto;padding:9px 16px 11px}.tabs{max-width:calc(100vw - 85px);gap:5px}.tab{width:76px;min-height:58px;padding:7px 5px 6px;font-size:.5rem}.tab svg{width:21px;height:21px}.path-tools{align-items:flex-end;flex-direction:column;gap:5px}.surprise-path{padding:6px 8px;font-size:.55rem}.postcards{width:280px;height:280px}.postcard{width:190px;height:135px;padding:14px}.postcard strong{margin-top:38px;font-size:.78rem}.daily-word{grid-template-columns:1fr;padding:28px 22px}.daily-word button{justify-self:start}.section{padding:72px 18px}.photo-strip{grid-template-columns:1fr}.photo-strip figure:last-child{grid-column:auto}.photo-strip figure{min-height:360px}.callout{align-items:flex-start;flex-direction:column}.stream-stage{min-height:330px}.offline-stream{padding:22px}.console-bar{align-items:flex-start;flex-direction:column;gap:4px}.command-list{max-height:380px}.branch-actions{grid-template-columns:1fr}.branch-choice{min-height:120px}.footer{flex-direction:column}
 }
-.shell{
-  position:relative;
-  z-index:1;
-  max-width:1280px;
-  margin:0 auto;
-  padding:24px 20px 80px;
-}
-.topbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  padding:14px 18px;
-  margin-bottom:22px;
-  background:rgba(14,10,25,.76);
-  border:1px solid var(--line);
-  border-radius:18px;
-  backdrop-filter:blur(16px);
-  box-shadow:var(--shadow);
-}
-.brand-lock{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-.brand-mark{
-  width:52px;
-  height:52px;
-  border-radius:16px;
-  display:grid;
-  place-items:center;
-  font-family:'Bebas Neue',sans-serif;
-  font-size:1.35rem;
-  letter-spacing:.08em;
-  color:#0d0817;
-  background:linear-gradient(135deg,var(--gold),#fff2bf 48%,var(--red));
-}
-.brand-copy strong{
-  display:block;
-  font-family:'Bebas Neue',sans-serif;
-  font-size:2rem;
-  font-weight:400;
-  letter-spacing:.05em;
-}
-.brand-copy span{
-  color:var(--muted);
-  font-size:.95rem;
-}
-.nav-links{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.nav-links a,.nav-links button{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.03);
-  color:var(--text);
-  text-decoration:none;
-  padding:10px 14px;
-  border-radius:999px;
-  font:inherit;
-  cursor:pointer;
-}
-.nav-links a:hover,.nav-links button:hover{border-color:rgba(103,232,249,.45);color:var(--cyan);}
-.hero{
-  display:grid;
-  grid-template-columns:minmax(0,1.45fr) minmax(320px,.9fr);
-  gap:20px;
-  align-items:stretch;
-}
-.panel{
-  background:linear-gradient(180deg,rgba(21,15,35,.92),rgba(12,9,23,.94));
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  overflow:hidden;
-}
-.hero-main{
-  display:grid;
-  grid-template-rows:auto 1fr;
-}
-.panel-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:14px;
-  padding:18px 20px 16px;
-  border-bottom:1px solid var(--line);
-}
-.state-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:8px 12px;
-  border-radius:999px;
-  font-weight:700;
-  letter-spacing:.04em;
-  text-transform:uppercase;
-  font-size:.78rem;
-  border:1px solid rgba(255,255,255,.12);
-}
-.state-badge.live{background:rgba(255,107,120,.16);color:#ffd5da;border-color:rgba(255,107,120,.32);}
-.state-badge.offline{background:rgba(103,232,249,.12);color:#c8f9ff;border-color:rgba(103,232,249,.3);}
-.state-dot{
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:currentColor;
-  box-shadow:0 0 18px currentColor;
-}
-.headline-block{
-  padding:22px 20px 0;
-}
-.eyebrow{
-  color:var(--gold);
-  font-size:.82rem;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  margin-bottom:10px;
-}
-.headline{
-  margin:0;
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2.4rem,6vw,5rem);
-  line-height:.92;
-  letter-spacing:.02em;
-}
-.subhead{
-  margin:16px 0 0;
-  max-width:54rem;
-  color:var(--muted);
-  font-size:1.02rem;
-  line-height:1.7;
-}
-.hero-stage{
-  padding:20px;
-}
-.media-shell{
-  position:relative;
-  border-radius:22px;
-  overflow:hidden;
-  min-height:460px;
-  background:#06040d;
-  border:1px solid rgba(255,255,255,.08);
-}
-.media-layer{position:absolute;inset:0;display:none;}
-.media-layer.active{display:block;}
-.video-frame,.offline-video,iframe{width:100%;height:100%;border:0;display:block;}
-.offline-video{object-fit:cover;filter:saturate(1.05) contrast(1.02);}
-.offline-overlay{
-  position:absolute;
-  inset:auto 0 0 0;
-  padding:28px;
-  background:linear-gradient(180deg,rgba(5,4,10,0) 0%,rgba(5,4,10,.92) 46%,rgba(5,4,10,.98) 100%);
-}
-.offline-overlay h3{
-  margin:0 0 10px;
-  font-family:'Bebas Neue',sans-serif;
-  font-size:2rem;
-  letter-spacing:.04em;
-}
-.offline-overlay p{
-  margin:0;
-  max-width:38rem;
-  color:#d4cae2;
-  line-height:1.65;
-}
-.stream-meta{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:12px;
-  margin-top:16px;
-}
-.meta-card{
-  padding:14px;
-  border-radius:18px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.08);
-}
-.meta-card span{
-  display:block;
-  color:var(--muted);
-  font-size:.82rem;
-  margin-bottom:6px;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-}
-.meta-card strong{
-  font-size:1rem;
-  line-height:1.5;
-}
-.sidebar{
-  display:grid;
-  grid-template-rows:auto auto 1fr;
-}
-.dispatch-card{padding:20px;}
-.dispatch-card h2,.support-card h2,.section h2{
-  margin:0 0 12px;
-  font-family:'Bebas Neue',sans-serif;
-  font-size:2rem;
-  letter-spacing:.04em;
-}
-.dispatch-card p,.support-card p,.section-intro{color:var(--muted);line-height:1.7;}
-.note-list{
-  margin:18px 0 0;
-  padding:0;
-  list-style:none;
-  display:grid;
-  gap:10px;
-}
-.note-list li{
-  padding:12px 14px;
-  border-radius:16px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.08);
-}
-.quick-actions{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:10px;
-  margin-top:18px;
-}
-.quick-actions a{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:48px;
-  border-radius:16px;
-  background:linear-gradient(135deg,rgba(255,107,120,.24),rgba(103,232,249,.14));
-  border:1px solid rgba(255,255,255,.12);
-  color:var(--text);
-  text-decoration:none;
-  font-weight:700;
-}
-.quick-actions a:hover{transform:translateY(-1px);}
-.section-grid{
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:20px;
-  margin-top:22px;
-}
-.section{padding:22px;}
-.recaps-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:14px;
-}
-.recap-card,.command-card,.support-item{
-  padding:16px;
-  border-radius:18px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.08);
-}
-.card-kicker{
-  color:var(--cyan);
-  font-size:.76rem;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  margin-bottom:8px;
-}
-.recap-card h3,.support-item h3{margin:0 0 10px;font-size:1.14rem;}
-.recap-card p,.support-item p{margin:0;color:var(--muted);line-height:1.65;}
-.inline-link{
-  display:inline-flex;
-  margin-top:14px;
-  color:var(--gold);
-  text-decoration:none;
-  font-weight:700;
-}
-.inline-link:hover{color:#fff0b8;}
-.commands-panel{
-  display:grid;
-  gap:14px;
-}
-.search-row{display:flex;gap:10px;align-items:center;margin-bottom:2px;}
-.search-row input{
-  width:100%;
-  padding:12px 14px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.1);
-  background:#0f0b19;
-  color:var(--text);
-  font:inherit;
-}
-.command-list{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-}
-.command-card strong{
-  display:block;
-  color:var(--gold);
-  font-size:1.06rem;
-  margin-bottom:8px;
-}
-.command-card p{margin:0;color:var(--muted);line-height:1.55;}
-.support-stack{
-  display:grid;
-  gap:12px;
-}
-.steps{
-  margin:12px 0 0;
-  padding-left:18px;
-  color:#ddd4ea;
-  line-height:1.7;
-}
-.footer-note{
-  margin-top:20px;
-  padding:16px 18px;
-  border-radius:18px;
-  background:rgba(103,232,249,.08);
-  border:1px solid rgba(103,232,249,.18);
-  color:#d5fcff;
-}
-.status-callout{
-  margin-top:12px;
-  padding:12px 14px;
-  border-radius:14px;
-  background:rgba(255,255,255,.03);
-  border:1px dashed rgba(255,255,255,.14);
-  color:var(--muted);
-  line-height:1.6;
-}
-.mobile-chat-note{display:none;}
-@media(max-width:1080px){
-  .hero,.section-grid,.recaps-grid{grid-template-columns:1fr;}
-  .stream-meta,.command-list{grid-template-columns:1fr;}
-}
-@media(max-width:760px){
-  .shell{padding:16px 14px 64px;}
-  .topbar{flex-direction:column;align-items:flex-start;}
-  .nav-links{width:100%;}
-  .nav-links a,.nav-links button{flex:1 1 auto;text-align:center;}
-  .media-shell{min-height:300px;}
-  .quick-actions,.recaps-grid,.command-list{grid-template-columns:1fr;}
-  .stream-meta{grid-template-columns:1fr;}
-}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.intro,.slide-track,.launcher-bg{transition:none}.brand-signal{display:none}}
 </style>
 </head>
 <body>
-<div class="shell">
-  <header class="topbar">
-    <div class="brand-lock">
-      <div class="brand-mark">TSB</div>
-      <div class="brand-copy">
-        <strong>Thats Soo Buttons</strong>
-        <span>Stream hub, Brigade board, and support desk</span>
-      </div>
-    </div>
-    <nav class="nav-links">
-      <a href="#watch">Watch</a>
-      <a href="#recaps">Recaps</a>
-      <a href="#commands">Commands</a>
-      <a href="#support">Support</a>
-      <a href="https://discord.gg/dC34nguEEC" target="_blank" rel="noreferrer">Brigade</a>
-    </nav>
-  </header>
-
-  <section class="hero" id="watch">
-    <div class="panel hero-main">
-      <div class="panel-head">
-        <div class="state-badge offline" id="state-badge"><span class="state-dot"></span><span id="state-label">Offline</span></div>
-        <div id="next-stream">Loading schedule...</div>
-      </div>
-      <div class="headline-block">
-        <div class="eyebrow">Buttons Broadcast Hub</div>
-        <h1 class="headline" id="hero-headline">Live when the channel is live. Useful when it is not.</h1>
-        <p class="subhead" id="hero-subhead">This page switches between stream mode and recap mode so the site still has a job to do after the broadcast ends.</p>
-      </div>
-      <div class="hero-stage">
-        <div class="media-shell">
-          <div class="media-layer" id="live-layer">
-            <div class="video-frame" id="twitch-embed"></div>
-          </div>
-          <div class="media-layer active" id="offline-layer">
-            <video class="offline-video" autoplay muted loop playsinline poster="./background1.jpg">
-              <source src="./buttons.mov" type="video/quicktime">
-            </video>
-            <div class="offline-overlay">
-              <h3 id="offline-title">Offline mode: highlights and recap feed</h3>
-              <p id="offline-copy">When the stream is down, this space should still sell the vibe: latest recap, best moments, and the next reason to come back.</p>
-            </div>
-          </div>
-        </div>
-        <div class="stream-meta">
-          <div class="meta-card"><span>Channel</span><strong id="channel-name">thats_soo_buttons</strong></div>
-          <div class="meta-card"><span>Mode</span><strong id="mode-summary">Standby / recap rotation</strong></div>
-          <div class="meta-card"><span>Fallback</span><strong id="fallback-summary">Latest clips, recap cards, and support info</strong></div>
-        </div>
-        <div class="status-callout" id="embed-note"></div>
-      </div>
-    </div>
-
-    <aside class="panel sidebar">
-      <div class="dispatch-card">
-        <div class="card-kicker" id="dispatch-kicker">Latest Dispatch</div>
-        <h2 id="dispatch-title">Loading dispatch...</h2>
-        <p id="dispatch-body">Pulling the latest channel brief.</p>
-        <ul class="note-list" id="dispatch-notes"></ul>
-        <div class="quick-actions">
-          <a href="https://www.twitch.tv/thats_soo_buttons" target="_blank" rel="noreferrer">Open Twitch</a>
-          <a href="https://ko-fi.com/thatssoobuttons" target="_blank" rel="noreferrer">Donate on Ko-fi</a>
-          <a href="https://gaming.amazon.com/" target="_blank" rel="noreferrer">Prime Sub Setup</a>
-          <a href="https://discord.gg/dC34nguEEC" target="_blank" rel="noreferrer">Join Brigade</a>
-        </div>
-      </div>
-    </aside>
-  </section>
-
-  <section class="section-grid" id="recaps">
-    <div class="panel section">
-      <div class="card-kicker">Recaps / Highlights</div>
-      <h2>Offline should still feel alive.</h2>
-      <p class="section-intro">These cards are where the homepage keeps moving even when the stream is down: latest recap, best clips, and whatever Brigade is obsessed with right now.</p>
-      <div class="recaps-grid" id="recaps-grid"></div>
-    </div>
-
-    <div class="panel section" id="commands">
-      <div class="card-kicker">Brigade Commands</div>
-      <h2>Command board</h2>
-      <p class="section-intro">People ask for the same commands every stream. Put them in one obvious place and make them searchable.</p>
-      <div class="commands-panel">
-        <div class="search-row"><input type="search" id="command-search" placeholder="Search commands like !fish or !prime"></div>
-        <div class="command-list" id="command-list"></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-grid" id="support">
-    <div class="panel section support-card">
-      <div class="card-kicker">Support</div>
-      <h2>How to support the channel</h2>
-      <p>Make the support flow dead simple: direct donation, normal Twitch sub, and free Prime sub instructions. No guessing.</p>
-      <div class="support-stack" id="support-stack"></div>
-    </div>
-
-    <div class="panel section">
-      <div class="card-kicker">Newsletter Energy</div>
-      <h2>Channel bulletin</h2>
-      <p class="section-intro">If you want the site to feel like a newsletter without building a real mailing list yet, treat this panel like a rotating channel dispatch.</p>
-      <div class="note-list">
-        <li>What happened on the last stream.</li>
-        <li>What is next on deck.</li>
-        <li>Which bit or command is trending this week.</li>
-        <li>Where viewers should support, subscribe, or join in.</li>
-      </div>
-      <div class="footer-note">If you later want a real newsletter, this layout already supports it: replace this bulletin with signup + archive modules and keep the live/offline hero exactly as-is.</div>
-    </div>
-  </section>
+<div class="noise" aria-hidden="true"></div>
+<div class="intro" id="intro">
+  <div class="intro-copy">
+    <p class="intro-status">A strange little world is awake</p>
+    <h1>That’s Soo<br>Buttons.</h1>
+    <button type="button" id="enter-button">Begin the story</button>
+  </div>
 </div>
-
+<header class="site-header">
+  <a class="wordmark" href="#top"><video class="brand-signal" autoplay muted loop playsinline poster="./background1.jpg" aria-hidden="true"><source src="./buttons.mp4" type="video/mp4"></video><span>That’s Soo Buttons</span></a>
+  <div class="header-right"><span class="status"><i class="status-dot" id="status-dot"></i><span id="status-label">Listening for a signal</span></span><a class="menu-link" href="#path-reader">Choose a path</a></div>
+</header>
+<main id="top">
+<section class="launcher" id="launcher" data-slide="1" aria-label="Choose a path through the world of Buttons">
+  <div class="launcher-bg"></div>
+  <div class="carousel">
+    <button class="arrow" id="prev" type="button" aria-label="Previous path">←</button>
+    <div class="slide-window">
+      <div class="slide-track" id="slide-track">
+        <article class="slide" data-title="Lyrics">
+          <div class="object-stage"><div class="cassette" aria-hidden="true"><div class="cassette-window"><i class="reel"></i><i class="reel"></i></div><div class="cassette-bottom"></div></div></div>
+          <div class="slide-copy"><p class="path-note">Follow the music in the walls</p><h2>The Lyric Tapes</h2><p>I give feelings rhythm, characters a voice, and unfinished thoughts somewhere to land.</p><a class="open-button" href="#lyrics">Take this path <span>↓</span></a></div>
+        </article>
+        <article class="slide" data-title="Writing">
+          <div class="object-stage"><div class="quill-set" aria-hidden="true"><div class="feather"></div><div class="inkwell"></div></div></div>
+          <div class="slide-copy"><p class="path-note">Open the book that was not here before</p><h2>Stories & Strange Worlds</h2><p>I write to reshape what hurts, follow strange ideas, and build worlds with different rules.</p><a class="open-button" href="#writing">Turn the page <span>↓</span></a></div>
+        </article>
+        <article class="slide" data-title="Paranormal">
+          <div class="object-stage"><div class="haunted-house" aria-hidden="true"></div></div>
+          <div class="slide-copy"><p class="path-note">The front door opened by itself</p><h2>The Haunted House</h2><p>Bring the EMF reader. We are hunting ghosts, making questionable choices, and turning Phasmophobia into an episode.</p><a class="open-button" href="#paranormal">Enter the house <span>↓</span></a></div>
+        </article>
+        <article class="slide" data-title="Palia">
+          <div class="object-stage"><div class="village-door" aria-hidden="true"></div></div>
+          <div class="slide-copy"><p class="path-note">Warm light spills from a village doorway</p><h2>A Door to Palia</h2><p>Come home to Kilima: gather, decorate, tell stories, and build a cozy place with community at the center.</p><a class="open-button" href="#palia">Enter the village <span>↓</span></a></div>
+        </article>
+        <article class="slide" data-title="Photography">
+          <div class="object-stage"><div class="polaroids" aria-hidden="true"><div class="polaroid"><img src="./background1.jpg" alt=""><span>somewhere in the light</span></div><div class="polaroid"><img src="./background2glitch.jpeg" alt=""><span>something in the static</span></div></div></div>
+          <div class="slide-copy"><p class="path-note">Something moved at the edge of the frame</p><h2>Things I Noticed</h2><p>I take pictures to make ordinary life feel cinematic and keep moments that would otherwise disappear.</p><a class="open-button" href="#photography">Step into the frame <span>↓</span></a></div>
+        </article>
+        <article class="slide" data-title="OTF Network">
+          <div class="object-stage"><div class="radio" aria-hidden="true"><span class="dial"></span></div></div>
+          <div class="slide-copy"><p class="path-note">A friendly voice answers from far away</p><h2>On The Fly Network</h2><p>I’m building the creative support structure I needed: ambitious, flexible, and life-first.</p><a class="open-button" href="#otf">Tune the radio <span>↓</span></a></div>
+        </article>
+        <article class="slide" data-title="Downloads">
+          <div class="object-stage"><div class="parcel" aria-hidden="true"></div></div>
+          <div class="slide-copy"><p class="path-note">A parcel waits beside the door</p><h2>Take Something Home</h2><p>Pieces of my inner world made tangible, plus direct ways to help me keep making them.</p><a class="open-button" href="#support">Open the parcel <span>↓</span></a></div>
+        </article>
+        <article class="slide" data-title="About">
+          <div class="object-stage"><div class="field-journal" aria-hidden="true"></div></div>
+          <div class="slide-copy"><p class="path-note">The field journal has my name inside</p><h2>Who Is Buttons?</h2><p>Streamer. Lyricist. World-builder. Photographer. Collector of interesting ideas.</p><a class="open-button" href="#about">Read the field notes <span>↓</span></a></div>
+        </article>
+        <article class="slide" data-title="Social">
+          <div class="object-stage"><div class="postcards" aria-hidden="true"><div class="postcard"><span>Broadcast received</span><strong>@thatssoobuttons</strong></div><div class="postcard"><span>Come say hello</span><strong>Elsewhere Online</strong></div></div></div>
+          <div class="slide-copy"><p class="path-note">Postcards arrive from everywhere at once</p><h2>Elsewhere Online</h2><p>Short-form chaos, current thoughts, new posts, and the places where conversation keeps going.</p><a class="open-button" href="#social">Read the postcards <span>↓</span></a></div>
+        </article>
+      </div>
+    </div>
+    <button class="arrow" id="next" type="button" aria-label="Next path">→</button>
+  </div>
+  <div class="carousel-footer"><div class="tabs" id="tabs" aria-label="Choose your path"></div><div class="path-tools"><button class="surprise-path" id="surprise-path" type="button">Surprise me</button><div class="counter" id="counter">Path 1 of 8</div></div></div>
+</section>
+<aside class="daily-word" aria-labelledby="daily-word-title">
+  <p class="daily-word-label">A word discovered today</p>
+  <div class="daily-word-copy">
+    <h2 id="daily-word-title">Wanderword</h2>
+    <p class="daily-word-meta" id="daily-word-meta">The page is turning...</p>
+    <p class="daily-word-definition" id="daily-word-definition" aria-live="polite">Finding today’s word.</p>
+  </div>
+  <button type="button" id="next-word">Turn the page</button>
+</aside>
+<div class="content" id="path-reader" aria-live="polite">
+<section class="section dark-section" id="lyrics">
+  <div class="section-inner"><div class="section-heading"><p class="eyebrow">01 / The lyric tapes</p><div><h2>Words looking for their sound.</h2><p class="lead">I write memorable refrains, sensory details, characters, and emotional turns. I’d love to work with producers who move between styles and artists searching for the right words.</p></div></div>
+  <div class="lyric-sheets"><article class="lyric-sheet"><h3>Static Crawl</h3><blockquote>“There’s something calming about nothing at all / Let the static crawl.”</blockquote><small>Intimate · atmospheric · available to discuss</small></article><article class="lyric-sheet"><h3>The Quiet</h3><blockquote>“Maybe they’re still talking / We just forgot how to understand.”</blockquote><small>Reflective · cinematic · narrative</small></article><article class="lyric-sheet"><h3>The Fool Cycle</h3><blockquote>A connected set of songs about warning, betrayal, consequence, and the person everyone underestimated.</blockquote><small>Character voice · concept cycle · adaptable</small></article></div>
+  <div class="callout"><span>Producer or artist with a strange idea? The full tapes are kept off the public desk.</span><a href="https://tessdevillier.com/contact.html?service=lyric-writing">Hire me for lyrics ↗</a></div></div>
+</section>
+<section class="section" id="writing"><div class="section-inner"><div class="section-heading"><p class="eyebrow">Stories & strange worlds</p><div><h2>I build places with consequences.</h2><p class="lead">My worlds connect culture, environment, history, characters, systems, and emotional logic. The lore is never decoration; it changes what can happen next.</p></div></div><div class="evidence-grid"><article class="evidence"><h3>XYZTHIANS</h3><p>A multimedia mythology about modern gods formed through mass hysteria and emotional pressure.</p><a href="https://everythingandthekitchensink.xyz" target="_blank" rel="noreferrer">Enter the world ↗</a></article><article class="evidence"><h3>Snippets</h3><p>Fragments, scenes, stray lines, works in progress, and ideas caught before they could disappear.</p><a href="https://www.tumblr.com/thatssoobuttons" target="_blank" rel="noreferrer">Read on Tumblr ↗</a></article><article class="evidence"><h3>Join the Discussion</h3><p>Join the On The Fly Network Discord through the Writer invite and talk craft, works in progress, ideas, and creative trouble with us.</p><a href="https://discord.gg/aYCAZMJjXE" target="_blank" rel="noreferrer">Join with the Writer role ↗</a></article></div></div></section>
+<section class="section dark-section" id="paranormal">
+  <div class="section-inner">
+    <div class="section-heading"><p class="eyebrow">The haunted-house episode</p><div><h2 id="gaming-title">Did that door just move?</h2><p class="lead" id="gaming-copy">Phasmophobia is where paranormal obsession, psychological horror, improvised comedy, and a terrible instinct for self-preservation meet. Watch the investigation or join the room that talks us into going back inside.</p></div></div>
+    <div class="gaming-console">
+      <div class="stream-console">
+        <div class="console-bar"><span class="live-indicator" id="gaming-live-indicator">Signal standby</span><span id="next-stream">Schedule loading...</span></div>
+        <div class="stream-stage">
+          <div class="twitch-player" id="twitch-player"></div>
+          <div class="offline-stream" id="offline-stream"><div><h3>The channel is quiet. The archive is not.</h3><p>Catch the latest videos and clips now, then return when the signal goes live.</p></div></div>
+        </div>
+        <div class="stream-actions"><a href="https://www.twitch.tv/thats_soo_buttons" target="_blank" rel="noreferrer">Open Twitch ↗</a><a href="https://www.twitch.tv/thats_soo_buttons/videos" target="_blank" rel="noreferrer">Latest videos ↗</a><a href="https://www.twitch.tv/thats_soo_buttons/clips" target="_blank" rel="noreferrer">Clip archive ↗</a><a href="https://discord.gg/dC34nguEEC" target="_blank" rel="noreferrer">Join Brigade ↗</a></div>
+      </div>
+      <aside class="command-console" aria-labelledby="commands-title">
+        <div class="console-bar"><span id="commands-title">Brigade command board</span><span>Click to copy</span></div>
+        <div class="command-search"><label for="command-search">Find a command</label><input type="search" id="command-search" placeholder="Try !fish or !prime"></div>
+        <div class="command-list" id="command-list"><div class="command-empty">Unfolding the command map...</div></div>
+      </aside>
+    </div>
+  </div>
+</section>
+<section class="section" id="palia"><div class="section-inner"><div class="section-heading"><p class="eyebrow">The cozy village episode</p><div><h2>Build a home. Bring everybody with you.</h2><p class="lead">Palia is the other side of the Buttons universe: gathering, decorating, lore, friendship, and the pleasure of making a place together. The stakes are softer, but the world still rewards curiosity.</p></div></div><div class="evidence-grid"><article class="evidence"><h3>Watch the village</h3><p>Streams and clips turn gathering runs, decorating plans, discoveries, and community chaos into episodes.</p><a href="https://www.twitch.tv/thats_soo_buttons" target="_blank" rel="noreferrer">Watch on Twitch ↗</a></article><article class="evidence"><h3>Join the neighborhood</h3><p>Brigade is the room for people who want to play, talk lore, share progress, or simply keep company.</p><a href="https://discord.gg/dC34nguEEC" target="_blank" rel="noreferrer">Join Discord ↗</a></article><article class="evidence"><h3>Follow the story</h3><p>Find clips, reactions, discoveries, and the moments that become part of the larger ongoing show.</p><a href="#social">Open the clippings ↗</a></article></div></div></section>
+<section class="section" id="photography"><div class="section-inner"><div class="section-heading"><p class="eyebrow">Things I noticed</p><div><h2>The world changes when you look twice.</h2><p class="lead">Photography is how I keep the light, texture, expressions, and odd details that would otherwise disappear.</p></div></div><div class="photo-strip"><figure><img src="./background1.jpg" alt="A five-panel collage of flowers, a hallway, stars, ivy, and forest"><figcaption>Five paths</figcaption></figure><figure><img src="./background2glitch.jpeg" alt="Glitched version of the five-panel Buttons artwork"><figcaption>Something in the static</figcaption></figure><figure><img src="./background1.jpg" alt="Colorful Buttons artwork" style="object-position:72% center"><figcaption>More moments coming soon</figcaption></figure></div></div></section>
+<section class="section dark-section" id="otf"><div class="section-inner"><div class="section-heading"><p class="eyebrow">The distant radio</p><div><h2>A place where creative people can keep becoming.</h2><p class="lead">The signal carries workshops, works in progress, strange ideas, and a community built to make room for changing capacity.</p><p><a class="open-button" href="https://ontheflynetwork.com" target="_blank" rel="noreferrer">Follow the transmission ↗</a></p></div></div></div></section>
+<section class="section dark-section" id="about"><div class="section-inner"><div class="section-heading"><p class="eyebrow">Notes from the wanderer</p><div><h2>I try to make my life feel like a show worth following.</h2><p class="lead">Being neurospicy and chronically ill can make the real world difficult to move through, so I create other ways into it.</p><p>I investigate haunted houses for the fear and the comedy. I return to Palia for home and community. I write horror, psychological horror, and fantasy to reshape what hurts and ask what a person becomes under pressure. I take pictures to make ordinary moments cinematic, and write lyrics to give feelings rhythm and voice.</p><p>This is not the résumé room. It is the ongoing series where all of those interests collide. TessDevillier.com holds the professional proof when someone wants to hire, partner with, or back what comes next.</p><p><a class="text-link" href="https://tessdevillier.com">Cross into the professional world at TessDevillier.com ↗</a></p></div></div></div></section>
+<section class="section" id="social"><div class="section-inner"><div class="section-heading"><p class="eyebrow">Clippings from between episodes</p><div><h2>Watch, read, then leave a note in the margin.</h2><p class="lead">The polished version is optional. These clippings collect ghost-hunt highlights, Palia discoveries, writing fragments, photographs, announcements, and the conversations that keep the story moving.</p></div></div><div class="evidence-grid"><article class="evidence"><h3>Watch</h3><p>Short-form Phasmophobia scares, Palia moments, gaming chaos, and whatever earned a dramatic edit.</p><a href="https://www.tiktok.com/@thatssoobuttons" target="_blank" rel="noreferrer">Watch the clippings ↗</a></article><article class="evidence"><h3>Read & look</h3><p>Horror and fantasy fragments, photography, visual updates, and scenes from the ongoing show.</p><a href="https://www.instagram.com/thatssoobuttons" target="_blank" rel="noreferrer">Open the scrapbook ↗</a></article><article class="evidence"><h3>Join the cast</h3><p>The all-in-one room for Brigade, writers, Palia neighbors, paranormal theories, and people who want to stay awhile.</p><a href="https://discord.gg/dC34nguEEC" target="_blank" rel="noreferrer">Join the room ↗</a></article></div></div></section>
+<section class="section" id="support"><div class="section-inner"><div class="section-heading"><p class="eyebrow">The parcel by the door</p><div><h2>Take something home, or keep something going.</h2><p class="lead">Support here is not an entry fee. Explore everything you like; contribute when something makes you want this strange little world to continue.</p></div></div><div class="support-grid"><article class="support-item"><h3>Ko-fi Oddities</h3><p>Digital downloads and direct support live in the Ko-fi parcel.</p><a class="support-link" href="https://ko-fi.com/thatssoobuttons" target="_blank" rel="noreferrer">Open Ko-fi ↗</a></article><article class="support-item"><h3>Twitch Support</h3><p>Subscribe normally or use a monthly Prime subscription while watching the channel.</p><a class="support-link" href="https://www.twitch.tv/thats_soo_buttons" target="_blank" rel="noreferrer">Visit Twitch ↗</a></article><article class="support-item"><h3>Join the Room</h3><p>Hang out in Brigade, share the work, bring a friend, or simply keep showing up.</p><a class="support-link" href="https://discord.gg/dC34nguEEC" target="_blank" rel="noreferrer">Join Discord ↗</a></article><article class="support-item"><h3>Back OTF</h3><p>Follow the larger mission and help build a life-first creative future.</p><a class="support-link" href="https://ontheflynetwork.com" target="_blank" rel="noreferrer">Visit OTF ↗</a></article></div></div></section>
+</div>
+<div class="continue-journey" aria-labelledby="continue-title"><div><p class="continue-kicker">Your story is still moving</p><p class="continue-title" id="continue-title">What happens next?</p></div><div class="branch-actions"><button class="branch-choice" id="choice-a" type="button"><span>Choice A</span><strong id="choice-a-title"></strong></button><button class="branch-choice" id="choice-b" type="button"><span>Choice B</span><strong id="choice-b-title"></strong></button></div></div>
+</main>
+<footer class="footer"><span>© <span id="year"></span> Thats Soo Buttons</span><span><a href="https://tessdevillier.com">Hire Tess ↗</a> · Darkness needs somewhere interesting to land.</span></footer>
 <script src="https://embed.twitch.tv/embed/v1.js"></script>
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 <script>
-const streamConfig = {
-  dataUrl: './data/hub-content.json',
-  channel: 'thats_soo_buttons',
-  twitchUrl: 'https://www.twitch.tv/thats_soo_buttons',
-  clipsUrl: 'https://www.twitch.tv/thats_soo_buttons/clips',
-  videosUrl: 'https://www.twitch.tv/thats_soo_buttons/videos',
-  statusEndpoint: '/api/twitch-status',
-  parent: window.location.hostname || 'localhost'
+const track = document.getElementById('slide-track');
+const slides = Array.from(document.querySelectorAll('.slide')).sort((left, right) => left.dataset.title.localeCompare(right.dataset.title));
+slides.forEach(slide => {
+  track.appendChild(slide);
+});
+const launcher = document.getElementById('launcher');
+const tabs = document.getElementById('tabs');
+const counter = document.getElementById('counter');
+const pathSections = Array.from(document.querySelectorAll('.content > .section'));
+const channelIcons = { About: 'sticky-note', Downloads: 'file-archive', Paranormal: 'flashlight', Palia: 'home', Lyrics: 'type', 'OTF Network': 'network', Photography: 'camera', Social: 'newspaper', Writing: 'book-open' };
+let activeIndex = 0;
+let touchStartX = 0;
+let streamStatus = null;
+let twitchMounted = false;
+let gamingCommands = [];
+const pathBranches = {
+  about: [{ id: 'writing', label: 'Open the impossible book' }, { id: 'social', label: 'Follow the newspaper clippings' }],
+  paranormal: [{ id: 'social', label: 'Watch the evidence again' }, { id: 'palia', label: 'Escape somewhere cozy' }],
+  palia: [{ id: 'social', label: 'Find the village clippings' }, { id: 'paranormal', label: 'Leave comfort after dark' }],
+  lyrics: [{ id: 'writing', label: 'Follow the story in the song' }, { id: 'paranormal', label: 'Trace the signal after dark' }],
+  otf: [{ id: 'about', label: 'Meet the person on the radio' }, { id: 'support', label: 'Help build the next episode' }],
+  photography: [{ id: 'social', label: 'See what happened after the frame' }, { id: 'writing', label: 'Enter the world behind it' }],
+  social: [{ id: 'paranormal', label: 'Join the ghost hunt' }, { id: 'about', label: 'Read the field journal' }],
+  support: [{ id: 'otf', label: 'Back the bigger mission' }, { id: 'lyrics', label: 'Play the hidden tape' }],
+  writing: [{ id: 'lyrics', label: 'Listen for a character’s voice' }, { id: 'photography', label: 'Look for clues in the frame' }]
 };
+const dailyWords = [
+  { word: 'Apricity', type: 'noun', definition: 'The warmth of the sun in winter.' },
+  { word: 'Susurrus', type: 'noun', definition: 'A whispering, rustling, or murmuring sound.' },
+  { word: 'Petrichor', type: 'noun', definition: 'The earthy scent that rises after rain falls on dry ground.' },
+  { word: 'Liminal', type: 'adjective', definition: 'Existing at a threshold, between one place or state and another.' },
+  { word: 'Sonder', type: 'noun', definition: 'The realization that every passerby has a life as vivid and complex as your own.' },
+  { word: 'Eldritch', type: 'adjective', definition: 'Strange, uncanny, and just beyond ordinary understanding.' },
+  { word: 'Halcyon', type: 'adjective', definition: 'Calm, peaceful, and happily remembered.' },
+  { word: 'Numinous', type: 'adjective', definition: 'Filled with a mysterious sense of awe or spiritual presence.' },
+  { word: 'Palimpsest', type: 'noun', definition: 'Something bearing visible traces of an earlier form beneath its present one.' },
+  { word: 'Psithurism', type: 'noun', definition: 'The sound of wind moving through leaves.' },
+  { word: 'Tenebrous', type: 'adjective', definition: 'Dark, shadowy, or difficult to understand.' },
+  { word: 'Effervescent', type: 'adjective', definition: 'Lively, sparkling, and full of high spirits.' },
+  { word: 'Noctivagant', type: 'adjective', definition: 'Wandering or roaming at night.' },
+  { word: 'Reverie', type: 'noun', definition: 'A state of being pleasantly lost in thought.' },
+  { word: 'Interstice', type: 'noun', definition: 'A small space between things or events.' },
+  { word: 'Mellifluous', type: 'adjective', definition: 'Pleasantly smooth and musical to hear.' },
+  { word: 'Incandescent', type: 'adjective', definition: 'Glowing with heat, light, or intense feeling.' },
+  { word: 'Wayfarer', type: 'noun', definition: 'A person traveling from place to place, usually on foot.' },
+  { word: 'Ephemeral', type: 'adjective', definition: 'Lasting for only a short time.' },
+  { word: 'Serendipity', type: 'noun', definition: 'The chance discovery of something valuable or delightful.' }
+];
+const dayNumber = Math.floor(Date.now() / 86400000);
+let dailyWordOffset = 0;
 
-let hubContent = null;
+function showDailyWord(offset = 0) {
+  dailyWordOffset = offset;
+  const entry = dailyWords[(dayNumber + dailyWordOffset) % dailyWords.length];
+  document.getElementById('daily-word-title').textContent = entry.word;
+  document.getElementById('daily-word-meta').textContent = `${entry.type} · ${dailyWordOffset ? 'another page' : 'word of the day'}`;
+  document.getElementById('daily-word-definition').textContent = entry.definition;
+}
 
-async function loadHubContent(){
-  const response = await fetch(streamConfig.dataUrl, { cache: 'no-store' });
-  if(!response.ok){
-    throw new Error('Failed to load content');
+document.getElementById('next-word').addEventListener('click', () => showDailyWord(dailyWordOffset + 1));
+showDailyWord();
+
+slides.forEach((slide, index) => {
+  const button = document.createElement('button');
+  const pathId = slide.querySelector('.open-button').getAttribute('href').slice(1);
+  button.className = 'tab';
+  button.type = 'button';
+  button.innerHTML = `<i data-lucide="${channelIcons[slide.dataset.title] || 'circle'}" aria-hidden="true"></i><span>${slide.dataset.title}</span>`;
+  button.setAttribute('aria-controls', pathId);
+  button.addEventListener('click', () => showSlide(index));
+  tabs.appendChild(button);
+});
+if (window.lucide) window.lucide.createIcons({ attrs: { 'aria-hidden': 'true' } });
+
+function showSlide(index) {
+  activeIndex = (index + slides.length) % slides.length;
+  const activePathId = slides[activeIndex].querySelector('.open-button').getAttribute('href').slice(1);
+  track.style.transform = `translateX(-${activeIndex * 100}%)`;
+  launcher.dataset.slide = String(activeIndex + 1);
+  counter.textContent = `Path ${activeIndex + 1} of ${slides.length}`;
+  Array.from(tabs.children).forEach((tab, tabIndex) => {
+    tab.classList.toggle('active', tabIndex === activeIndex);
+    tab.setAttribute('aria-current', tabIndex === activeIndex ? 'true' : 'false');
+  });
+  pathSections.forEach(section => {
+    section.hidden = section.id !== activePathId;
+  });
+  if (activePathId === 'paranormal') {
+    mountTwitchPlayer();
   }
-  hubContent = await response.json();
-  renderHubContent();
+  updateBranchChoices(activePathId);
+  tabs.children[activeIndex].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
 }
 
-function renderHubContent(){
-  if(!hubContent){
-    return;
+function updateBranchChoices(activePathId) {
+  pathBranches[activePathId].forEach((choice, index) => {
+    const suffix = index === 0 ? 'a' : 'b';
+    const button = document.getElementById(`choice-${suffix}`);
+    button.dataset.pathId = choice.id;
+    document.getElementById(`choice-${suffix}-title`).textContent = choice.label;
+  });
+}
+
+function followBranch(pathId) {
+  const nextIndex = slides.findIndex(slide => slide.querySelector('.open-button').getAttribute('href') === `#${pathId}`);
+  showSlide(nextIndex);
+  history.replaceState(null, '', `#${pathId}`);
+  document.getElementById('path-reader').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+}
+
+function slideIndexForHash() {
+  if (!window.location.hash) {
+    return -1;
   }
-  document.getElementById('channel-name').textContent = hubContent.channel;
-  document.getElementById('hero-headline').textContent = hubContent.headline;
-  document.getElementById('hero-subhead').textContent = hubContent.subheadline;
-  document.getElementById('next-stream').textContent = hubContent.nextStream;
-  document.getElementById('dispatch-kicker').textContent = hubContent.dispatch.kicker;
-  document.getElementById('dispatch-title').textContent = hubContent.dispatch.title;
-  document.getElementById('dispatch-body').textContent = hubContent.dispatch.body;
-  document.getElementById('dispatch-notes').innerHTML = hubContent.dispatch.notes.map(note => '<li>' + note + '</li>').join('');
-  renderRecaps(hubContent.recaps);
-  renderCommands(hubContent.commands);
-  renderSupport(hubContent.support);
+  return slides.findIndex(slide => slide.querySelector('.open-button').getAttribute('href') === window.location.hash);
 }
 
-function renderRecaps(recaps){
-  const root = document.getElementById('recaps-grid');
-  root.innerHTML = recaps.map(recap => '<article class="recap-card"><div class="card-kicker">' + recap.eyebrow + '</div><h3>' + recap.title + '</h3><p>' + recap.body + '</p><a class="inline-link" href="' + recap.ctaUrl + '" target="_blank" rel="noreferrer">' + recap.ctaLabel + '</a></article>').join('');
-}
+document.getElementById('prev').addEventListener('click', () => showSlide(activeIndex - 1));
+document.getElementById('next').addEventListener('click', () => showSlide(activeIndex + 1));
+document.getElementById('surprise-path').addEventListener('click', () => {
+  const offset = 1 + Math.floor(Math.random() * (slides.length - 1));
+  showSlide(activeIndex + offset);
+});
+document.getElementById('choice-a').addEventListener('click', event => followBranch(event.currentTarget.dataset.pathId));
+document.getElementById('choice-b').addEventListener('click', event => followBranch(event.currentTarget.dataset.pathId));
+document.addEventListener('keydown', event => {
+  if (event.key === 'ArrowLeft') showSlide(activeIndex - 1);
+  if (event.key === 'ArrowRight') showSlide(activeIndex + 1);
+});
+track.addEventListener('touchstart', event => { touchStartX = event.changedTouches[0].clientX; }, { passive: true });
+track.addEventListener('touchend', event => {
+  const distance = event.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(distance) > 45) showSlide(activeIndex + (distance < 0 ? 1 : -1));
+}, { passive: true });
+window.addEventListener('hashchange', () => {
+  const hashIndex = slideIndexForHash();
+  if (hashIndex >= 0) {
+    showSlide(hashIndex);
+  }
+});
 
-function renderCommands(commands, query = ''){
-  const root = document.getElementById('command-list');
+const intro = document.getElementById('intro');
+function dismissIntro() {
+  document.body.classList.add('has-entered');
+  intro.classList.add('is-gone');
+}
+document.getElementById('enter-button').addEventListener('click', dismissIntro);
+
+function renderCommands(query = '') {
+  const commandList = document.getElementById('command-list');
   const needle = query.trim().toLowerCase();
-  const filtered = commands.filter(command => !needle || command.name.toLowerCase().includes(needle) || command.description.toLowerCase().includes(needle));
-  root.innerHTML = filtered.map(command => '<article class="command-card"><strong>' + command.name + '</strong><p>' + command.description + '</p></article>').join('');
-}
-
-function renderSupport(items){
-  const root = document.getElementById('support-stack');
-  root.innerHTML = items.map(item => '<article class="support-item"><h3>' + item.title + '</h3><p>' + item.summary + '</p><ol class="steps">' + item.steps.map(step => '<li>' + step + '</li>').join('') + '</ol><a class="inline-link" href="' + item.url + '" target="_blank" rel="noreferrer">' + item.label + '</a></article>').join('');
-}
-
-function setStreamState(isLive, reason){
-  const badge = document.getElementById('state-badge');
-  const label = document.getElementById('state-label');
-  const liveLayer = document.getElementById('live-layer');
-  const offlineLayer = document.getElementById('offline-layer');
-  const modeSummary = document.getElementById('mode-summary');
-  const fallbackSummary = document.getElementById('fallback-summary');
-  if(isLive){
-    badge.classList.remove('offline');
-    badge.classList.add('live');
-    label.textContent = 'Live now';
-    liveLayer.classList.add('active');
-    offlineLayer.classList.remove('active');
-    modeSummary.textContent = 'Twitch embed in live mode';
-    fallbackSummary.textContent = 'Highlights return when stream ends';
-  } else {
-    badge.classList.remove('live');
-    badge.classList.add('offline');
-    label.textContent = 'Offline';
-    liveLayer.classList.remove('active');
-    offlineLayer.classList.add('active');
-    modeSummary.textContent = 'Standby / recap rotation';
-    fallbackSummary.textContent = 'Offline video, recaps, commands, support';
-  }
-  document.getElementById('embed-note').textContent = reason;
-}
-
-function mountTwitchPlayer(){
-  const slot = document.getElementById('twitch-embed');
-  slot.innerHTML = '';
-  if (!window.Twitch || !window.Twitch.Embed) {
-    document.getElementById('embed-note').textContent = 'The Twitch embed script did not load, so the page will stay in offline recap mode.';
+  const matches = gamingCommands.filter(command => !needle || command.name.toLowerCase().includes(needle) || command.description.toLowerCase().includes(needle));
+  commandList.replaceChildren();
+  if (!matches.length) {
+    const empty = document.createElement('div');
+    empty.className = 'command-empty';
+    empty.textContent = 'No command found on that frequency.';
+    commandList.appendChild(empty);
     return;
   }
-  new Twitch.Embed('twitch-embed', {
+  matches.forEach(command => {
+    const item = document.createElement('div');
+    item.className = 'command-item';
+    const copyButton = document.createElement('button');
+    copyButton.className = 'command-name';
+    copyButton.type = 'button';
+    copyButton.textContent = command.name;
+    copyButton.title = `Copy ${command.name}`;
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(command.name);
+        copyButton.textContent = 'Copied';
+        window.setTimeout(() => { copyButton.textContent = command.name; }, 1200);
+      } catch {
+        copyButton.textContent = command.name;
+      }
+    });
+    const description = document.createElement('p');
+    description.textContent = command.description;
+    item.append(copyButton, description);
+    commandList.appendChild(item);
+  });
+}
+
+async function loadGamingContent() {
+  try {
+    const response = await fetch('./data/hub-content.json', { cache: 'no-store' });
+    if (!response.ok) {
+      throw new Error('Gaming content unavailable');
+    }
+    const content = await response.json();
+    gamingCommands = Array.isArray(content.commands) ? content.commands : [];
+    document.getElementById('next-stream').textContent = content.nextStream || 'Schedule posted on Twitch';
+    renderCommands();
+  } catch {
+    document.getElementById('next-stream').textContent = 'Schedule posted on Twitch';
+    document.getElementById('command-list').innerHTML = '<div class="command-empty">The command map is temporarily unavailable.</div>';
+  }
+}
+
+function mountTwitchPlayer() {
+  if (twitchMounted || !streamStatus?.live || document.getElementById('paranormal').hidden) {
+    return;
+  }
+  if (!window.Twitch || !window.Twitch.Embed || window.location.protocol === 'file:') {
+    return;
+  }
+  twitchMounted = true;
+  const player = document.getElementById('twitch-player');
+  player.classList.add('is-active');
+  document.getElementById('offline-stream').hidden = true;
+  new Twitch.Embed('twitch-player', {
     width: '100%',
     height: '100%',
-    channel: streamConfig.channel,
-    parent: [streamConfig.parent],
-    layout: 'video',
+    channel: 'thats_soo_buttons',
+    parent: [window.location.hostname || 'localhost'],
+    layout: 'video-with-chat',
     autoplay: true
   });
 }
 
-async function detectLiveState(){
-  if(window.location.protocol === 'file:'){
-    setStreamState(false, 'Twitch embed requires serving this page from localhost or a real domain. Open the local server instead of the file path to test live mode.');
-    return;
-  }
-  mountTwitchPlayer();
-  try{
-    const response = await fetch(streamConfig.statusEndpoint, { cache: 'no-store' });
-    if(!response.ok){
-      throw new Error('Status probe failed');
-    }
+document.getElementById('command-search').addEventListener('input', event => renderCommands(event.target.value));
+
+async function loadStatus() {
+  try {
+    const response = await fetch('/api/twitch-status', { cache: 'no-store' });
+    if (!response.ok) throw new Error('Status unavailable');
     const payload = await response.json();
-    if(!payload.ok && payload.fallback){
-      setStreamState(false, payload.reason || 'Twitch credentials or status check are unavailable, so the site falls back to recap mode.');
-      return;
-    }
-    if(payload.live){
-      const summary = [payload.title, payload.game ? 'Playing ' + payload.game : '', Number.isFinite(payload.viewerCount) ? payload.viewerCount + ' viewers' : ''].filter(Boolean).join(' | ');
-      document.getElementById('mode-summary').textContent = summary || 'Twitch embed in live mode';
-      setStreamState(true, 'Channel is live, so the Twitch player takes over the hero automatically.');
-    } else {
-      setStreamState(false, payload.message || 'Channel is currently offline, so the hero falls back to highlights and recap mode.');
+    streamStatus = payload;
+    const live = Boolean(payload.live);
+    document.getElementById('status-dot').classList.toggle('live', live);
+    document.getElementById('status-label').textContent = live ? 'Live on Twitch' : 'Currently off air';
+    const gamingIndicator = document.getElementById('gaming-live-indicator');
+    gamingIndicator.classList.toggle('is-live', live);
+    gamingIndicator.textContent = live ? 'Live now' : 'Signal standby';
+    if (live) {
+      document.getElementById('gaming-title').textContent = 'The transmission is live.';
+      document.getElementById('gaming-copy').textContent = [payload.title, payload.game && `Playing ${payload.game}`].filter(Boolean).join(' · ');
+      mountTwitchPlayer();
     }
   } catch {
-    setStreamState(false, 'Live detection could not be confirmed from the browser, so the site falls back safely to offline recap mode.');
+    streamStatus = { live: false };
+    document.getElementById('status-label').textContent = 'Signal unconfirmed';
+    document.getElementById('gaming-live-indicator').textContent = 'Signal unconfirmed';
   }
 }
 
-document.getElementById('command-search').addEventListener('input', event => {
-  if(hubContent){
-    renderCommands(hubContent.commands, event.target.value);
-  }
-});
-
-loadHubContent().catch(() => {
-  document.getElementById('dispatch-title').textContent = 'Content feed failed to load.';
-  document.getElementById('dispatch-body').textContent = 'The page shell is still usable, but the editable hub content JSON did not load.';
-});
-
-detectLiveState();
+document.getElementById('year').textContent = new Date().getFullYear();
+const initialHashIndex = slideIndexForHash();
+const featuredPathIds = ['paranormal', 'palia', 'lyrics', 'photography', 'social', 'writing'];
+const featuredPathId = featuredPathIds[dayNumber % featuredPathIds.length];
+const featuredIndex = slides.findIndex(slide => slide.querySelector('.open-button').getAttribute('href') === `#${featuredPathId}`);
+showSlide(initialHashIndex >= 0 ? initialHashIndex : featuredIndex);
+loadGamingContent();
+loadStatus();
 </script>
 </body>
 </html>
