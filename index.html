@@ -81,6 +81,7 @@ body:not(.has-entered) .launcher-bg{opacity:.35;transform:scale(1.035)}
 .slide-copy{min-width:0;max-width:650px;padding:clamp(24px,3.5vw,50px);background:linear-gradient(90deg,rgba(13,11,9,.94),rgba(13,11,9,.8));border-left:3px solid var(--gold);box-shadow:18px 20px 55px rgba(0,0,0,.3);backdrop-filter:blur(7px)}
 .path-note{margin:0 0 13px;color:var(--gold);font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.14em}
 .slide h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,8cqi,7rem);line-height:.88;letter-spacing:0;overflow-wrap:anywhere}
+.keep-word{white-space:nowrap}
 .slide-copy>p:not(.path-note){font-size:clamp(1rem,1.5vw,1.3rem);max-width:560px;color:#d4c6ab}
 .open-button{display:inline-flex;align-items:center;gap:12px;margin-top:16px;padding:13px 17px;border:1px solid var(--cream);background:transparent;color:var(--cream);text-decoration:none;text-transform:uppercase;font-family:var(--mono);font-size:.72rem;transition:background .2s,color .2s}
 .open-button:hover{background:var(--cream);color:var(--ink)}
@@ -280,7 +281,7 @@ body:not(.has-entered) .launcher-bg{opacity:.35;transform:scale(1.035)}
         </article>
         <article class="slide" data-title="Social">
           <div class="object-stage"><div class="postcards" aria-hidden="true"><div class="postcard"><span>Broadcast received</span><strong>@thatssoobuttons</strong></div><div class="postcard"><span>Come say hello</span><strong>Elsewhere Online</strong></div></div></div>
-          <div class="slide-copy"><p class="path-note">Postcards arrive from everywhere at once</p><h2>Elsewhere Online</h2><p>Short-form chaos, current thoughts, new posts, and the places where conversation keeps going.</p><a class="open-button" href="#social">Read the postcards <span>↓</span></a></div>
+          <div class="slide-copy"><p class="path-note">Postcards arrive from everywhere at once</p><h2><span class="keep-word">Elsewhere</span> Online</h2><p>Short-form chaos, current thoughts, new posts, and the places where conversation keeps going.</p><a class="open-button" href="#social">Read the postcards <span>↓</span></a></div>
         </article>
       </div>
     </div>
@@ -288,16 +289,6 @@ body:not(.has-entered) .launcher-bg{opacity:.35;transform:scale(1.035)}
   </div>
   <div class="carousel-footer"><div class="tabs" id="tabs" aria-label="Choose your path"></div><div class="path-tools"><button class="surprise-path" id="surprise-path" type="button">Surprise me</button><div class="counter" id="counter">Path 1 of 8</div></div></div>
 </section>
-<aside class="daily-word" aria-labelledby="daily-word-title">
-  <button class="daily-word-toggle" id="daily-word-toggle" type="button" aria-expanded="true" aria-controls="daily-word-copy" title="Minimize word of the day"><i data-lucide="minus" aria-hidden="true"></i></button>
-  <p class="daily-word-label">A word discovered today</p>
-  <div class="daily-word-copy" id="daily-word-copy">
-    <h2 id="daily-word-title">Wanderword</h2>
-    <p class="daily-word-meta" id="daily-word-meta">The page is turning...</p>
-    <p class="daily-word-definition" id="daily-word-definition" aria-live="polite">Finding today’s word.</p>
-  </div>
-  <button type="button" id="next-word">Turn the page</button>
-</aside>
 <div class="content" id="path-reader" aria-live="polite">
 <section class="section dark-section" id="lyrics">
   <div class="section-inner"><div class="section-heading"><p class="eyebrow">01 / The lyric tapes</p><div><h2>Words looking for their sound.</h2><p class="lead">I write memorable refrains, sensory details, characters, and emotional turns. I’d love to work with producers who move between styles and artists searching for the right words.</p></div></div>
@@ -305,7 +296,7 @@ body:not(.has-entered) .launcher-bg{opacity:.35;transform:scale(1.035)}
   <div class="signal-player"><div class="signal-player-copy"><p>Featured tape</p><h3>Why Can’t We Hear Them</h3></div><audio controls preload="metadata" src="assets/audio/why-cant-we-hear-them.mp3">Your browser does not support audio playback.</audio></div>
   <div class="callout"><span>Producer or artist with a strange idea? The full tapes are kept off the public desk.</span><a href="https://tessdevillier.com/contact.html?service=lyric-writing">Hire me for lyrics ↗</a></div></div>
 </section>
-<section class="section" id="writing"><div class="section-inner"><div class="section-heading"><p class="eyebrow">Stories & strange worlds</p><div><h2>I build places with consequences.</h2><p class="lead">My worlds connect culture, environment, history, characters, systems, and emotional logic. The lore is never decoration; it changes what can happen next.</p></div></div><div class="evidence-grid"><article class="evidence"><h3>XYZTHIANS</h3><p>A multimedia mythology about modern gods formed through mass hysteria and emotional pressure.</p><a href="https://everythingandthekitchensink.xyz" target="_blank" rel="noreferrer">Enter the world ↗</a></article><article class="evidence"><h3>Snippets</h3><p>Fragments, scenes, stray lines, works in progress, and ideas caught before they could disappear.</p><a href="https://www.tumblr.com/thatssoobuttons" target="_blank" rel="noreferrer">Read on Tumblr ↗</a></article><article class="evidence"><h3>Join the Discussion</h3><p>Join the On The Fly Network Discord through the Writer invite and talk craft, works in progress, ideas, and creative trouble with us.</p><a href="https://discord.gg/aYCAZMJjXE" target="_blank" rel="noreferrer">Join with the Writer role ↗</a></article></div></div></section>
+<section class="section" id="writing"><div class="section-inner"><div class="section-heading"><p class="eyebrow">Stories & strange worlds</p><div><h2>I build places with consequences.</h2><p class="lead">My worlds connect culture, environment, history, characters, systems, and emotional logic. The lore is never decoration; it changes what can happen next.</p></div></div><aside class="daily-word" aria-labelledby="daily-word-title"><button class="daily-word-toggle" id="daily-word-toggle" type="button" aria-expanded="true" aria-controls="daily-word-copy" title="Minimize word of the day"><i data-lucide="minus" aria-hidden="true"></i></button><p class="daily-word-label">A word discovered today</p><div class="daily-word-copy" id="daily-word-copy"><h2 id="daily-word-title">Wanderword</h2><p class="daily-word-meta" id="daily-word-meta">The page is turning...</p><p class="daily-word-definition" id="daily-word-definition" aria-live="polite">Finding today’s word.</p></div><button type="button" id="next-word">Turn the page</button></aside><div class="evidence-grid"><article class="evidence"><h3>XYZTHIANS</h3><p>A multimedia mythology about modern gods formed through mass hysteria and emotional pressure.</p><a href="https://everythingandthekitchensink.xyz" target="_blank" rel="noreferrer">Enter the world ↗</a></article><article class="evidence"><h3>Snippets</h3><p>Fragments, scenes, stray lines, works in progress, and ideas caught before they could disappear.</p><a href="https://www.tumblr.com/thatssoobuttons" target="_blank" rel="noreferrer">Read on Tumblr ↗</a></article><article class="evidence"><h3>Join the Discussion</h3><p>Join the On The Fly Network Discord through the Writer invite and talk craft, works in progress, ideas, and creative trouble with us.</p><a href="https://discord.gg/aYCAZMJjXE" target="_blank" rel="noreferrer">Join with the Writer role ↗</a></article></div></div></section>
 <section class="section dark-section" id="gaming">
   <div class="section-inner">
     <div class="section-heading"><p class="eyebrow">Choose your game</p><div><h2 id="gaming-title">Cozy worlds and haunted houses.</h2><p class="lead" id="gaming-copy">Gaming is where community, storytelling, improvised comedy, and wildly different levels of danger meet.</p><div class="game-jump"><label for="game-jump">Travel to a game</label><select id="game-jump"><option value="">Choose a destination</option><option value="gaming-palia">Palia</option><option value="gaming-phasmo">Phasmo</option></select></div></div></div>
