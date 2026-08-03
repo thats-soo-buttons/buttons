@@ -22,6 +22,7 @@ const contentTypes = {
   '.png': 'image/png',
   '.gif': 'image/gif',
   '.webp': 'image/webp',
+  '.mp3': 'audio/mpeg',
   '.mp4': 'video/mp4',
   '.mov': 'video/quicktime',
   '.svg': 'image/svg+xml'
